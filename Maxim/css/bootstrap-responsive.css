@@ -10,6 +10,7 @@
 
 .clearfix {
   *zoom: 1;
+  margin: auto;
 }
 
 .clearfix:before,
