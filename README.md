@@ -1,16 +1,20 @@
 ﻿# Applicazione Web - Catalogo Prodotti
 
-### Ecco il repository dove possiamo salvare tutto il codice del progetto!
+### Nuovo Layout Template (Electro)
 
-Per ora ho aggiunto il template del layout, così potete guardarlo.
-Ne ho scelti 2 da FreeCss (come consigliò il prof) in modo da prendere poi quello "più semplificabile"
+Presenta una serie di vantaggi che facilitano il lavoro:
+- Non necessita di alcun file javascript esterno !
+- È presente solo un file css "esterno" --> il Bootstrap, che ho espanso in modo da potergli dare un'occhiata (**non modificare**)
+- Per modificare lo stile basta aggiungere le personalizzazioni nell'unico foglio in /css/style.css
+- Il logo è ottimo quindi non cambiatelo.
+- Se volete aggiungere icone un ottimo sito è [Flaticon](https://www.flaticon.com/)
 
-- Maxim [https://www.free-css.com/free-css-templates/page248/maxim](https://www.free-css.com/free-css-templates/page248/maxim) 
-- Live-Dinner [https://www.free-css.com/free-css-templates/page252/live-dinner] (https://www.free-css.com/free-css-templates/page252/live-dinner)
+Il file principale dove verrà iniettato tutto il contenuto è l' ***index***.
 
-Per vederlo scaricate il pacchetto e aprite l'index.html
-Se ne avete altri migliori possiamo cambiarlo ovviamente.
+- Tutti gli altri file .html contengono solo l'intestazione base (head/body) per adesso, più il contenuto. In questo modo si può visualizzare la pagina direttamente nel browser.
+- Successivamente, tramite il framework, il contenuto delle pagine che creiamo verrà inviato all'*index* (eliminando la parte head/body che deve rimanere in *index*)
 
-- Se scrivete una mail a alesimattia@gmail.com vi aggiungo come editor a questo repository
-- Se non sapete come usare Git vi consiglio di scaricare il programma desktop che è molto più intuitivo.
-- Potete fare liberamente delle modifiche **creando un proprio branch** in modo da mantenere inalterato il Master 
+- Ci sono alcuni elementi che possiamo riutilizzare: &nbsp;*login.html* e &nbsp;*registrazione.html*
+
+Ovviamente si accettano consigli e lamentele 😝 <br/>
+Se qualcosa non va, lo cambiamo senza problemi !
