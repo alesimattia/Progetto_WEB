@@ -5600,3 +5600,7 @@ a
 .navico{
 	max-width: 40%
 }
+.modfooter{
+	flex: 0 0 30%;
+	max-width: 30%
+}
