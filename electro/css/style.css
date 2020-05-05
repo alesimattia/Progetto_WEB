@@ -1,7 +1,9 @@
-@import "https://fonts.googleapis.com/css?family=Oswald:400,500,600";
+.button-navbar{
+	margin-left: 12px; 	/*altrimenti tropo attaccato agli elementi della nav*/
+}
 
-@import "https://fonts.googleapis.com/css?family=Roboto:400,500";
 
+/**Regole originali**/
 body
 {
 	color:#777;
