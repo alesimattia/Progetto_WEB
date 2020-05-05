@@ -1472,7 +1472,8 @@ a
 
 .button-login
 {
-	font-size:15px;
+	margin-top: 20px;
+	font-size:16px;
 	padding:7px 44px
 }
 
@@ -4255,7 +4256,7 @@ a
 @media (min-width: 1000px) {
 	.login_box_area .login_box_img
 	{
-		height:610px
+		height:580px
 	}
 }
 
@@ -4347,7 +4348,7 @@ a
 {
 	color:#222;
 	text-transform:uppercase;
-	font-size:18px;
+	font-size:32px;
 	margin-bottom:75px
 }
 
@@ -4380,7 +4381,7 @@ a
 	border-radius:0;
 	outline:none;
 	box-shadow:none;
-	font-size:14px;
+	font-size:16px;
 	color:#999
 }
 
