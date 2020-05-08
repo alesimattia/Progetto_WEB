@@ -21,7 +21,7 @@ body
 	font-family:"Roboto",sans-serif;
 	font-size:15px;
 	font-weight:400;
-	line-height:1.667
+	line-height:1.667;
 }
 
 ul
@@ -125,7 +125,7 @@ a
 
 	.section-margin.calc-60px
 	{
-		margin:30px 0 70px
+		margin:30px 0 70px;
 	}
 }
 
@@ -180,7 +180,7 @@ a
 .header_area .navbar
 {
 	background:white; /*modificato colore navbar*/
-
+	height: 8%;
 	padding:0;
 	border:0;
 	border-radius:0
@@ -1517,7 +1517,7 @@ a
 
 .button-header
 {
-	padding:10px 45px;
+	padding: 5px 35px;
 	background:transparent;
 	color:#222;
 	border-color:rgb(149, 144, 184)
@@ -5469,7 +5469,7 @@ a
 @media (min-width: 1000px) {
 	.footer-area
 	{
-		padding:195px 0 120px
+		padding: 5% 0 2%;
 	}
 }
 
