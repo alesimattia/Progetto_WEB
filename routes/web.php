@@ -11,8 +11,8 @@
   |
  */
 
-Route::get('/selTopCat/{topCatId}/selCat/{catId}', 'PublicController@showCatalog3')
-        ->name('catalog3');
+/*Route::get('/selTopCat/{topCatId}/selCat/{catId}', 'PublicController@showCatalog3')
+        ->name('catalog3');*/
 
 Route::get('/selTopCat/{topCatId}', 'PublicController@showCatalog2')
         ->name('catalog2');
