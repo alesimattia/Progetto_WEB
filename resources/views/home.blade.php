@@ -1,3 +1,9 @@
+@extends('layouts.public')
+
+@section('title', 'Home')
+
+@section('main')
+
 <section class="blog" id="acquista">
     <div class="container">
     <div class="section-intro pb-60px">
@@ -63,3 +69,4 @@
     </div>
     </div>
 </section>
+@endsection

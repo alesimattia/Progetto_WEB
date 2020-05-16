@@ -15,9 +15,10 @@ class Sottocategoria extends Migration
     {
         Schema::create('sottocategoria', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned()->index();
-            $table->bigInteger('cat')->unsigned()->index();
-            $table->foreign('cat')->references('id')->on('categoria');
-            $table->string('nome', 20);
+            $table->string('nomeSubCat', 20);
+
+            $table->bigInteger('mainCat')->unsigned()->index();
+            $table->foreign('mainCat')->references('id')->on('categoria');
         });
     }
 

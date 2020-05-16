@@ -14,14 +14,15 @@ class Utente extends Migration
     public function up()
     {
         Schema::create('utente', function (Blueprint $table) {
-            $table->bigIncrements('username');
-            $table->string("password", 25);
+            $table->string('username', 25);
+            $table->primary('username');
+            $table->string("password");
             $table->string("nome", 20);
             $table->string("cognome", 20);
-            $table->string("residenza");
-            $table->string("nascita", 20);
+            $table->string("residenza", 30);
+            $table->date("dataNascita");
             $table->string("occupazione", 30);
-            $table->string("ruolo", 20);
+            $table->string("ruolo", 15)->default('user');
         });
     }
 

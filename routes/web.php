@@ -11,16 +11,21 @@
   |
  */
 
-/*Route::get('/selTopCat/{topCatId}/selCat/{catId}', 'PublicController@showCatalog3')
-        ->name('catalog3');*/
+Route::get('/selTopCat/{topCatId}/selCat/{catId}', 'PublicController@showCatalog3')
+        ->name('catalog3');
 
 Route::get('/selTopCat/{topCatId}', 'PublicController@showCatalog2')
         ->name('catalog2');
 
-Route::get('/', 'PublicController@showCatalog1')
-        ->name('catalog1');
+Route::get('/catalogo', 'PublicController@showGuestCatalog')
+        ->name('catalogo');
 
-Route::get('/admin/newproduct', 'AdminController@addProduct')
+Route::get('/', 'PublicController@index')
+        ->name('index');
+
+
+
+/*Route::get('/admin/newproduct', 'AdminController@addProduct')
         ->name('newproduct');
 
 Route::post('/admin/newproduct', 'AdminController@storeProduct')
@@ -30,7 +35,9 @@ Route::get('/admin', 'AdminController@index')
         ->name('admin');
 
 Route::get('/user', 'UserController@index')
-        ->name('user')->middleware('can:isUser');
+        ->name('user')->middleware('can:isUser');*/
+
+
 
 // Rotte per l'autenticazione
 Route::get('login', 'Auth\LoginController@showLoginForm')
@@ -41,17 +48,19 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')
         ->name('logout');
 
+
+
 // Rotte per la registrazione
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')
         ->name('register');
 
 Route::post('register', 'Auth\RegisterController@register');
 
-Route::view('/where', 'where')
-        ->name('where');
 
-Route::view('/who', 'who')
-        ->name('who');
+
+Route::view('/contatti', 'contatti')
+        ->name('contatti');
+
 
 // Rotte inserite dal comando artisan "ui vue --auth" 
 // Auth::routes();

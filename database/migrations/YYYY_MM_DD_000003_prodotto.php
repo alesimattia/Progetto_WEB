@@ -15,14 +15,14 @@ class Prodotto extends Migration
     {
         Schema::create('prodotto', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('subcat')->unsigned()->index();
-            $table->foreign('subcat')->references('id')->on('sottocategoria');    //se commentata funziona il collegamento tra sottocategoria e categoria
             $table->string('nome', 20);
+            $table->bigInteger('subCat')->unsigned()->index();
+            $table->foreign('subCat')->references('id')->on('sottocategoria');
+            $table->float('prezzo');
+            $table->integer('percSconto');
+            $table->text('foto')->nullable(false);
             $table->string('desc_breve', 100);
             $table->string('desc_estesa', 200);
-            $table->float('prezzo');
-            $table->text('foto')->nullable(false)->change();
-            $table->integer('percSconto');
         });
     }
 
