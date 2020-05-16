@@ -15,7 +15,7 @@ class Categoria extends Migration
     {
         Schema::create('categoria', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned()->index();
-            $table->string('nome', 20);
+            $table->string('nomeCat', 20);
         });
     }
 

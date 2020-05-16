@@ -905,8 +905,8 @@ a
 
 .section-intro__style
 {
-	border-bottom:2px solid #384aeb;
-	padding-bottom:8px
+	border-bottom:0.1em solid #384aeb;
+	padding-bottom:0.1em;
 }
 
 .hero-banner
@@ -1429,7 +1429,7 @@ a
 .button
 {
 	display:inline-block;
-	border:1px solid #384aeb;
+	border:0.15em solid #384aeb;
 	border-radius:30px;
 	color:#222;
 	font-weight:500;

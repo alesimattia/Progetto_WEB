@@ -33,7 +33,7 @@
 
         <!--================   CORPO PRINCIPALE  =================-->
         <main class="site-main section-margin">
-            @include('home')
+            @yield('main')
         </main>
 
         <!--================ Start footer Area  =================-->

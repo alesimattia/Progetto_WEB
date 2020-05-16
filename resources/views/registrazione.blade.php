@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html lang="it">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione</title>
-
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
-
-<body>
-
-    <!--================Login Box Area =================-->
+@extends('layouts.public')
+@section('title', 'Registrazione')
+    
     <section class="login_box_area section-margin" >
         <div class="container">
             <div class="row">
