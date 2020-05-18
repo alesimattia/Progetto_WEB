@@ -37,9 +37,13 @@
                     </ul>
     
                     <ul class="nav-shop">
-                        <li class="nav-item"><a class="button button-header button-navbar" href="#">Logout</a></li>
+                        <li class="nav-item">
+                            <a class="button button-header" href="#">
+                                <img src="./img/icon/login.png" style="height: 20px">&nbsp;Logout
+                            </a>
+                        </li>
                     </ul>
-
+                    
                 </div>
             </div>
         </nav>

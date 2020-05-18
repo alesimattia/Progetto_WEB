@@ -4,13 +4,11 @@
 
 @section('main')
 
-<!-- ================ CATALOGO ================= -->
 <section class="section-margin calc-60px">
     <div class="container">
         <h2 style="text-align: center; padding-bottom: 50px;"><span class="section-intro__style">Catalogo</span></h2>
 
         <nav class="navbar navbar-expand-md  bg-light">
-
             <ul class="navbar-nav span4" style="float: left; padding-left: 100px; margin: auto;width: 50%;">
                 <li style="text-align: center; padding-bottom: 15px; padding-right: 15px;" class="nav-item">
                     <a onclick="filterSelection('all')" href="#" class="section-intro__style" style=" text-align: center;">Computer</a>    <!-- in origine "span" (solo questo elemento)-->
@@ -36,11 +34,12 @@
                     <a style="color: #384aeb;" class="nav-link" data-toggle="tab" href="#tab1">24"</a>
                 </li>
             </ul>
-
         </nav>
 
-        <div class="row">
 
+        <div class="row">
+            @isset($prodotti)
+            @foreach($prodotti)
             <!--Prodotto base-->
             <div class="col-md-6 col-lg-4 col-xl-3 filterDiv m_20">
                 <div class="card text-center card-product">
@@ -58,6 +57,8 @@
                     </div>
                 </div>
             </div>
+            @endforeach
+
 
             <div class="col-md-6 col-lg-4 col-xl-3 filterDiv m_20">
                 <div class="card text-center card-product">
@@ -224,6 +225,9 @@
             </div>
 
         </div>
+                                    <!--oggetto a cui viene inviato il contenuto da paginare-->
+        @include('pagination.paginator', ['paginator' => $prodotti])
+        @endisset
     </div>
 </section>
 @endsection

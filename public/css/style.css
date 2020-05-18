@@ -13,7 +13,11 @@
 	margin-left: auto;
 }
 
+.icona_paginator{
+	height: 25px;
+}
 
+/* Parte per filtri javascript --> da sostituire con query parametriche*/
 .filterDiv {
 	float: left;
 	display: none; /* Hidden by default */
@@ -25,10 +29,11 @@
   }
 
 
+
 /**Regole originali**/
 body
 {
-	color:rgb(87, 87, 87);
+	color:#555;
 	font-family:"Roboto",sans-serif;
 	font-size:15px;
 	font-weight:400;
@@ -197,22 +202,29 @@ a
 	border-radius:0
 }
 
+.nav-link
+{
+	font-size: 1.12em;
+	border-bottom: 0.15em solid #384aeb;
+}
+
 .header_area .navbar .nav .nav-item
 {
-	margin-right:45px
+	margin-right:3.5rem
 }
 
 .header_area .navbar .nav .nav-item .nav-link
 {
+
 	text-transform:capitalize;
 	color:#222;
 	display:inline-block
 }
 
 @media (min-width: 991px) {
-	.header_area .navbar .nav .nav-item .nav-link
+	.header_area .navbar .nav 
 	{
-		padding:32px 0
+		/*padding:32px 0*/
 	}
 }
 
@@ -905,6 +917,7 @@ a
 
 .section-intro__style
 {
+	font-size: 1em;
 	border-bottom:0.1em solid #384aeb;
 	padding-bottom:0.1em;
 }
@@ -1201,6 +1214,7 @@ a
 
 .offer__content p
 {
+	font-size: 1.2em;
 	color:#555
 }
 
@@ -1528,10 +1542,10 @@ a
 
 .button-header
 {
-	padding: 5px 35px;
+	padding: 0.5em 1.6em;
 	background:transparent;
 	color:#222;
-	border-color:rgb(149, 144, 184)
+	border-color:rgb(122, 113, 168);
 }
 
 .button-hero
@@ -1541,6 +1555,7 @@ a
 
 .button--active
 {
+	font-size: 1.15em;
 	background:#384aeb;
 	color:#fff
 }

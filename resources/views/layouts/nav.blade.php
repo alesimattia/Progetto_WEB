@@ -13,14 +13,22 @@
 
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                        <li class="nav-item active"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
                     </ul>
 
                     <ul class="nav-shop">
-                        <li class="nav-item"><a class="button button-header" href="{{ route('register') }}">Registrati</a></li>
-                        <li class="nav-item"><a class="button button-header" href="{{ route('login') }}">Accedi</a></li>
+                        <li class="nav-item">
+                            <a class="button button-header" href="{{ route('register') }}">
+                                <img src="./img/icon/register.png" style="height: 20px">&nbsp; Registrati
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="button button-header" href="{{ route('login') }}">
+                                <img src="./img/icon/login.png" style="height: 20px">&nbsp; Accedi
+                            </a>
+                        </li>
                     </ul>
 
                 </div>

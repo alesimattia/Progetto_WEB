@@ -7,7 +7,7 @@ use App\Models\Resources\Prodotto;
 
 class Catalogo {
 
-    public function getMainCat() {
+    public function getMainCats() {
         return Categoria::get();
     }
 
