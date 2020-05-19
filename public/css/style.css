@@ -17,17 +17,28 @@
 	height: 25px;
 }
 
-/* Parte per filtri javascript --> da sostituire con query parametriche*/
-.filterDiv {
-	float: left;
-	display: none; /* Hidden by default */
-  }
-  
-  /* The "show" class is added to the filtered elements */
-  .show {
-	display: block;
-  }
+.main_category{
+	font-size: 1.3em;
+	text-align: center;
+	border: none;
+	padding: 1.1em 1.3em;
+}
 
+.sub_category{
+	text-align: center;
+	color: #384aeb;
+	padding: 1.1em 1.3em;
+}
+
+.category_block{
+	text-align: center;
+	margin: auto;
+}
+
+.selected{
+	border: 0.1em solid #384aeb;
+	padding-bottom: 0.1em;
+}
 
 
 /**Regole originali**/

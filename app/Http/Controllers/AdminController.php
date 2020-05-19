@@ -4,20 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Resources\Prodotto;
-use App\Http\Requests\NewProductRequest;
+use App\Http\Requests\ProductSchema;
 
 class AdminController extends Controller {
 
     protected $_adminModel;
 
     public function __construct() {
-        $this->middleware('can:isAdmin');
+        //$this->middleware('can:isAdmin');     //altrimenti la rotta non è raggiungibile inserendo direttamente l'url
         $this->_adminModel = new Admin;
     }
 
     public function index() {
         return view('adminHome');
     }
+
 
     public function addProduct() {
         $prodCats = $this->_adminModel->getProdsCats()->pluck('name', 'catId');
@@ -26,10 +27,10 @@ class AdminController extends Controller {
     }
 
                                     //request object tipizzato dalla classe
-    public function storeProduct(NewProductRequest $request) {
+    public function storeProduct(ProductSchema $request) {
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
             $imageName = $image->getClientOriginalName();
         } else {
             $imageName = NULL;

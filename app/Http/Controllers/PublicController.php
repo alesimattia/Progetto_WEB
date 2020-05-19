@@ -16,60 +16,30 @@ class PublicController extends Controller {
         return view('home');
     }
 
-    //Solo prodotti in sconto, dal più scontato
-    public function showGuestCatalog() {
-        //Recupera le macro-categorie
-        $mainCat = $this->_catalogModel->getMainCat();
-        
-        //Solo prodotti in sconto di tutte le categorie, ordinati per sconto decrescente
-        $products = $this->_catalogModel->getProdsByCat($mainCat->map->only(['id']), 2, 'desc', true);
 
+    public function showCatalog($categoria = 'monitor') {
+
+        /*Le prime due instruzioni servono a ottenere gli elementi
+        con cui si creeranno i filtri del catalogo*/
+
+        //Recupera le Categorie
+        $mainCats = $this->_catalogModel->getMainCat();
+
+        //Recupera le Sottocategorie
+        $subCats = $this->_catalogModel->getSubCat([$mainCats]);        
+
+        //Tutti i prodotti della categoria selezionata, ordinati per sconto decrescente 
+        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 2, 'desc');
+        //$prodotti=NULL; $selected=null; $subCats=null;  $mainCats=null;
         return view('catalogo')
-                    ->with('topCategories', $mainCat)
-                    ->with('products', $products);
+                        ->with('mainCats', $mainCats)
+                        ->with('subCats', $subCats)
+                        ->with('selected', $categoria)
+                        ->with('prodotti', $prodotti);
     }
 
-
-    public function showCatalog2($topCatId) {
-
-        //Categorie Top
-        $mainCat = $this->_catalogModel->getMainCat();
-
-        //Categoria Top selezionata
-        $selTopCat = $mainCat->where('catId', $topCatId)->first();
-
-        // Sottocategorie
-        $subCats = $this->_catalogModel->getCatsByParId([$topCatId]);
-                        
-        //Tutti i prodotti della categoria Top selezionata, ordinati per sconto decrescente 
-        $prodotti = $this->_catalogModel->getProdsByCat([$topCatId], 2, 'desc', false);
-
-        return view('catalogo')
-                        ->with('topCategories', $mainCat)
-                        ->with('selectedTopCat', $selTopCat)
-                        ->with('subCategories', $subCats)
-                        ->with('products', $prodotti);
-    }
-
-    public function showCatalog3($topCatId, $catId) {
-
-        //Categorie Top
-        $mainCat = $this->_catalogModel->getMainCat();
-
-        //Categoria Top selezionata
-        $selTopCat = $mainCat->where('catId', $topCatId)->first();
-
-        // Sottocategorie
-        $subCats = $this->_catalogModel->getCatsByParId([$topCatId]);
-
-        // Prodotti della categoria selezionata, in sconto o meno
-       $prodotti = $this->_catalogModel->getProdsByCat([$catId]);
-
-        return view('catalogo')
-                        ->with('topCategories', $mainCat)
-                        ->with('selectedTopCat', $selTopCat)
-                        ->with('subCategories', $subCats)
-                        ->with('products', $prodotti);
+    public function showLoginForm(){
+        return view('login');
     }
 
 }

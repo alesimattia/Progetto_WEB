@@ -1,4 +1,3 @@
-
 <header class="header_area">
     <div class="main_menu">
         <!-- Navbar -->
@@ -16,6 +15,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user') }}">Area Utente</a></li>
                     </ul>
 
                     <ul class="nav-shop">

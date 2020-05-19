@@ -1,9 +1,9 @@
 <header class="header_area">
     <div class="main_menu">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light fixed">   <!-- eventualemte non trasparente style="background-color: #fff;-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed">
             <div class="container">
-                <a class="navbar-brand logo_h" href="index.html"><img src="img/home/main_logo.png"></a>  <!-- LOGO OTTIMO, NON CAMBIARE-->
+                <a class="navbar-brand logo_h" href="{{ route('index') }}"><img src="img/home/main_logo.png"></a> 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>

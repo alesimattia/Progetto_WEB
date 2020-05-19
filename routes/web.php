@@ -1,5 +1,4 @@
 <?php
-
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -10,41 +9,44 @@
   | contains the "web" middleware group. Now create something great!
   |
  */
-
-Route::get('/selTopCat/{topCatId}/selCat/{catId}', 'PublicController@showCatalog3')
-        ->name('catalog3');
-
-Route::get('/selTopCat/{topCatId}', 'PublicController@showCatalog2')
-        ->name('catalog2');
-
-Route::get('/catalogo', 'PublicController@showGuestCatalog')
-        ->name('catalogo');
-
 Route::get('/', 'PublicController@index')
         ->name('index');
+        
+Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
+        ->name('catalogo');
+
+Route::get('/catalogo', 'PublicController@showCatalog')
+        ->name('catalogo');
+ 
+Route::get('/login', 'PublicController@showLoginForm')       //NON DEFINITIVA serve a non effettuare prima il login
+        ->name('login');
+
+
+Route::get('/user', 'UserController@index')
+        ->name('user');
+        //->middleware('can:isUser');   //controlla che abbia fatto il login
 
 
 
-Route::get('/admin/nuovoProdotto', 'AdminController@addProduct')
-        ->name('nuovoProdotto');
-
-Route::post('/admin/newproduct', 'AdminController@storeProduct')
-        ->name('newproduct.store');
 
 Route::get('/admin', 'AdminController@index')
         ->name('admin');
 
-        
-Route::get('/user', 'UserController@index')
-        ->name('user')->middleware('can:isUser');
+Route::get('/admin/addProduct', 'AdminController@addProduct')
+        ->name('nuovoProdotto');
+
+Route::post('/admin/addProduct', 'AdminController@storeProduct')
+        ->name('nuovoProdotto.store');
 
 
 
-// Rotte per l'autenticazione
+
+
+/* Rotte per l'autenticazione
 Route::get('login', 'Auth\LoginController@showLoginForm')
         ->name('login');
 
-Route::post('login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@login');     */
 
 Route::post('logout', 'Auth\LoginController@logout')
         ->name('logout');

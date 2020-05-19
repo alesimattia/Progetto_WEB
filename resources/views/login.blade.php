@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="it">
+@extends('layouts.public')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+@section('title', 'Home')
 
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+@section('main')
 
-</head>
-
-<body>
     <!--================Login Box Area =================-->
     <section class="login_box_area section-margin">
         <div class="container">
@@ -19,7 +11,7 @@
                 <div class="col-lg-6">
                     <div class="login_box_img">
                         <div class="hover">
-                            <h4>Nuovo cliente?</h4>
+                            <h4 >Nuovo cliente?</h4>
                             <a class="button button-account" href="register.html">Crea un account</a>
                         </div>
                     </div>
@@ -43,8 +35,4 @@
             </div>
         </div>
     </section>
-    <!--================End Login Box Area =================-->
-
-</body>
-
-</html>
+@endsection
