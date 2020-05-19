@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    @include('layouts/nav') 
+    @include('layouts/nav_admin') 
     <main class="site-main">
 
         <!-- ================ Banner centrale ================= -->
@@ -20,10 +20,9 @@
                 <div class="row">
                     <div class="col-xl-5">
                         <div class="offer__content text-center">
-                            <h3>I migliori prodotti per le tue esigenze</h3>
-                            <h4>Il catalogo più grande d'Italia</h4>
-                            <p>Scopri i nostri sconti</p>
-                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('catalogo') }}">Acquista ora</a>
+                            <h4>Benvenuto Admin!</h4>
+                            <p>Ora puoi gestire dipendenti e prodotti</p>
+                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('nuovoProdotto') }}">Inserisci prodotti</a>
                         </div>
                     </div>
                 </div>
@@ -33,7 +32,7 @@
 
         <!--================   CORPO PRINCIPALE  =================-->
         <main class="site-main section-margin">
-            @yield('main')
+            @yield('adminHome')
         </main>
 
         <!--================ Start footer Area  =================-->

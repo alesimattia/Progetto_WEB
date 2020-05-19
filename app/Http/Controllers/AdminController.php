@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Models\Resources\Product;
+use App\Models\Resources\Prodotto;
 use App\Http\Requests\NewProductRequest;
 
 class AdminController extends Controller {
@@ -16,15 +16,16 @@ class AdminController extends Controller {
     }
 
     public function index() {
-        return view('admin');
+        return view('adminHome');
     }
 
     public function addProduct() {
         $prodCats = $this->_adminModel->getProdsCats()->pluck('name', 'catId');
         return view('product.insert')
-                        ->with('cats', $prodCats);
+                    ->with('cats', $prodCats);
     }
 
+                                    //request object tipizzato dalla classe
     public function storeProduct(NewProductRequest $request) {
 
         if ($request->hasFile('image')) {
@@ -34,7 +35,7 @@ class AdminController extends Controller {
             $imageName = NULL;
         }
 
-        $product = new Product;
+        $product = new Prodotto;
         $product->fill($request->validated());
         $product->image = $imageName;
         $product->save();

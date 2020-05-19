@@ -21,8 +21,8 @@ class Prodotto extends Migration
             $table->float('prezzo');
             $table->integer('percSconto');
             $table->text('foto')->nullable(false);
-            $table->string('desc_breve', 100);
-            $table->string('desc_estesa', 200);
+            $table->string('descBreve', 50);
+            $table->string('descEstesa', 500);
         });
     }
 

@@ -25,8 +25,8 @@ Route::get('/', 'PublicController@index')
 
 
 
-/*Route::get('/admin/newproduct', 'AdminController@addProduct')
-        ->name('newproduct');
+Route::get('/admin/nuovoProdotto', 'AdminController@addProduct')
+        ->name('nuovoProdotto');
 
 Route::post('/admin/newproduct', 'AdminController@storeProduct')
         ->name('newproduct.store');
@@ -34,8 +34,9 @@ Route::post('/admin/newproduct', 'AdminController@storeProduct')
 Route::get('/admin', 'AdminController@index')
         ->name('admin');
 
+        
 Route::get('/user', 'UserController@index')
-        ->name('user')->middleware('can:isUser');*/
+        ->name('user')->middleware('can:isUser');
 
 
 

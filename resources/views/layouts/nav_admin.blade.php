@@ -18,7 +18,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                 aria-expanded="false">Gestisci prodotti</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="#">Inserisci prodotti</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('nuovoProdotto') }}">Inserisci prodotti</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Modifica prodotti</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Cancella prodotti</a></li>                                  
                             </ul>
