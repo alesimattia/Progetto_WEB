@@ -12,11 +12,15 @@ class Catalogo {
         return Categoria::get();
     }
 
+    public function getSubCat(){
+        return Sottocategoria::get();
+    }
 
-    public function getSubCat($mainCat) {
+// non funziona
+    /*public function getSubCat($mainCat) {
         return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
                 -> where('mainCat','=', $mainCat)->get();
-    }
+    }*/
 
 
     public function getParentCat($subCat){
@@ -27,10 +31,10 @@ class Catalogo {
     }
 
 
-    
+
     //Estrae tutti o solo quelli in sconto, eventualmente ordinati
     public function getProdsByCat($category, $paged = 1, $order = null, $only_discounted = false) {
-                                                                                                    
+
         $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                 ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
                 ->whereIn('nomeSubCat', $category)

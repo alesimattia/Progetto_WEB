@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    @include('layouts/nav') 
+    @include('layouts/nav')
     <main class="site-main">
 
         <!-- ================ Banner centrale ================= -->
@@ -56,10 +56,10 @@
                             <div class="single-footer-widget tp_widgets">
                                 <h4 class="footer_title">I nostri social</h4>
                                 <ul class="list">
-                                    <li><a href="#"><img src="img/icon/fb.ico" class="navico"></a></li>
-                                    <li><a href="#"><img src="img/icon/ig.ico" class="navico"></a></li>
-                                    <li><a href="#"><img src="img/icon/tw.ico" class="navico"></a></li>
-                                    <li><a href="#"><img src="img/icon/yt.ico" class="navico"></a></li>
+                                    <li><a href="#"><img src="{{asset('img/icon/fb.ico')}}" class="navico"></a></li>
+                                    <li><a href="#"><img src="{{asset('img/icon/ig.ico')}}" class="navico"></a></li>
+                                    <li><a href="#"><img src="{{asset('img/icon/tw.ico')}}" class="navico"></a></li>
+                                    <li><a href="#"><img src="{{asset('img/icon/yt.ico')}}" class="navico"></a></li>
                                 </ul>
                             </div>
                         </div>

@@ -7,45 +7,26 @@
 <section class="section-margin calc-60px">
     <div class="container">
         <h2 style="text-align: center; padding-bottom: 3%;"><span class="section-intro__style">Catalogo</span></h2>
-
-        <nav class="navbar navbar-expand-md  bg-light">
-            <ul class="navbar-nav span4 category_block" >
-                <li class="nav-item">
-                    <a  class=" main_category">Computer</a>    <!-- in origine "span" (solo questo elemento)-->
-                </li>
-                <li class="active nav-item sub_category">
-                    <a class="nav-link" href="#">Desktop</a>
-                </li>
-                <li class="active nav-item sub_category">
-                    <a class="nav-link" href="#">Notebook</a>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav span4 category_block" >
-                <li class="nav-item">
-                    <a  class=" main_category">Monitor</a>    <!-- in origine "span" (solo questo elemento)-->
-                </li>
-                <li class="active nav-item sub_category">
-                    <a class="nav-link" href="#">20"</a>
-                </li>
-                <li class="active nav-item sub_category">
-                    <a class="nav-link" href="#">24"</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav span4 category_block" >
-                <li class="nav-item">
-                    <a  class=" main_category">Monitor</a>    <!-- in origine "span" (solo questo elemento)-->
-                </li>
-                <li class="active nav-item sub_category">
-                    <a class="nav-link" href="#">20"</a>
-                </li>
-                <li class="active nav-item sub_category">
-                    <a class="nav-link" href="#">24"</a>
-                </li>
-            </ul>
-        </nav>
-        
-
+        @isset($mainCats)
+            <nav class="navbar navbar-expand-md  bg-light">
+                @foreach ($mainCats as $categoria)
+                    <ul class="navbar-nav span4 category_block" >
+                        <li class="nav-item">
+                            <a  class=" main_category">{{$categoria->nomeCat}}</a>    <!-- in origine "span" (solo questo elemento)-->
+                        </li>
+                        @isset ($subCats)
+                            @foreach ($subCats as $sottocategoria)
+                                @if ($categoria->id == $sottocategoria->mainCat)
+                                    <li class="active nav-item sub_category">
+                                        <a class="nav-link" href="#">{{$sottocategoria->nomeSubCat}}</a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        @endisset
+                    </ul>
+                @endforeach
+            </nav>
+        @endisset
 
         <div class="row">
             {{--@isset($prodotti)
@@ -58,10 +39,10 @@
                                 <i class="card-product__imgOverlay" style="color: black" ;>
                                     <p>Prezzo non scontato + perc</p>
                                     <p>Descrizione breve</p>
-                                </i> 
+                                </i>
                         </div>
                         <div class="card-body">
-                            
+
                             <h4 class="card-product__title"><a href="single-product.html">Acer Af-20</a></h4>
                             <p class="card-product__price">€80.00</p>
                         </div>
@@ -98,7 +79,7 @@
             </div>
 
         </div>
-                                   
+
     </div>
 </section>
 @endsection
