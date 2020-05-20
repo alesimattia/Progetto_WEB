@@ -7,7 +7,7 @@ use App\Models\Catalogo;
 class PublicController extends Controller {
 
     protected $_catalogModel;
-    
+
     public function __construct() {
         $this->_catalogModel = new Catalogo;
     }
@@ -26,9 +26,9 @@ class PublicController extends Controller {
         $mainCats = $this->_catalogModel->getMainCat();
 
         //Recupera le Sottocategorie
-        $subCats = $this->_catalogModel->getSubCat([$mainCats]);        
+        $subCats = $this->_catalogModel->getSubCat();    //modifica funzione nel model    
 
-        //Tutti i prodotti della categoria selezionata, ordinati per sconto decrescente 
+        //Tutti i prodotti della categoria selezionata, ordinati per sconto decrescente
         $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 2, 'desc');
         //$prodotti=NULL; $selected=null; $subCats=null;  $mainCats=null;
         return view('catalogo')
