@@ -12,19 +12,26 @@
 Route::get('/', 'PublicController@index')
         ->name('index');
         
+Route::view('/contatti', 'contatti')
+        ->name('contatti');
+
 Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
         ->name('catalogo');
 
 Route::get('/catalogo', 'PublicController@showCatalog')
         ->name('catalogo');
  
-Route::get('/login', 'PublicController@showLoginForm')       //NON DEFINITIVA serve a non effettuare prima il login
+//NON DEFINITIVA -> rotta statica: serve a non effettuare prima il login
+Route::get('/login', 'PublicController@showLoginForm')       
         ->name('login');
-
+//NON DEFINITIVA -> rotta statica: serve a non effettuare prima il login
+Route::get('/register', 'PublicController@showRegisterForm')
+        ->name('register');
 
 Route::get('/user', 'UserController@index')
         ->name('user');
         //->middleware('can:isUser');   //controlla che abbia fatto il login
+
 
 
 
@@ -41,12 +48,11 @@ Route::post('/admin/addProduct', 'AdminController@storeProduct')
 
 
 
-
 /* Rotte per l'autenticazione
 Route::get('login', 'Auth\LoginController@showLoginForm')
         ->name('login');
 
-Route::post('login', 'Auth\LoginController@login');     */
+Route::post('login', 'Auth\LoginController@login');     
 
 Route::post('logout', 'Auth\LoginController@logout')
         ->name('logout');
@@ -57,12 +63,7 @@ Route::post('logout', 'Auth\LoginController@logout')
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')
         ->name('register');
 
-Route::post('register', 'Auth\RegisterController@register');
-
-
-
-Route::view('/contatti', 'contatti')
-        ->name('contatti');
+Route::post('register', 'Auth\RegisterController@register');*/
 
 
 // Rotte inserite dal comando artisan "ui vue --auth" 

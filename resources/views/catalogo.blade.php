@@ -23,13 +23,24 @@
 
             <ul class="navbar-nav span4 category_block" >
                 <li class="nav-item">
-                    <a  class=" main_category">Computer</a>    <!-- in origine "span" (solo questo elemento)-->
+                    <a  class=" main_category">Monitor</a>    <!-- in origine "span" (solo questo elemento)-->
                 </li>
                 <li class="active nav-item sub_category">
-                    <a class="nav-link" href="#">Desktop</a>
+                    <a class="nav-link" href="#">20"</a>
                 </li>
                 <li class="active nav-item sub_category">
-                    <a class="nav-link" href="#">Notebook</a>
+                    <a class="nav-link" href="#">24"</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav span4 category_block" >
+                <li class="nav-item">
+                    <a  class=" main_category">Monitor</a>    <!-- in origine "span" (solo questo elemento)-->
+                </li>
+                <li class="active nav-item sub_category">
+                    <a class="nav-link" href="#">20"</a>
+                </li>
+                <li class="active nav-item sub_category">
+                    <a class="nav-link" href="#">24"</a>
                 </li>
             </ul>
         </nav>

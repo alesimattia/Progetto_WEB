@@ -38,8 +38,12 @@ class PublicController extends Controller {
                         ->with('prodotti', $prodotti);
     }
 
+    //NON DEFINITIVE
     public function showLoginForm(){
-        return view('login');
+        return view('form.login');
+    }
+    public function showRegisterForm(){
+        return view('form.registrazione');
     }
 
 }

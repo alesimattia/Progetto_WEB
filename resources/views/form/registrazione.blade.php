@@ -11,7 +11,7 @@
                 <div class="login_box_img ">
                     <div class="hover">
                         <h4 style="margin-bottom: 10%;">Hai già un account?</h4>
-                        <a class="button button-account" href="login.html">Accedi ora</a>
+                        <a class="button button-account" href="login.html">Accedi</a>
                     </div>
                 </div>
             </div>

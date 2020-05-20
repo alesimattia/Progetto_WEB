@@ -323,11 +323,11 @@ fieldset {
 }
 
 legend {
+    margin-top: 1em;
     display: block;
     width: 100%;
     max-width: 100%;
     padding: 0;
-    margin-bottom: 1.5rem;
     font-size: 1.5rem;
     line-height: inherit;
     color: inherit;

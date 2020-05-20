@@ -26,24 +26,25 @@ class AdminController extends Controller {
                     ->with('cats', $prodCats);
     }
 
-                                    //request object tipizzato dalla classe
+                                //request object tipizzato dalla classe
     public function storeProduct(ProductSchema $request) {
 
         if ($request->hasFile('foto')) {
             $image = $request->file('foto');
-            $imageName = $image->getClientOriginalName();
-        } else {
-            $imageName = NULL;
-        }
+            $imgName = $image->getClientOriginalName();
+        } 
+        else  $imgName = NULL;
 
         $product = new Prodotto;
-        $product->fill($request->validated());
-        $product->image = $imageName;
-        $product->save();
+        $product->fill($request->validated());  //valorizza le proprietà dell'oggetto product con ciò che era nel request object (dal form)
+        $product->foto = $imgName;
+        $product->save();   //genera query nel dbms
 
-        if (!is_null($imageName)) {
-            $destinationPath = public_path() . '/images/products';
-            $image->move($destinationPath, $imageName);
+        if (!is_null($imgName)) {
+            //costruire path con /img/mainCat/subCat
+
+            $destinationPath = public_path() . '/img/' . $product->getMainCat() . '/' . $product->getSubCat();
+            $image->move($destinationPath, $imgName);
         };
 
         return redirect()->action('AdminController@index');
