@@ -18,7 +18,7 @@
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-light fixed">   <!-- eventualemte non trasparente style="background-color: #fff;-->
                 <div class="container">
-                    <a class="navbar-brand logo_h" href="index.html"><img src="img/home/main_logo.png"></a>  <!-- LOGO OTTIMO, NON CAMBIARE-->
+                    <a class="navbar-brand logo_h" href="{{ route('index') }}"><img src="img/home/main_logo.png"></a>  <!-- LOGO OTTIMO, NON CAMBIARE-->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -27,15 +27,15 @@
 
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                            <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="catalogo.html">Catalogo</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>   <!--CATALOGO_GUEST-->
                             <li class="nav-item"><a class="nav-link" href="contact.html">Contatti</a></li>               
                             <li class="nav-item"><a class="nav-link" href="contact.html">Modifica profilo</a></li>
                         </ul>
                         
                         <ul class="nav-shop">
                             <li class="nav-item">
-                                <a class="button button-header" href="#">
+                                <a class="button button-header" href="{{ route('index') }}">
                                     <img src="./img/icon/login.png" style="height: 20px">&nbsp;Logout
                                 </a>
                             </li>

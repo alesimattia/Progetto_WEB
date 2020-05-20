@@ -95,7 +95,6 @@
                 </div>
             </div>
         </footer>
-    <script src="{{ asset('js/filtri.js') }}"> </script>
 </body>
 
 </html>

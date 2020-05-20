@@ -8,10 +8,8 @@ class Prodotto extends Model {
 
     protected $table = 'prodotto';
     protected $primaryKey = 'id';
-    public $timestamps = false;
-
-    // prodId non modificabile da un HTTP Request (Mass Assignment)
-    protected $guarded = ['id'];
+    public $timestamps = false;     //disattiva l'aggiornamento del timestamp quando si modifica un dato
+    protected $guarded = ['id'];    //disattiva la possibilità di scrittura dell'attributo nel db (da form)
 
 
     public function getPrezzo() {
@@ -23,10 +21,18 @@ class Prodotto extends Model {
         return $prezzo;
     }
 
-    public function getCat(){
+    public function getSubCat(){
         return Sottocategoria::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
-                        ->where('prodotto.nome','=', $this->nome)->get('sottocategoria.nome');
+                        ->where('prodotto.nome','=', $this->nome)
+                        ->get('sottocategoria.nome');
     }
+
+    public function getMainCat(){
+        return Categoria::join('sottocategoria', 'sottocategoria.id', '=', 'categoria.id')
+                    ->join('prodotto', 'sottocategoria.id', '=', 'prodotto.subCat')
+                    ->where('prodotto.nome','=', $this->nome)
+                    ->get('categoria.nomeCat');
+}
 
     // Realazione One-To-One con Categoria
     // Selezionato un prodotto, recupera tutti gli attributi della categoria a cui appartiene.

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    @include('layouts/nav_admin') 
+    @include('layouts/nav_user') 
     <main class="site-main">
 
         <!-- ================ Banner centrale ================= -->
@@ -20,9 +20,10 @@
                 <div class="row">
                     <div class="col-xl-5">
                         <div class="offer__content text-center">
-                            <h2>Benvenuto Admin!</h2>
-                            <h4>Ora puoi gestire dipendenti e prodotti</h4>
-                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('nuovoProdotto') }}">Inserisci prodotti</a>
+                            <h3>I migliori prodotti per le tue esigenze</h3>
+                            <h4>Il catalogo più grande d'Italia</h4>
+                            <p>Scopri i nostri sconti</p>
+                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('catalogo') }}">Acquista ora</a>
                         </div>
                     </div>
                 </div>
@@ -94,7 +95,6 @@
                 </div>
             </div>
         </footer>
-    <script src="{{ asset('js/filtri.js') }}"> </script>
 </body>
 
 </html>

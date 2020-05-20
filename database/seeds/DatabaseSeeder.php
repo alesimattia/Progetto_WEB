@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder {
 
         DB::table('prodotto')->insert([
             ['nome' => 'Asus EN2', 'subCat' => '1', 'prezzo' => 900, 'percSconto' => 0, 
-             'foto' => 'asus.jpg', 'desc_breve' => 'Gaming series',
-             'desc_estesa' =>'<h4>Asus EN2</h4><ul><li>Ram 12GB</li><li>Hard Disk 1TB</li><li>GPU Nvidia RTX</li></ul>
+             'foto' => 'pc (10).jpg', 'descBreve' => 'Gaming series',
+             'descEstesa' =>'<h4>Asus EN2</h4><ul><li>Ram 12GB</li><li>Hard Disk 1TB</li><li>GPU Nvidia RTX</li></ul>
                              <p>Il migliore per uso gaming</p>']
         ]);
 

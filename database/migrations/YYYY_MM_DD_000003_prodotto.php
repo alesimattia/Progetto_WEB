@@ -15,7 +15,7 @@ class Prodotto extends Migration
     {
         Schema::create('prodotto', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 20);
+            $table->string('nome', 25);
             $table->bigInteger('subCat')->unsigned()->index();
             $table->foreign('subCat')->references('id')->on('sottocategoria');
             $table->float('prezzo');

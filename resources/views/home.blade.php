@@ -7,7 +7,7 @@
 <section class="blog" id="acquista">
     <div class="container">
     <div class="section-intro pb-60px">
-        <h2><span class="section-intro__style">Come acquistare</span><span > i nostri prodotti</span></h2>
+        <h2><span class="section-intro__style">Come acquistare i nostri prodotti</span></h2>
     </div>
 
     <div class="row">
