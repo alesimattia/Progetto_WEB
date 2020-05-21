@@ -3,7 +3,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light fixed">   <!-- eventualemte non trasparente style="background-color: #fff;-->
             <div class="container">
-                <a class="navbar-brand logo_h" href="{{ route('index') }}"><img src="img/home/main_logo.png"></a>  <!-- LOGO OTTIMO, NON CAMBIARE-->
+                <a class="navbar-brand logo_h" href="{{ route('index') }}"><img src="{{ URL::asset('/img/home/main_logo.png') }}"></a>  <!-- LOGO OTTIMO, NON CAMBIARE-->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -21,12 +21,12 @@
                     <ul class="nav-shop">
                         <li class="nav-item">
                             <a class="button button-header" href="{{ route('register') }}">
-                                <img src="./img/icon/register.png" style="height: 20px">&nbsp; Registrati
+                                <img src="{{ URL::asset('/img/icon/register.png') }}" style="height: 20px">&nbsp; Registrati
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="button button-header" href="{{ route('login') }}">
-                                <img src="./img/icon/login.png" style="height: 20px">&nbsp; Accedi
+                                <img src="{{ URL::asset('/img/icon/login.png') }}" style="height: 20px">&nbsp; Accedi
                             </a>
                         </li>
                     </ul>

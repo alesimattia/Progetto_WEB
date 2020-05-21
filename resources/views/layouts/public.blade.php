@@ -52,41 +52,38 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                        <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6 footer_margin">
                             <div class="single-footer-widget tp_widgets">
                                 <h4 class="footer_title">I nostri social</h4>
                                 <ul class="list">
                                     <li><a href="#"><img src="{{asset('img/icon/fb.ico')}}" class="navico"></a></li>
-                                    <li><a href="#"><img src="{{asset('img/icon/ig.ico')}}" class="navico"></a></li>
                                     <li><a href="#"><img src="{{asset('img/icon/tw.ico')}}" class="navico"></a></li>
                                     <li><a href="#"><img src="{{asset('img/icon/yt.ico')}}" class="navico"></a></li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-                            <div class="single-footer-widget tp_widgets">
+                        <div class="offset-lg-1 col-lg-4 col-md-6 col-sm-6">
+                            <div class="single-footer-widget tp_widgets footer_margin">
                                 <h4 class="footer_title">I nostri contatti</h4>
                                 <div class="ml-40">
-                                    <p class="sm-head">
-                                        <span class="fa fa-location-arrow"></span> Sede
+                                    <p class="sm-head footer_contatti">
+                                        <span class="fa"></span> Sede
                                     </p>
-                                    <p>Via Brecce Bianche 12, 60131 Ancona</p>
-
-                                    <p class="sm-head">
-                                        <span class="fa fa-phone"></span> Telefono
+                                    <p style="text-align: right;">Via Brecce Bianche 12, 60131 Ancona</p>
+                                    <p class="sm-head footer_contatti">
+                                        <span class="fa "></span> Telefono
                                     </p>
-                                    <p>
+                                    <p style="text-align: right;">
+                                        +123 456 7890<br>
                                         +123 456 7890
-                                        <br> +123 456 7890
                                     </p>
-
-                                    <p class="sm-head">
-                                        <span class="fa fa-envelope"></span> Email
+                                    <p class="sm-head footer_contatti">
+                                        <span class="fa"></span> Email
                                     </p>
-                                    <p>
-                                        S1234567@studenti.univpm.it
-                                        <br> S8765432@studenti.univpm.it
+                                    <p style="text-align: right;">
+                                        S1234567@studenti.univpm.it<br> 
+                                        S8765432@studenti.univpm.it
                                     </p>
                                 </div>
                             </div>

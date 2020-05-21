@@ -13,10 +13,10 @@ class Prodotto extends Model {
 
 
     public function getPrezzo() {
-        $prezzo = $this->prezo;     //estrae l'attributo prezzo
-        if ($this->percSconto!='' && $this->percSconto>0) {
+        $prezzo = $this->prezzo;     //estrae l'attributo dall'oggetto che invoca il metodo
+        if ($this->percSconto!='' && $this->percSconto>0) {     //se lo sconto è stato tolto il valore è 0 (se non presente è Null)
             $sconto = ($prezzo * $this->percSconto) / 100;
-            $prezzo = round($prezzo - $sconto, 2);      //arrotondamento 2 cifre dec.
+            $prezzo = round($prezzo - $sconto, 2);      //2 cifre dec.
         }
         return $prezzo;
     }
@@ -35,7 +35,6 @@ class Prodotto extends Model {
 }
 
     // Realazione One-To-One con Categoria
-    // Selezionato un prodotto, recupera tutti gli attributi della categoria a cui appartiene.
     //Serve perchè dobbiamo recuperare prodotti sia se appartengono ad una macro-categoria, sia sotto-cat
     public function prodCat() {
         return $this->hasOne(Sottocategoria::class, 'id', 'id');

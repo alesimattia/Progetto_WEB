@@ -2,6 +2,20 @@
 	margin-left: 12px; 	/*altrimenti tropo attaccato agli elementi della nav*/
 }
 
+.footer_margin{
+	margin: auto;
+}
+
+.footer_contatti{
+	float: left;
+	margin-right: 2em;
+	text-align: right;
+}
+
+.box_prodotto{
+	margin-top: 1em;
+}
+
 .lista-opzioni{
 	padding: .375rem .75rem;
 	font-size: 1.1em;
@@ -11,23 +25,31 @@
 	margin-top: 1.5em;
 	margin-right: auto;
 	margin-left: auto;
+	width: 100%;
+}
+
+.paginator{
+	padding-top:3%;
+	margin: auto;
+	text-align: center;
 }
 
 .icona_paginator{
 	height: 25px;
+	margin: 0px 0.5em;
 }
 
 .main_category{
 	font-size: 1.3em;
 	text-align: center;
 	border: none;
-	padding: 1.1em 1.3em;
+	padding: 0.5em;
 }
 
 .sub_category{
 	text-align: center;
 	color: #384aeb;
-	padding: 1.1em 1.3em;
+	padding: 0.5em 1em;
 }
 
 .category_block{
@@ -113,7 +135,6 @@ h3,.h3
 
 h4,.h4
 {
-	font-size:20px;
 	font-weight:400;
 	line-height:1.3
 }
@@ -139,20 +160,20 @@ a
 
 .section-margin
 {
-	margin:45px 0
+	margin:2% 0
 }
 
 @media (min-width: 980px) {
 	.section-margin
 	{
-		margin:70px 0
+		margin:3% 0
 	}
 }
 
 @media (min-width: 1100px) {
 	.section-margin
 	{
-		margin:6% 0
+		margin:3% 0
 	}
 
 	.section-margin.calc-60px
@@ -169,7 +190,7 @@ a
 @media (min-width: 1000px) {
 	.section-margin--small
 	{
-		margin:98px 0
+		margin:3% 0
 	}
 }
 
@@ -181,7 +202,7 @@ a
 @media (min-width: 1000px) {
 	.section-padding
 	{
-		padding:130px 0
+		padding:3% 0
 	}
 }
 
@@ -1103,7 +1124,7 @@ a
 .card-product
 {
 	border:0;
-	margin-bottom:30px
+	/*margin-bottom:30px */
 }
 
 .card-product p
@@ -1123,6 +1144,7 @@ a
 	bottom:0;
 	left:0;
 	width:100%;
+	height: 60%;
 	padding:30px 5px;
 	transform:translateY(30px);
 	opacity:0;
@@ -1167,7 +1189,7 @@ a
 
 .card-product__price
 {
-	font-size:18px;
+	font-size:1.3em;
 	font-weight:500
 }
 
@@ -1185,26 +1207,28 @@ a
 
 .offer
 {
-	background:url(../img/home/parallax-bg.png) right center no-repeat;
-	background-size:cover
+	background:url(../img/home/parallax-bg.png)   no-repeat;
+	background-size: cover;
+	background-position-x: 60%;
+	background-position-y: 20px
 }
 
 @media (min-width: 1200px) {
 	.offer
 	{
-		background-size:100% 100%
+		/*background-size:100% 100%*/
 	}
 }
 
 .offer__content
 {
-	padding:100px 0 110px
+	padding:18% 0 8%
 }
 
 @media (min-width: 1000px) {
 	.offer__content
 	{
-		padding:122px 0 135px
+		padding:25% 0 15%
 	}
 }
 
@@ -1368,7 +1392,7 @@ a
 
 .subscribe
 {
-	padding:45px 10px;
+	padding: 3%;
 	background:#fff;
 	border-radius:5px;
 	box-shadow:0 -5px 20px 0 rgba(56,74,235,0.1)
@@ -1377,7 +1401,7 @@ a
 @media (min-width: 1000px) {
 	.subscribe
 	{
-		padding:85px 10px
+		padding: 3%
 	}
 }
 
@@ -1451,8 +1475,7 @@ a
 	.subscribe-position
 	{
 		position:relative;
-		top:100px;
-		margin-bottom:0
+		padding-top:5%;
 	}
 }
 
@@ -4499,6 +4522,10 @@ a
 	display:block
 }
 
+#edit_form{
+	padding: 2%;
+}
+
 .register_form_inner
 {
 	padding-top:8%
@@ -5510,7 +5537,7 @@ a
 @media (min-width: 1000px) {
 	.footer-area
 	{
-		padding: 5% 0 2%;
+		padding: 2em;
 	}
 }
 
@@ -5658,7 +5685,8 @@ a
 }
 .modfooter{
 	flex: 0 0 30%;
-	max-width: 30%
+	max-width: 30%;
+	margin: auto;
 }
 .imgacq{
 	text-align: center;

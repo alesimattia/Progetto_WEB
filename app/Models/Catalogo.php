@@ -8,28 +8,26 @@ use App\Models\Resources\Prodotto;
 
 class Catalogo {
 
-    public function getMainCat() {
+    public function getAllMainCat() {
         return Categoria::get();
     }
 
-    public function getSubCat(){
+    public function getAllSubCat(){
         return Sottocategoria::get();
     }
 
-// non funziona
-    /*public function getSubCat($mainCat) {
+    //modificato, potrebbe servire
+    public function whatSubCat($mainCat) {
         return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
-                -> where('mainCat','=', $mainCat)->get();
-    }*/
-
-
+                ->where('nomeCat','=', $mainCat)
+                ->get('nomeSubCat');
+    }
     public function getParentCat($subCat){
-        return Sottocategoria::join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
-                ->where('sottocategoria.nome', '=', $subCat)
+        return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
+                ->where('nomeSubCat','=', $subCat)
                 ->get('nomeCat');
                 //->only(['nomeCat'])->all();
     }
-
 
 
     //Estrae tutti o solo quelli in sconto, eventualmente ordinati

@@ -4,7 +4,7 @@
 
 @section('main')
 
-<section class="section-margin calc-60px">
+
     <div class="container">
         <h2 style="text-align: center; padding-bottom: 3%;"><span class="section-intro__style">Catalogo</span></h2>
         @isset($mainCats)
@@ -12,13 +12,13 @@
                 @foreach ($mainCats as $categoria)
                     <ul class="navbar-nav span4 category_block" >
                         <li class="nav-item">
-                            <a  class=" main_category">{{$categoria->nomeCat}}</a>    <!-- in origine "span" (solo questo elemento)-->
+                            <a  class=" main_category"  href="{{ route('catalogo/{categoria}', [$categoria->nomeCat] ) }}">{{ $categoria->nomeCat }}</a>    <!-- in origine "span" (solo questo elemento)-->
                         </li>
                         @isset ($subCats)
                             @foreach ($subCats as $sottocategoria)
                                 @if ($categoria->id == $sottocategoria->mainCat)
                                     <li class="active nav-item sub_category">
-                                        <a class="nav-link" href="#">{{$sottocategoria->nomeSubCat}}</a>
+                                        <a class="nav-link" href="{{ route('catalogo/{categoria}', [$sottocategoria->nomeSubCat] ) }}">{{ $sottocategoria->nomeSubCat }}</a>
                                     </li>
                                 @endif
                             @endforeach
@@ -29,31 +29,29 @@
         @endisset
 
         <div class="row">
-            {{--@isset($prodotti)
-                @foreach($prodotti) --}}
+            @isset ($prodotti)
+            @foreach ($prodotti as $prodotto)
                 <!--Prodotto base-->
-                <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="col-md-6 col-lg-4 col-xl-3 box_prodotto">
                     <div class="card text-center card-product">
                         <div class="card-product__img">
-                            <img class="card-img" src="{{ URL::asset('/img/monitor/20/20 (1).jpg') }}">
-                                <i class="card-product__imgOverlay" style="color: black" ;>
-                                    <p>Prezzo non scontato + perc</p>
-                                    <p>Descrizione breve</p>
-                                </i>
+                            <img class="card-img" src="{{ URL::asset('/img/'. $prodotto->nomeCat .'/'. $prodotto->nomeSubCat .'/'. $prodotto->foto) }}">
+                            <div class="card-product__imgOverlay">
+                                <p>Sconto:{{ $prodotto->percSconto }}%</p>
+                                <p>{{ $prodotto->desc_breve }}</p>
+                            </div>
                         </div>
                         <div class="card-body">
-
-                            <h4 class="card-product__title"><a href="single-product.html">Acer Af-20</a></h4>
-                            <p class="card-product__price">€80.00</p>
+                            <h4 class="card-product__title"><a href="single-product.html">{{ $prodotto->nome }}</a></h4>
+                            <p class="card-product__price">€ {{ $prodotto->prezzo }}</p>
                         </div>
                     </div>
                 </div>
-                {{--@endforeach
+            @endforeach
                                         <!--oggetto a cui viene inviato il contenuto da paginare-->
-                @include('pagination.paginator', ['paginator' => $prodotti])
-            @endisset--}}
-
-            <!-- PRODOTTO ORIGINALE-->
+            @include ('pagination.paginator', ['paginator' => $prodotti])
+            @endisset
+            <!-- PRODOTTO ORIGINALE
             <div class="col-md-6 col-lg-4 col-xl-3">
                 <div class="card text-center card-product">
                     <div class="card-product__img">
@@ -70,16 +68,11 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="card-body">
-                        <p>Monitor</p>
-                        <h4 class="card-product__title"><a >Lenovo 20X</a></h4>
-                        <p class="card-product__price">€150.00</p>
-                    </div>
+            
                 </div>
-            </div>
+            </div-->
 
         </div>
 
     </div>
-</section>
 @endsection

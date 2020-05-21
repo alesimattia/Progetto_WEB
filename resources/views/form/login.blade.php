@@ -31,7 +31,7 @@
                                     </ul>
                                     @endif
                                 <input type="password" class="form-control" id="password" name="username" placeholder="Password" value="{{ old('username') }}" >
-                                @if($errors->first('password'))
+                                    @if($errors->first('password'))
                                     <ul class="error">
                                         @foreach($errors->get('password') as $message)
                                         <li>{{ $message }}</li>

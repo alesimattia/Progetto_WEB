@@ -16,21 +16,18 @@ class PublicController extends Controller {
         return view('home');
     }
 
+                                //mostrare tutto se non cliccato
+    public function showCatalog($categoria = 'computer') {
 
-    public function showCatalog($categoria = 'monitor') {
+        /*Le prime due instruzioni servono a estrarre dal db
+        gli elementi con cui popolare i filtri del catalogo*/
 
-        /*Le prime due instruzioni servono a ottenere gli elementi
-        con cui si creeranno i filtri del catalogo*/
-
-        //Recupera le Categorie
-        $mainCats = $this->_catalogModel->getMainCat();
-
-        //Recupera le Sottocategorie
-        $subCats = $this->_catalogModel->getSubCat();    //modifica funzione nel model    
+        $mainCats = $this->_catalogModel->getAllMainCat();
+        $subCats = $this->_catalogModel->getAllSubCat();    
 
         //Tutti i prodotti della categoria selezionata, ordinati per sconto decrescente
-        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 2, 'desc');
-        //$prodotti=NULL; $selected=null; $subCats=null;  $mainCats=null;
+        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc');
+    
         return view('catalogo')
                         ->with('mainCats', $mainCats)
                         ->with('subCats', $subCats)
@@ -38,12 +35,11 @@ class PublicController extends Controller {
                         ->with('prodotti', $prodotti);
     }
 
-    //NON DEFINITIVE
+    //rotte NON DEFINITIVE  
     public function showLoginForm(){
         return view('form.login');
     }
     public function showRegisterForm(){
         return view('form.registrazione');
     }
-
 }

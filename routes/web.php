@@ -16,7 +16,7 @@ Route::view('/contatti', 'contatti')
         ->name('contatti');
 
 Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
-        ->name('catalogo');
+        ->name('catalogo/{categoria}');
 
 Route::get('/catalogo', 'PublicController@showCatalog')
         ->name('catalogo');
@@ -31,7 +31,8 @@ Route::get('/register', 'PublicController@showRegisterForm')
 Route::get('/user', 'UserController@index')
         ->name('user');
         //->middleware('can:isUser');   //controlla che abbia fatto il login
-
+Route::get('/user/modificaProfilo', 'UserController@modificaProfilo')
+        ->name('modificaProfilo');
 
 
 

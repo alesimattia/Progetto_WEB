@@ -12,4 +12,7 @@ class userController extends Controller {
         return view('userHome');
     }
 
+    public function modificaProfilo(){
+        return view('form.modificaProfilo');
+    }
 }
