@@ -38,7 +38,7 @@
                             <img class="card-img" src="{{ URL::asset('/img/'. $prodotto->nomeCat .'/'. $prodotto->nomeSubCat .'/'. $prodotto->foto) }}">
                             <div class="card-product__imgOverlay">
                                 @if($prodotto->percSconto>0)
-                                <p>Sconto{{ $prodotto->percSconto }}%</p><br>
+                                    <p>Sconto &nbsp;{{ $prodotto->percSconto }}%</p><br>
                                 @endif
                                 <p>{{ $prodotto->descBreve }}</p>
                             </div>

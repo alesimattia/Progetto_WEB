@@ -11,7 +11,7 @@
                 <div class="login_box_img ">
                     <div class="hover">
                         <h4 style="margin-bottom: 10%;">Hai già un account?</h4>
-                        <a class="button button-account" href="login.html">Accedi</a>
+                        <a class="button button-account" href="{{ route('login') }}">Accedi</a>
                     </div>
                 </div>
             </div>
@@ -19,7 +19,7 @@
             <div class="col-lg-6">
                 <div class="login_form_inner register_form_inner">
                     <h3>Crea il tuo account</h3>
-                    <form class="row login_form" action="#/" id="register_form">
+                    <form class="row login_form" action="#" id="register_form">
                         <fielset class="registra-box-campi">
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Nome" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nome'">

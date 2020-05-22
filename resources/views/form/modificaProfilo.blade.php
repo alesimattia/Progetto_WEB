@@ -7,12 +7,12 @@
 <div class="col-12">
     <div class="login_form_inner register_form_inner" id="edit_form">
         <h3>Modifica informazioni profilo</h3>
-        <form class="row login_form" action="#/" id="register_form">
+        <form method="post" class="row login_form" action="#/" id="register_form">
             <fielset class="registra-box-campi">
             <div class="col-md-12 form-group">
                     <input type="text" class="form-control" id="username" name="username" placeholder="Nuovo Username">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Nuova Password">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Conferma Password">
+                    <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Conferma Password">
                     <input type="text" class="form-control" id="residenza" name="residenza" placeholder="Nuova residenza?">
                     <label class="lista-opzioni" for="occupation">Cambiato lavoro?</label>
                     <select id="occupation" name="Occupazione" size="1">

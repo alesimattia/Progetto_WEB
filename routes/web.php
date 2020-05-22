@@ -9,11 +9,12 @@
   | contains the "web" middleware group. Now create something great!
   |
  */
-Route::get('/', 'PublicController@index')
-        ->name('index');
-        
+
 Route::view('/contatti', 'contatti')
         ->name('contatti');
+
+Route::get('/', 'PublicController@index')
+        ->name('index');
 
 Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
         ->name('catalogo/{categoria}');
@@ -28,15 +29,19 @@ Route::get('/login', 'PublicController@showLoginForm')
 Route::get('/register', 'PublicController@showRegisterForm')
         ->name('register');
 
+
+/***********************  USER  **********************/
 Route::get('/user', 'UserController@index')
         ->name('user');
         //->middleware('can:isUser');   //controlla che abbia fatto il login
 Route::get('/user/modificaProfilo', 'UserController@modificaProfilo')
         ->name('modificaProfilo');
 
+Route::get('/user/catalogo', 'UserController@showCatalog')
+        ->name('catalogoUser');
 
 
-
+/*********************** ADMIN **********************/
 Route::get('/admin', 'AdminController@index')
         ->name('admin');
 
@@ -46,7 +51,7 @@ Route::get('/admin/addProduct', 'AdminController@addProduct')
 Route::post('/admin/addProduct', 'AdminController@storeProduct')
         ->name('nuovoProdotto.store');
 
-
+/*********************** STAFF **********************/
 
 
 /* Rotte per l'autenticazione

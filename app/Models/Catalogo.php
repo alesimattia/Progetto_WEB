@@ -16,7 +16,6 @@ class Catalogo {
         return Sottocategoria::get();
     }
 
-    //modificato, potrebbe servire
     public function whatSubCat($mainCat) {
         return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
                 ->where('nomeCat','=', $mainCat)
@@ -30,21 +29,15 @@ class Catalogo {
     }
 
 
-    //Estrae tutti o solo quelli in sconto, eventualmente ordinati
     public function getProdsByCat($category, $paged = 1, $order = null, $only_discounted = false) {
 
         $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                 ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
                 ->whereIn('nomeSubCat', $category)
                 ->orWhereIn('nomeCat', $category);
-        /** Oppure
-        $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
-                ->where('mainCat')
-        */
+
         if ($only_discounted) {
-            $prods = $prods->where('percSconto', '<>', '')     //ossia se è valorizzato
-                           ->orWhere('percSconto', '>=', 0)    //se è stato "tolto" uno sconto
-                           ->orWhere('percSconto', '<>', null);
+            $prods = $prods->where('percSconto', '>', 0);
         }
         if (!is_null($order)) {
             $prods = $prods->orderBy('percSconto', $order);
