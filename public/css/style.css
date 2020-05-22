@@ -35,7 +35,7 @@
 }
 
 .icona_paginator{
-	height: 25px;
+	height: 2em;
 	margin: 0px 0.5em;
 }
 
@@ -1139,7 +1139,9 @@ a
 
 .card-product__imgOverlay
 {
-	background:rgba(255,255,255,0.5);
+	color: #fdfdfd;
+	font-size: 1.2em;
+	background:rgba(149, 149, 149, 0.7);
 	position:absolute;
 	bottom:0;
 	left:0;

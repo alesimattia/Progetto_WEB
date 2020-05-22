@@ -37,8 +37,10 @@
                         <div class="card-product__img">
                             <img class="card-img" src="{{ URL::asset('/img/'. $prodotto->nomeCat .'/'. $prodotto->nomeSubCat .'/'. $prodotto->foto) }}">
                             <div class="card-product__imgOverlay">
-                                <p>Sconto:{{ $prodotto->percSconto }}%</p>
-                                <p>{{ $prodotto->desc_breve }}</p>
+                                @if($prodotto->percSconto>0)
+                                <p>Sconto{{ $prodotto->percSconto }}%</p><br>
+                                @endif
+                                <p>{{ $prodotto->descBreve }}</p>
                             </div>
                         </div>
                         <div class="card-body">
@@ -47,32 +49,9 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
-                                        <!--oggetto a cui viene inviato il contenuto da paginare-->
-            @include ('pagination.paginator', ['paginator' => $prodotti])
+            @endforeach                                    
             @endisset
-            <!-- PRODOTTO ORIGINALE
-            <div class="col-md-6 col-lg-4 col-xl-3">
-                <div class="card text-center card-product">
-                    <div class="card-product__img">
-                        <img class="card-img" src="img/monitor/20/20 (2).jpg" alt="">
-                        <ul class="card-product__imgOverlay">
-                            <li>
-                                <button><i class="ti-search"></i></button>
-                            </li>
-                            <li>
-                                <button><i class="ti-shopping-cart"></i></button>
-                            </li>
-                            <li>
-                                <button><i class="ti-heart"></i></button>
-                            </li>
-                        </ul>
-                    </div>
-            
-                </div>
-            </div-->
-
-        </div>
-
+        </div>                  <!--oggetto a cui viene inviato il contenuto da paginare-->
+        @include ('pagination.paginator', ['paginator' => $prodotti])
     </div>
 @endsection
