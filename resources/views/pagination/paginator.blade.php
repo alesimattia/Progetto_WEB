@@ -2,7 +2,10 @@
 
 @if ($paginator->lastPage() != 1)
 <div class="paginator">
-    <i class="card-blog__title">{{ $paginator->firstItem() }} - {{ $paginator->lastItem() }} su {{ $paginator->total() }} ---</i>
+    <i class="card-blog__title">
+        {{ $paginator->firstItem() }} - {{ $paginator->lastItem() }} su {{ $paginator->total() }} 
+        <img src="{{ URL::asset('/img/icon/line.png') }}" style="width: 2em; margin: 0em 0.5em">    <!--inline perchè usato solo qui-->
+    </i>
 
     <!-- Prima pagina -->
     @if (!$paginator->onFirstPage())

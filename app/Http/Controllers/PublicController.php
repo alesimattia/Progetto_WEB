@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Catalogo;
 
 class PublicController extends Controller {
@@ -26,7 +25,7 @@ class PublicController extends Controller {
         $subCats = $this->_catalogModel->getAllSubCat();    
 
         //Tutti i prodotti della categoria selezionata, ordinati per sconto decrescente
-        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc');
+        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc' , true);
     
         return view('catalogo')
                         ->with('mainCats', $mainCats)

@@ -12,6 +12,11 @@
 	text-align: right;
 }
 
+.scontato{
+	color:rgb(197, 64, 64);
+	text-decoration: line-through;
+}
+
 .box_prodotto{
 	margin-top: 1em;
 }
