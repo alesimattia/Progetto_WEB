@@ -18,7 +18,24 @@ class LoginController extends Controller {
      */
 
 use AuthenticatesUsers;
+/*public function authenticate(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->intended('dashboard');
+        }
+    }*/
+/*protected $primaryKey = 'username';
+public $incrementing = false;
+protected $keyType = 'string';
+public function getAuthIdentifierName()
 
+{
+
+    return 'username';
+
+}*/
     /**
      * Where to redirect users after login.
      *
@@ -26,7 +43,7 @@ use AuthenticatesUsers;
      */
 //    protected $redirectTo = '/home';
 
-    protected function redirectTo() {        
+    protected function redirectTo() {
         $ruolo = auth()->user()->ruolo;
         switch ($ruolo) {
             case 'admin': return '/admin';
@@ -40,12 +57,13 @@ use AuthenticatesUsers;
     }
 
     /**
-     * Override del metodo 'username' del trait AuthenticateUsers 
+     * Override del metodo 'username' del trait AuthenticateUsers
      *
      */
     public function username() {
         return 'username';
     }
+
 
     /**
      * Create a new controller instance.
@@ -56,7 +74,5 @@ use AuthenticatesUsers;
         $this->middleware('guest')->except('logout');
     }
 
-    public function showLoginForm(){
-        return view('form.login');
-    }
+
 }

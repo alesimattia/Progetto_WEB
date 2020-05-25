@@ -30,7 +30,7 @@ class RegisterController extends Controller
      */
 
     protected $redirectTo = '/';
-
+    protected $_utente;
     /**
      * Create a new controller instance.
      *
@@ -40,6 +40,7 @@ class RegisterController extends Controller
     {
         //vincola l'accesso di questo controller
         $this->middleware('guest');
+        $this->_utente = new User;
         //guest corrisponde al ruolo predefinito degli utenti non registrati
     }
 
@@ -85,6 +86,8 @@ class RegisterController extends Controller
     }
 
     public function showRegisterForm(){
-        return view('form.registrazione');
+        $occupazione=$this->_utente->occupazione();
+        return view('auth.register')
+            ->with('occupazione', $occupazione);
     }
 }

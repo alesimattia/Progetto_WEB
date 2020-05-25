@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-md-12 form-group" >
                                 {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-                                {{ Form::select('occupazione',array('studente','operaio','impiegato','disoccupato') , '', ['class' => '','id' => 'occupation']) }}
+                                {{ Form::select('occupazione', $occupazione , '', ['class' => '','id' => 'occupation']) }}
                             </div>
                         </fielset>
 

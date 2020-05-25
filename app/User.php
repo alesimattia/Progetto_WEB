@@ -10,6 +10,19 @@ class User extends Authenticatable {
 
     use Notifiable;
 
+    /*protected $primaryKey = 'username';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    public function getAuthIdentifierName()
+
+    {
+
+        return 'username';
+
+    }
+    public function username(){
+        return 'username';
+    }*/
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +38,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'username', 'password', 'remember_token',
+        //'username', 'password', 'remember_token',
     ];
 
     /**
@@ -33,9 +46,10 @@ class User extends Authenticatable {
      *
      * @var array
      */
-    /*protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];*/
+    protected $casts = [
+        //'email_verified_at' => 'datetime',
+        //'username' => 'string'
+    ];
 
     public function hasRole($ruolo) { //usato in app/providers/AuthServiceProvider
         $ruolo = (array)$ruolo;
@@ -46,6 +60,5 @@ class User extends Authenticatable {
     }
     public function occupazione(){
         return array("studente","operaio","impiegato","disoccupato");
-    ];
     }
 }

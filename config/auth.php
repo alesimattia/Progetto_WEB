@@ -71,10 +71,11 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'primary_key' => 'username',
+            'driver' => 'database',
+            'table' => 'utente',
+         ],
     ],
 
     /*
