@@ -26,9 +26,9 @@ use AuthenticatesUsers;
      */
 //    protected $redirectTo = '/home';
 
-    protected function redirectTo() {
-        $role = auth()->user()->ruolo;
-        switch ($role) {
+    protected function redirectTo() {        
+        $ruolo = auth()->user()->ruolo;
+        switch ($ruolo) {
             case 'admin': return '/admin';
                 break;
             case 'user': return '/user';
@@ -40,7 +40,7 @@ use AuthenticatesUsers;
     }
 
     /**
-     * Override:: Login con 'username' al posto di 'email'.
+     * Override del metodo 'username' del trait AuthenticateUsers 
      *
      */
     public function username() {
@@ -56,4 +56,7 @@ use AuthenticatesUsers;
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm(){
+        return view('form.login');
+    }
 }

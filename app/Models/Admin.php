@@ -8,8 +8,11 @@ use App\Models\Resources\Prodotto;
 class Admin {
 
     //serve per la option-list con le (sotto)categorie assegnabili ad un nuovo prodotto
-    public function getSubCat() {       
+    public function getAllSubCat() {       
         return Sottocategoria::get();
     }
 
+    public function getAllMainCat() {
+        return Categoria::get();
+    }
 }
