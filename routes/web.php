@@ -10,6 +10,7 @@
   |
  */
 
+/***********************  GUEST  **********************/
 Route::view('/contatti', 'contatti')
         ->name('contatti');
 
@@ -22,18 +23,12 @@ Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
 Route::get('/catalogo', 'PublicController@showCatalog')
         ->name('catalogo');
  
-//NON DEFINITIVA -> rotta statica: serve a non effettuare prima il login
-Route::get('/login', 'PublicController@showLoginForm')       
-        ->name('login');
-//NON DEFINITIVA -> rotta statica: serve a non effettuare prima il login
-Route::get('/register', 'PublicController@showRegisterForm')
-        ->name('register');
-
 
 /***********************  USER  **********************/
 Route::get('/user', 'UserController@index')
-        ->name('user');
-        //->middleware('can:isUser');   //controlla che abbia fatto il login
+        ->name('user')
+        ->middleware('can:isUser');
+
 Route::get('/user/modificaProfilo', 'UserController@modificaProfilo')
         ->name('modificaProfilo');
 
@@ -45,33 +40,39 @@ Route::get('/user/catalogo', 'UserController@showCatalog')
 Route::get('/admin', 'AdminController@index')
         ->name('admin');
 
-Route::get('/admin/addProduct', 'AdminController@addProduct')
-        ->name('nuovoProdotto');
+Route::get('/admin/nuovoUtente', 'AdminController@addUser')
+        ->name('nuovoUtente');
 
-Route::post('/admin/addProduct', 'AdminController@storeProduct')
-        ->name('nuovoProdotto.store');
+Route::post('/admin/nuovoUtente', 'AdminController@storeUser')
+        ->name('nuovoUtente.store');
 
 /*********************** STAFF **********************/
+Route::get('/staff', 'StaffController@index')
+        ->name('staff');
 
+Route::get('/staff/addProduct', 'StaffController@addProduct')
+        ->name('nuovoProdotto');
 
-/* Rotte per l'autenticazione
+Route::post('/staff/addProduct', 'staff@storeProduct')
+        ->name('nuovoProdotto.store');
+        
+
+/*********************** AUTENTICAZIONE *********************/
 Route::get('login', 'Auth\LoginController@showLoginForm')
         ->name('login');
 
-Route::post('login', 'Auth\LoginController@login');     
+Route::post('login', 'Auth\LoginController@login');  
+
 
 Route::post('logout', 'Auth\LoginController@logout')
         ->name('logout');
 
 
-
-// Rotte per la registrazione
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')
         ->name('register');
 
-Route::post('register', 'Auth\RegisterController@register');*/
+Route::post('register', 'Auth\RegisterController@register');
 
 
 // Rotte inserite dal comando artisan "ui vue --auth" 
-// Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
+// Auth::routes();   genera le ROTTE PREDEFINITE per tutti i controller in app/Http/controllers/auth
