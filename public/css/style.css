@@ -264,7 +264,7 @@ a
 }
 
 @media (min-width: 991px) {
-	.header_area .navbar .nav 
+	.header_area .navbar .nav
 	{
 		/*padding:32px 0*/
 	}
@@ -5697,4 +5697,10 @@ a
 }
 .imgacq{
 	text-align: center;
+}
+
+input.submit{
+	padding-bottom: 38px;
+	color: white;
+	border-radius: 40px
 }

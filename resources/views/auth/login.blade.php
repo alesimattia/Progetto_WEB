@@ -1,50 +1,49 @@
 @extends('layouts.public')
 
-@section('title', 'Registrazione')
+@section('title', 'Home')
 
-@section('content')
-<div class="static">
-    <h3>Login</h3>
-    <p>Utilizza questa form per autenticarti al sito</p>
+@section('main')
 
-    <div class="container-contact">
-        <div class="wrap-contact1">
-            {{ Form::open(array('route' => 'login', 'class' => 'contact-form')) }}
-            
-             <div  class="wrap-input">
-                 <p> Se non hai già un account <a  href="{{ route('register') }}">registrati</a></p>
-             </div>            
-             <div  class="wrap-input">
-                {{ Form::label('username', 'Nome Utente', ['class' => 'label-input']) }}
-                {{ Form::text('username', '', ['class' => 'input','id' => 'username']) }}
-                @if ($errors->first('username'))
-                <ul class="errors">
-                    @foreach ($errors->get('username') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
+    <!--================Login Box Area =================-->
+    <section class="login_box_area section-margin">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="login_box_img">
+                        <div class="hover">
+                            <h4 >Nuovo cliente?</h4>
+                            <a class="button button-account" href="{{ route('register') }}">Crea un account</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="login_form_inner">
+                        <h3>Login</h3>
+                        {{Form::open(array('route'=>'login', 'class'=>'row login_form'))}}
+                            @csrf
+                            <div class="col-md-12 form-group">
+                                {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username'] )}}                       <!--in caso di errori ripropone-->
+                                    @if($errors->first('username'))
+                                    <ul class="error">
+                                        @foreach($errors->get('username') as $message)
+                                        <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                {{ Form::password('password', ['class' => 'form-control', 'id' => 'password','placeholder'=>'Password']) }}
+                                    @if($errors->first('password'))
+                                    <ul class="error">
+                                        @foreach($errors->get('password') as $message)
+                                        <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                {{ Form::submit('ACCEDI', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
+                            </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
             </div>
-            
-             <div  class="wrap-input">
-                {{ Form::label('password', 'Password', ['class' => 'label-input']) }}
-                {{ Form::password('password', ['class' => 'input', 'id' => 'password']) }}
-                @if ($errors->first('password'))
-                <ul class="errors">
-                    @foreach ($errors->get('password') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-            </div>
-            
-            <div class="container-form-btn">                
-                {{ Form::submit('Login', ['class' => 'form-btn1']) }}
-            </div>
-            
-            {{ Form::close() }}
         </div>
-    </div>
-
-</div>
+    </section>
 @endsection

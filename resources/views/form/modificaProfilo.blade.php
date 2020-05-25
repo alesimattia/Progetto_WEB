@@ -1,4 +1,4 @@
-@extends('layouts.user') 
+@extends('layouts.user')
 
 @section('title', 'Profilo')
 
@@ -7,6 +7,72 @@
 <div class="col-12">
     <div class="login_form_inner register_form_inner" id="edit_form">
         <h3>Modifica informazioni profilo</h3>
+        {{ Form::open(array('route' => 'register', 'class' => 'row login_form', 'id'=>'register_form')) }}
+        @csrf
+            <fielset class="registra-box-campi">
+                <div class="col-md-12 form-group">
+                    {{ Form::text('name', '', ['class' => 'form-control', 'id' => 'name','placeholder'=>'Nome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Nome'"]) }}
+                    @if($errors->first('name'))
+                    <ul class="error">
+                        @foreach($errors->get('name') as $message)
+                        <li>{{ $message }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </div>
+                <div class="col-md-12 form-group">
+                    {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'Cognome','placeholder'=>'Cognome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Cognome'"]) }}
+                    @if($errors->first('cognome'))
+                    <ul class="error">
+                        @foreach($errors->get('cognome') as $message)
+                        <li>{{ $message }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </div>
+                <div class="col-md-12 form-group">
+                    {{ Form::text('residenza', '', ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Luogo di residenza'"]) }}
+                </div>
+                <div class="col-md-12 form-group">
+                    {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
+
+                </div>
+                <div class="col-md-12 form-group" >
+                    {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
+                    {{ Form::select('occupazione',array('studente','operaio','impiegato','disoccupato') , '', ['class' => '','id' => 'occupation']) }}
+                </div>
+            </fielset>
+
+            <fieldset class="registra-box-campi">
+                <legend>Dati di accesso</legend>
+                <div class="col-md-12 form-group">
+                    {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Username'"] )}}                       <!--in caso di errori ripropone-->
+                        @if($errors->first('username'))
+                        <ul class="error">
+                            @foreach($errors->get('username') as $message)
+                            <li>{{ $message }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
+                </div>
+                <div class="col-md-12 form-group">
+                    {{ Form::text('password', '', ['class' => 'form-control','id' => 'password','placeholder'=>'Password', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Password'"] )}}                       <!--in caso di errori ripropone-->
+                        @if($errors->first('password'))
+                        <ul class="error">
+                            @foreach($errors->get('password') as $message)
+                            <li>{{ $message }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
+
+                </div>
+            </fieldset>
+
+            <div class="col-md-12 form-group">
+                {{ Form::submit('REGISTRATI', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
+            </div>
+
+        {{ Form::close() }}
         <form method="post" class="row login_form" action="#/" id="register_form">
             <fielset class="registra-box-campi">
             <div class="col-md-12 form-group">
@@ -21,12 +87,12 @@
                         <option>Impiegato</option>
                         <option>Studente</option>
                     </select>
-            </div>  
-            </fielset>                                                       
+            </div>
+            </fielset>
             <div class="col-md-12 form-group">
                 <button type="submit" value="submit" class="button button-register w-100">Modifica</button>
             </div>
-            
+
         </form>
     </div>
 </div>

@@ -28,6 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
+
     protected $redirectTo = '/';
 
     /**
@@ -51,13 +52,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nome' => ['required', 'string', 'max:255'],
-            'cognome' => ['required', 'string', 'max:255'],
-            'residenza' => ['required', 'string', 'max:255'],
-            'dataNacita' => ['required', 'date', 'max:255'],
-            'occupazione' => ['required', 'string', 'max:255'],
+            'nome' => ['required', 'string', 'max:20'],
+            'cognome' => ['required', 'string', 'max:20'],
+            'residenza' => ['required', 'string', 'max:30'],
+            'dataNacita' => ['required', 'date'],
+            'occupazione' => ['required', 'string', 'max:30'],
             'username' => ['required', 'string', 'min:8', 'unique:utenti'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+
         ]);
     }
 
@@ -78,6 +80,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
             'ruolo' => 'user'
+
         ]);
     }
 

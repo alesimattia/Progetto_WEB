@@ -33,13 +33,19 @@ class User extends Authenticatable {
      *
      * @var array
      */
-    protected $casts = [
+    /*protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-    
-    public function hasRole($role) {        //usato in app/providers/AuthServiceProvider
-        $role = (array)$role;
-        return in_array($this->ruolo, $role);
-    }
+    ];*/
 
+    public function hasRole($ruolo) { //usato in app/providers/AuthServiceProvider
+        $ruolo = (array)$ruolo;
+        return in_array($this->ruolo, $ruolo);
+    }
+    public function ruoli(){
+        return array("user","staff");
+    }
+    public function occupazione(){
+        return array("studente","operaio","impiegato","disoccupato");
+    ];
+    }
 }

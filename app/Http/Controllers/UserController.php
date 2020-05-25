@@ -5,8 +5,11 @@ use App\Models\Catalogo;
 
 class userController extends Controller {
 
+    protected $_catalogModel;
+    protected $_userModel;
+
     public function __construct() {
-        //$this->middleware('auth');
+        $this->middleware('can:isUser');
         $this->_catalogModel = new Catalogo;
     }
 
@@ -21,10 +24,10 @@ class userController extends Controller {
     public function showCatalog($categoria = 'computer') {
 
         $mainCats = $this->_catalogModel->getAllMainCat();
-        $subCats = $this->_catalogModel->getAllSubCat();    
+        $subCats = $this->_catalogModel->getAllSubCat();
 
         $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc');
-    
+
         return view('catalogo')
                         ->with('mainCats', $mainCats)
                         ->with('subCats', $subCats)

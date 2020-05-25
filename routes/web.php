@@ -22,7 +22,6 @@ Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
 
 Route::get('/catalogo', 'PublicController@showCatalog')
         ->name('catalogo');
- 
 
 /***********************  USER  **********************/
 Route::get('/user', 'UserController@index')
@@ -58,21 +57,22 @@ Route::post('/staff/addProduct', 'staff@storeProduct')
         
 
 /*********************** AUTENTICAZIONE *********************/
+
 Route::get('login', 'Auth\LoginController@showLoginForm')
         ->name('login');
-
-Route::post('login', 'Auth\LoginController@login');  
-
-
+Route::post('login','Auth\LoginController@login' );
 Route::post('logout', 'Auth\LoginController@logout')
         ->name('logout');
 
 
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')
         ->name('register');
+Route::post('register', 'Auth\RegisterController@create');
 
-Route::post('register', 'Auth\RegisterController@register');
+
+
 
 
 // Rotte inserite dal comando artisan "ui vue --auth" 
 // Auth::routes();   genera le ROTTE PREDEFINITE per tutti i controller in app/Http/controllers/auth
+
