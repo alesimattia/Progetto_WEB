@@ -2,87 +2,95 @@
 
 @section('title', 'Registrazione')
 
-@section('content')
-<div class="static">
-    <h3>Registrazione</h3>
-    <p>Utilizza questa form per registrarti al sito</p>
+@section('main')
 
-    <div class="container-contact">
-        <div class="wrap-contact1">
-            {{ Form::open(array('route' => 'register', 'class' => 'contact-form')) }}
-
-            <div  class="wrap-input">
-                {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}
-                {{ Form::text('name', '', ['class' => 'input', 'id' => 'name']) }}
-                @if ($errors->first('name'))
-                <ul class="errors">
-                    @foreach ($errors->get('name') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
+<section class="login_box_area section-margin" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login_box_img ">
+                    <div class="hover">
+                        <h4 style="margin-bottom: 10%;">Hai già un account?</h4>
+                        <a class="button button-account" href="{{ route('login') }}">Accedi</a>
+                    </div>
+                </div>
             </div>
 
-            <div  class="wrap-input">
-                {{ Form::label('surname', 'Cognome', ['class' => 'label-input']) }}
-                {{ Form::text('surname', '', ['class' => 'input', 'id' => 'surname']) }}
-                @if ($errors->first('surname'))
-                <ul class="errors">
-                    @foreach ($errors->get('surname') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-            </div>
-            
-             <div  class="wrap-input">
-                {{ Form::label('email', 'Email', ['class' => 'label-input']) }}
-                {{ Form::text('email', '', ['class' => 'input','id' => 'email']) }}
-                @if ($errors->first('email'))
-                <ul class="errors">
-                    @foreach ($errors->get('email') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-            </div>
-            
-             <div  class="wrap-input">
-                {{ Form::label('username', 'Nome Utente', ['class' => 'label-input']) }}
-                {{ Form::text('username', '', ['class' => 'input','id' => 'username']) }}
-                @if ($errors->first('username'))
-                <ul class="errors">
-                    @foreach ($errors->get('username') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-            </div>
-            
-             <div  class="wrap-input">
-                {{ Form::label('password', 'Password', ['class' => 'label-input']) }}
-                {{ Form::password('password', ['class' => 'input', 'id' => 'password']) }}
-                @if ($errors->first('password'))
-                <ul class="errors">
-                    @foreach ($errors->get('password') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-            </div>
+            <div class="col-lg-6">
+                <div class="login_form_inner register_form_inner">
+                    <h3>Crea il tuo account</h3>
+                    {{ Form::open(array('route' => 'register', 'class' => 'row login_form', 'id'=>'register_form')) }}
+                    @csrf
+                        <fielset class="registra-box-campi">
+                            <div class="col-md-12 form-group">
+                                {{ Form::text('name', '', ['class' => 'form-control', 'id' => 'name','placeholder'=>'Nome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Nome'"]) }}
+                                @if($errors->first('name'))
+                                <ul class="error">
+                                    @foreach($errors->get('name') as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
+                            </div>
+                            <div class="col-md-12 form-group">
+                                {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'Cognome','placeholder'=>'Cognome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Cognome'"]) }}
+                                @if($errors->first('cognome'))
+                                <ul class="error">
+                                    @foreach($errors->get('cognome') as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
+                            </div>
+                            <div class="col-md-12 form-group">
+                                {{ Form::text('residenza', '', ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Luogo di residenza'"]) }}
+                            </div>
+                            <div class="col-md-12 form-group">
+                                {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
 
-            <div  class="wrap-input">
-                {{ Form::label('password-confirm', 'Conferma password', ['class' => 'label-input']) }}
-                {{ Form::password('password_confirmation', ['class' => 'input', 'id' => 'password-confirm']) }}
+                            </div>
+                            <div class="col-md-12 form-group" >
+                                {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
+                                {{ Form::select('occupazione',array('studente','operaio','impiegato','disoccupato') , '', ['class' => '','id' => 'occupation']) }}
+                            </div>
+                        </fielset>
+
+                        <fieldset class="registra-box-campi">
+                            <legend>Dati di accesso</legend>
+                            <div class="col-md-12 form-group">
+                                {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Username'"] )}}                       <!--in caso di errori ripropone-->
+                                    @if($errors->first('username'))
+                                    <ul class="error">
+                                        @foreach($errors->get('username') as $message)
+                                        <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                            </div>
+                            <div class="col-md-12 form-group">
+                                {{ Form::password('password', ['class' => 'form-control','id' => 'password','placeholder'=>'Password', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Password'"] )}}                       <!--in caso di errori ripropone-->
+                                    @if($errors->first('password'))
+                                    <ul class="error">
+                                        @foreach($errors->get('password') as $message)
+                                        <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+
+                            </div>
+                            <div  class="col-md-12 form-group">
+                                {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm','placeholder'=>'Conferma password', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Conferma password'"]) }}
+                            </div>
+                        </fieldset>
+
+                        <div class="col-md-12 form-group">
+                            {{ Form::submit('REGISTRATI', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
+                        </div>
+
+                    {{ Form::close() }}
+                </div>
             </div>
-            
-            <div class="container-form-btn">                
-                {{ Form::submit('Registra', ['class' => 'form-btn1']) }}
-            </div>
-            
-            {{ Form::close() }}
         </div>
     </div>
-
-</div>
+</section>
 @endsection

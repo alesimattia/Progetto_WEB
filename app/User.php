@@ -16,7 +16,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'email', 'username', 'password',
+        'nome', 'cognome', 'residenza', 'username', 'password','dataNascita','occupazione'
     ];
 
     /**
@@ -25,7 +25,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'username', 'password', 'remember_token',
+        //'username', 'password', 'remember_token',
     ];
 
     /**
@@ -33,13 +33,19 @@ class User extends Authenticatable {
      *
      * @var array
      */
-    protected $casts = [
+    /*protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-    
+    ];*/
+
     public function hasRole($role) {
         $role = (array)$role;
-        return in_array($this->role, $role);
+        return in_array($this->ruolo, $role);
+    }
+    public function ruoli(){
+        return array("user","staff");
+    }
+    public function occupazione(){
+        return array("studente","operaio","impiegato","disoccupato");
     }
 
 }

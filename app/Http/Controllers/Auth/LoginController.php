@@ -26,8 +26,8 @@ use AuthenticatesUsers;
      */
 //    protected $redirectTo = '/home';
 
-    protected function redirectTo() {        
-        $role = auth()->user()->role;
+    protected function redirectTo() {
+        $role = auth()->user()->ruolo;
         switch ($role) {
             case 'admin': return '/admin';
                 break;
