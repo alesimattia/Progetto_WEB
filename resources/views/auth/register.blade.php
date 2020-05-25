@@ -23,7 +23,7 @@
                     @csrf
                         <fielset class="registra-box-campi">
                             <div class="col-md-12 form-group">
-                                {{ Form::text('name', '', ['class' => 'form-control', 'id' => 'name','placeholder'=>'Nome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Nome'"]) }}
+                                {{ Form::text('nome', '', ['class' => 'form-control', 'id' => 'name','placeholder'=>'Nome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Nome'"]) }}
                                 @if($errors->first('name'))
                                 <ul class="error">
                                     @foreach($errors->get('name') as $message)
@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-md-12 form-group" >
                                 {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-                                {{ Form::select('occupazione', $occupazione , '', ['class' => '','id' => 'occupation']) }}
+                                {{ Form::select('occupazione', array("studente","operaio","impiegato","disoccupato") , '', ['class' => '','id' => 'occupation']) }}
                             </div>
                         </fielset>
 

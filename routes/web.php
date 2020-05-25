@@ -54,7 +54,7 @@ Route::get('/staff/addProduct', 'StaffController@addProduct')
 
 Route::post('/staff/addProduct', 'staff@storeProduct')
         ->name('nuovoProdotto.store');
-        
+
 
 /*********************** AUTENTICAZIONE *********************/
 
@@ -67,12 +67,11 @@ Route::post('logout', 'Auth\LoginController@logout')
 
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')
         ->name('register');
-Route::post('register', 'Auth\RegisterController@create');
+Route::post('register', 'Auth\RegisterController@register');
 
 
 
 
 
-// Rotte inserite dal comando artisan "ui vue --auth" 
+// Rotte inserite dal comando artisan "ui vue --auth"
 // Auth::routes();   genera le ROTTE PREDEFINITE per tutti i controller in app/Http/controllers/auth
-
