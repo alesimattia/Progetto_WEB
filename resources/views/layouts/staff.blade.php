@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    @include('layouts/nav_staff')
+    @include('layouts/nav_staff') 
     <main class="site-main">
 
         <!-- ================ Banner centrale ================= -->
@@ -20,10 +20,8 @@
                 <div class="row">
                     <div class="col-xl-5">
                         <div class="offer__content text-center">
-                            <h3>I migliori prodotti per le tue esigenze</h3>
-                            <h4>Il catalogo più grande d'Italia</h4>
-                            <p>Scopri i nostri sconti</p>
-                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('catalogo') }}">Acquista ora</a>
+                            <h2>Area Staff</h2>
+                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('nuovoProdotto') }}">Inserisci prodotti</a>
                         </div>
                     </div>
                 </div>
@@ -95,3 +93,4 @@
 </body>
 
 </html>
+

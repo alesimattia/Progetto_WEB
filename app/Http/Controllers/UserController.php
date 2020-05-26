@@ -6,11 +6,9 @@ use App\Models\Catalogo;
 class userController extends Controller {
 
     protected $_catalogModel;
-    protected $_userModel;
 
     public function __construct() {
         $this->middleware('can:isUser');
-        $this->_catalogModel = new Catalogo;
     }
 
     public function index() {

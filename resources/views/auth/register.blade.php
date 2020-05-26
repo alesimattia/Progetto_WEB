@@ -23,10 +23,10 @@
                     @csrf
                         <fielset class="registra-box-campi">
                             <div class="col-md-12 form-group">
-                                {{ Form::text('name', '', ['class' => 'form-control', 'id' => 'name','placeholder'=>'Nome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Nome'"]) }}
-                                @if($errors->first('name'))
+                                {{ Form::text('nome', '', ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Nome'"]) }}
+                                @if($errors->first('nome'))
                                 <ul class="error">
-                                    @foreach($errors->get('name') as $message)
+                                    @foreach($errors->get('nome') as $message)
                                     <li>{{ $message }}</li>
                                     @endforeach
                                 </ul>
@@ -58,7 +58,7 @@
                         <fieldset class="registra-box-campi">
                             <legend>Dati di accesso</legend>
                             <div class="col-md-12 form-group">
-                                {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Username'"] )}}                       <!--in caso di errori ripropone-->
+                                {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'username'] )}}                       <!--in caso di errori ripropone-->
                                     @if($errors->first('username'))
                                     <ul class="error">
                                         @foreach($errors->get('username') as $message)
@@ -68,7 +68,7 @@
                                     @endif
                             </div>
                             <div class="col-md-12 form-group">
-                                {{ Form::password('password', ['class' => 'form-control','id' => 'password','placeholder'=>'Password', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Password'"] )}}                       <!--in caso di errori ripropone-->
+                                {{ Form::password('password', ['class' => 'form-control','id' => 'password','placeholder'=>'Password'] )}}                       <!--in caso di errori ripropone-->
                                     @if($errors->first('password'))
                                     <ul class="error">
                                         @foreach($errors->get('password') as $message)

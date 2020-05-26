@@ -14,8 +14,7 @@ class Utente extends Migration
     public function up()
     {
         Schema::create('utente', function (Blueprint $table) {
-            $table->string('username', 25);
-            $table->primary('username');
+            $table->string('username', 25)->primary();
             $table->string("password");
             $table->string("nome", 20);
             $table->string("cognome", 20);

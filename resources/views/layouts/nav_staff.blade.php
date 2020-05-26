@@ -1,9 +1,9 @@
 <header class="header_area">
     <div class="main_menu">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light fixed">   <!-- eventualemte non trasparente style="background-color: #fff;-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed">   
             <div class="container">
-                <a class="navbar-brand logo_h" href="{{ route('index') }}"><img src="{{ URL::asset('/img/home/main_logo.png') }}"></a>  <!-- LOGO OTTIMO, NON CAMBIARE-->
+                <a class="navbar-brand logo_h" href="{{ route('index') }}"><img src="{{ URL::asset('/img/home/main_logo.png') }}"></a> 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -27,13 +27,17 @@
                         <li class="nav-item"><a class="nav-link" href="#">Modifica profilo</a></li>
                     </ul>
                     
-
                     <ul class="nav-shop">
-                        <li class="nav-item">
-                            <a class="button button-header" href="#">
-                                <img src="{{ URL::asset('/img/icon/login.png') }}" style="height: 20px">&nbsp;Logout
+                    @auth
+                        <li>
+                            <a class="button button-header" title="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <img src="{{ URL::asset('img/icon/login.png') }}" style="height: 20px">Logout
                             </a>
                         </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    @endauth    
                     </ul>
 
                 </div>

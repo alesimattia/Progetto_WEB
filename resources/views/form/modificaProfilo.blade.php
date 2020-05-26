@@ -21,7 +21,7 @@
                     @endif
                 </div>
                 <div class="col-md-12 form-group">
-                    {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'Cognome','placeholder'=>'Cognome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Cognome'"]) }}
+                    {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'Cognome','placeholder'=>'Cognome']) }}
                     @if($errors->first('cognome'))
                     <ul class="error">
                         @foreach($errors->get('cognome') as $message)
@@ -31,7 +31,7 @@
                     @endif
                 </div>
                 <div class="col-md-12 form-group">
-                    {{ Form::text('residenza', '', ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Luogo di residenza'"]) }}
+                    {{ Form::text('residenza', '', ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
                 </div>
                 <div class="col-md-12 form-group">
                     {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
@@ -44,19 +44,16 @@
             </fielset>
 
             <fieldset class="registra-box-campi">
-                <legend>Dati di accesso</legend>
                 <div class="col-md-12 form-group">
-                    {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Username'"] )}}                       <!--in caso di errori ripropone-->
-                        @if($errors->first('username'))
+                    {{ Form::text('password', '', ['class' => 'form-control','id' => 'password','placeholder'=>'Nuova Password'])  }}
+                        @if($errors->first('password'))
                         <ul class="error">
-                            @foreach($errors->get('username') as $message)
+                            @foreach($errors->get('password') as $message)
                             <li>{{ $message }}</li>
                             @endforeach
                         </ul>
                         @endif
-                </div>
-                <div class="col-md-12 form-group">
-                    {{ Form::text('password', '', ['class' => 'form-control','id' => 'password','placeholder'=>'Password', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Password'"] )}}                       <!--in caso di errori ripropone-->
+                    {{ Form::text('password', '', ['class' => 'form-control','id' => 'password','placeholder'=>'Conferma Password'] )}}
                         @if($errors->first('password'))
                         <ul class="error">
                             @foreach($errors->get('password') as $message)
@@ -73,7 +70,7 @@
             </div>
 
         {{ Form::close() }}
-        <form method="post" class="row login_form" action="#/" id="register_form">
+        <!--form method="post" class="row login_form" action="#/" id="register_form">
             <fielset class="registra-box-campi">
             <div class="col-md-12 form-group">
                     <input type="text" class="form-control" id="username" name="username" placeholder="Nuovo Username">
@@ -93,7 +90,7 @@
                 <button type="submit" value="submit" class="button button-register w-100">Modifica</button>
             </div>
 
-        </form>
+        </form-->
     </div>
 </div>
 @endsection

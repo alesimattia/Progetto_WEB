@@ -19,11 +19,16 @@
                     </ul>
                     
                     <ul class="nav-shop">
-                        <li class="nav-item">
-                            <a class="button button-header" href="{{ route('index') }}">
-                                <img src="{{ URL::asset('/img/icon/login.png') }}" style="height: 20px">&nbsp;Logout
+                    @auth
+                        <li>
+                            <a href="" class="button button-header" title="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <img src="{{ URL::asset('img/icon/login.png') }}" style="height: 20px">&nbsp; Logout
                             </a>
                         </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    @endauth    
                     </ul>
                 </div>
                 

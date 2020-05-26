@@ -29,8 +29,9 @@ class RegisterController extends Controller
      * @var string
      */
 
-    protected $redirectTo = '/';
+    protected $redirectTo = '/user';
     protected $_utente;
+
     /**
      * Create a new controller instance.
      *
@@ -39,9 +40,9 @@ class RegisterController extends Controller
     public function __construct()
     {
         //vincola l'accesso di questo controller
-        $this->middleware('guest');
+        $this->middleware('guest');   //guest è il ruolo predefinito degli utenti non registrati
         $this->_utente = new User;
-        //guest corrisponde al ruolo predefinito degli utenti non registrati
+        
     }
 
     /**
@@ -58,7 +59,7 @@ class RegisterController extends Controller
             'residenza' => ['required', 'string', 'max:30'],
             'dataNacita' => ['required', 'date'],
             'occupazione' => ['required', 'string', 'max:30'],
-            'username' => ['required', 'string', 'min:8', 'unique:utenti'],
+            'username' => ['required', 'string', 'min:8', 'unique:utente'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
 
         ]);
@@ -84,10 +85,10 @@ class RegisterController extends Controller
 
         ]);
     }
-
-    public function showRegisterForm(){
-        $occupazione=$this->_utente->occupazione();
+    
+    
+    public function showRegistrationForm(){
         return view('auth.register')
-            ->with('occupazione', $occupazione);
+            ->with('occupazione' , $this->_utente->occupazione());
     }
 }
