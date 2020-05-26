@@ -25,8 +25,7 @@ Route::get('/catalogo', 'PublicController@showCatalog')
 
 /***********************  USER  **********************/
 Route::get('/user', 'UserController@index')
-        ->name('user')
-        ->middleware('can:isUser');
+        ->name('user');
 
 Route::get('/user/modificaProfilo', 'UserController@modificaProfilo')
         ->name('modificaProfilo');
@@ -47,7 +46,8 @@ Route::post('/admin/nuovoUtente', 'AdminController@storeUser')
 
 /*********************** STAFF **********************/
 Route::get('/staff', 'StaffController@index')
-        ->name('staff');
+        ->name('staff')
+        ->middleware('can:isStaff');
 
 Route::get('/staff/addProduct', 'StaffController@addProduct')
         ->name('nuovoProdotto');

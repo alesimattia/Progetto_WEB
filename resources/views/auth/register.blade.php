@@ -33,7 +33,7 @@
                                 @endif
                             </div>
                             <div class="col-md-12 form-group">
-                                {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'Cognome','placeholder'=>'Cognome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Cognome'"]) }}
+                                {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'cognome','placeholder'=>'Cognome', 'onfocus'=>"this.placeholder=''",'onblur'=>"this.placeholder='Cognome'"]) }}
                                 @if($errors->first('cognome'))
                                 <ul class="error">
                                     @foreach($errors->get('cognome') as $message)

@@ -13,6 +13,7 @@ class User extends Authenticatable {
     protected $table = 'utente';
     protected $primaryKey = 'username';
     public $incrementing = false;
+    public $timestamps = false;
 
     protected $guarded = [];
     
@@ -22,7 +23,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'username', 'password', 'nome', 'cognonme', 'residenza', 'dataNascita', 'occupazione', 'ruolo'
+        'username', 'password', 'nome', 'cognome', 'residenza', 'dataNascita', 'occupazione', 'ruolo'
     ];
 
     /**
@@ -40,6 +41,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
     public function hasRole($ruolo) { //usato in app/providers/AuthServiceProvider
@@ -52,7 +54,7 @@ class User extends Authenticatable {
     }
 
     public function occupazione(){
-        return array("studente","operaio","impiegato","disoccupato");
+        return array("studente"=>"studente","operaio"=>"operaio","impiegato"=>"impiegato","disoccupato"=>"disoccupato");
     }
 
 }
