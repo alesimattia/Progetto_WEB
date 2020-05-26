@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'nome' => ['required', 'string', 'max:20'],
             'cognome' => ['required', 'string', 'max:20'],
             'residenza' => ['required', 'string', 'max:30'],
-            'dataNacita' => ['required', 'date'],
+            'dataNascita' => ['required', 'date'],
             'occupazione' => ['required', 'string', 'max:30'],
             'username' => ['required', 'string', 'min:8', 'unique:utente'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -73,6 +73,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         return User::create([
             'nome' => $data['nome'],
             'cognome' => $data['cognome'],
@@ -85,7 +86,7 @@ class RegisterController extends Controller
 
         ]);
     }
-    
+
     
     public function showRegistrationForm(){
         return view('auth.register')

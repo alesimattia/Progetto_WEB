@@ -40,7 +40,6 @@ class User extends Authenticatable {
      * @var array
      */
     protected $casts = [
-
     ];
 
     public function hasRole($ruolo) { //usato in app/providers/AuthServiceProvider

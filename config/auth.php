@@ -69,6 +69,9 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+            'primary_key' => 'username',
+            'driver' => 'database',
+            'table' => 'utente'
         ],
 
         // 'users' => [
