@@ -1,5 +1,4 @@
 <?php
-
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -11,35 +10,57 @@
   |
  */
 
-Route::get('/selTopCat/{topCatId}/selCat/{catId}', 'PublicController@showCatalog3')
-        ->name('catalog3');
-
-Route::get('/selTopCat/{topCatId}', 'PublicController@showCatalog2')
-        ->name('catalog2');
-
-Route::get('/catalogo', 'PublicController@showGuestCatalog')
-        ->name('catalogo');
+/***********************  GUEST  **********************/
+Route::view('/contatti', 'contatti')
+        ->name('contatti');
 
 Route::get('/', 'PublicController@index')
         ->name('index');
 
+Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
+        ->name('catalogo/{categoria}');
+
+Route::get('/catalogo', 'PublicController@showCatalog')
+        ->name('catalogo');
+
+/***********************  USER  **********************/
+Route::get('/user', 'UserController@index')
+        ->name('user');
+
+Route::get('/user/modificaProfilo', 'UserController@modificaProfilo')
+        ->name('modificaProfilo');
+
+Route::get('/user/catalogo', 'UserController@showCatalog')
+        ->name('catalogoUser');
 
 
-/*Route::get('/admin/newproduct', 'AdminController@addProduct')
-        ->name('newproduct');
-
-Route::post('/admin/newproduct', 'AdminController@storeProduct')
-        ->name('newproduct.store');
-
+/*********************** ADMIN **********************/
 Route::get('/admin', 'AdminController@index')
         ->name('admin');
 
-Route::get('/user', 'UserController@index')
-        ->name('user')->middleware('can:isUser');*/
+Route::get('/admin/nuovoUtente', 'AdminController@aggiungiStaff')
+        ->name('nuovoStaff');
+
+Route::post('/admin/nuovoUtente', 'AdminController@storeUser')
+        ->name('nuovoUtente.store');
+
+/*********************** STAFF **********************/
+Route::get('/staff', 'StaffController@index')
+        ->name('staff')
+        ->middleware('can:isStaff');
+
+Route::get('/staff/addProduct', 'StaffController@addProduct')
+        ->name('nuovoProdotto');
+
+Route::post('/staff/addProduct', 'StaffController@storeProduct')
+        ->name('nuovoProdotto.store');
+
+Route::get('/staff/modificaProdotto', 'StaffController@modificaProdotto')
+        ->name ('modificaProdotto');
 
 
+/*********************** AUTENTICAZIONE *********************/
 
-// Rotte per l'autenticazione
 Route::get('login', 'Auth\LoginController@showLoginForm')
         ->name('login');
 
@@ -49,8 +70,6 @@ Route::post('logout', 'Auth\LoginController@logout')
         ->name('logout');
 
 
-
-// Rotte per la registrazione
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')
         ->name('register');
 
@@ -58,10 +77,6 @@ Route::post('register', 'Auth\RegisterController@register');
 
 
 
-Route::view('/contatti', 'contatti')
-        ->name('contatti');
 
-
-// Rotte inserite dal comando artisan "ui vue --auth" 
-// Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
+// Rotte inserite dal comando artisan "ui vue --auth"
+// Auth::routes();   genera le ROTTE PREDEFINITE per tutti i controller in app/Http/controllers/auth

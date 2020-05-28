@@ -1,10 +1,11 @@
 NOTE INSTALLAZIONE PROGETTI LARAVEL
-- Decomprimere il file .zip del progetto che si vuole installare sul proprio computer.
-- Spostare la cartella ottenuta nella Document Root dell'ambiente server locale (cartella
-  htdocs in XAMPP).
+- Decomprimere il file .zip del progetto che si vuole installare sul proprio computer 
+  nella Document Root dell'ambiente server locale (cartella htdocs in XAMPP).
 - Verificare che le cartelle storage e bootstrap/cache (e tutti i files e le cartelle in 
   essi contenuti) abbiano tutti i privilegi abilitati (rwx) per proprietario e gruppo.
 - Per ciascuno dei progetti Laravel successivi al primo (laraProj2, laraProj3, ...):
+  + assegnare i privilegi di scrittura per tutte le classi di utenza alla cartella
+    public/images/products e alla cartella storage/logs
   + creare nel DBMS MySQL locale un database con nome laraProj<X>_DB (dove <X> va sostituito 
     con la versione (2..N) del progetto a cui il DB si riferisce)
   + creare l'utente user=tweb, pass=tweb nel DBMS e abilitarlo all'accesso al DB

@@ -10,13 +10,20 @@ class User extends Authenticatable {
 
     use Notifiable;
 
+    protected $table = 'utente';
+    protected $primaryKey = 'username';
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $guarded = [];
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'email', 'username', 'password',
+        'username', 'password', 'nome', 'cognome', 'residenza', 'dataNascita', 'occupazione', 'ruolo'
     ];
 
     /**
@@ -36,10 +43,18 @@ class User extends Authenticatable {
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-    public function hasRole($role) {
-        $role = (array)$role;
-        return in_array($this->role, $role);
+
+    public function hasRole($ruolo) { //usato in app/providers/AuthServiceProvider
+        $ruolo = (array)$ruolo;
+        return in_array($this->ruolo, $ruolo);
+    }
+
+    public function ruoli(){
+        return array("user","staff");
+    }
+
+    public function occupazione(){
+        return array("studente"=>"studente","operaio"=>"operaio","impiegato"=>"impiegato","disoccupato"=>"disoccupato");
     }
 
 }

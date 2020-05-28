@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
+    {   //fissa la lunghezza attributi di tipo stringa nel model 
         Schema::defaultStringLength(191);
     }
 }

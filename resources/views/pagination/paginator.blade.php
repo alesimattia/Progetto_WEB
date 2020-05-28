@@ -1,33 +1,43 @@
+<!--mostra la barra di navigazione solo se c'è più di una pagina da mostrare -->
+
 @if ($paginator->lastPage() != 1)
-<div id="pagination">
-    {{ $paginator->firstItem() }} - {{ $paginator->lastItem() }} di {{ $paginator->total() }} ---
+<div class="paginator">
+    <i class="card-blog__title">
+        {{ $paginator->firstItem() }} - {{ $paginator->lastItem() }} su {{ $paginator->total() }} 
+        <img src="{{ URL::asset('/img/icon/line.png') }}" style="width: 2em; margin: 0em 0.5em">    <!--inline perchè usato solo qui-->
+    </i>
 
-    <!-- Link alla prima pagina -->
+    <!-- Prima pagina -->
     @if (!$paginator->onFirstPage())
-        <a href="{{ $paginator->url(1) }}">Inizio</a> |
+        <a href="{{ $paginator->url(1) }}" class="card-blog__title">Inizio</a> |
     @else
-        Inizio |
+        <i class="card-blog__title">Inizio | </i>
     @endif
 
-    <!-- Link alla pagina precedente -->
+    <!-- Precedente -->
     @if ($paginator->currentPage() != 1)
-        <a href="{{ $paginator->previousPageUrl() }}">&lt; Precedente</a> |
+        <a href="{{ $paginator->previousPageUrl() }}">
+            <img src="{{ URL::asset('/img/icon/left_arrow.png') }}" class="icona_paginator">
+        </a> |
     @else
-        &lt; Precedente |
+        <img src="{{ URL::asset('/img/icon/left_arrow.png') }}" class="icona_paginator">  <!--stessa immagine ma non cliccabile-->
     @endif
 
-    <!-- Link alla pagina successiva -->
+    <!-- Successiva -->
     @if ($paginator->hasMorePages())
-        <a href="{{ $paginator->nextPageUrl() }}">Successivo &gt;</a> |
+        <a href="{{ $paginator->nextPageUrl() }}">
+            <img src="{{ URL::asset('/img/icon/right_arrow.png') }}" class="icona_paginator">
+        </a>
     @else
-        Successivo &gt; |
+        <img src="{{ URL::asset('/img/icon/right_arrow.png') }}" class="icona_paginator">
     @endif
 
-    <!-- Link all'ultima pagina -->
+    <!-- Ultima pagina -->
     @if ($paginator->hasMorePages())
-        <a href="{{ $paginator->url($paginator->lastPage()) }}">Fine</a>
+        <a href="{{ $paginator->url($paginator->lastPage()) }}" class="card-blog__title">Fine</a>
     @else
-        Fine
+        <i class="card-blog__title">Fine</i>
     @endif
+    
 </div>
 @endif

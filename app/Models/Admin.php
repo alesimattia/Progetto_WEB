@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Resources\Category;
-use App\Models\Resources\Product;
+use App\Models\Resources\Sottocategoria;
+use App\Models\Resources\Prodotto;
 
 class Admin {
 
-    public function getProdsCats() {
-        return Category::where('parId', '!=', 0)->get();
+    //serve per la option-list con le (sotto)categorie assegnabili ad un nuovo prodotto
+    public function getAllSubCat() {       
+        return Sottocategoria::get();
     }
 
+    public function getAllMainCat() {
+        return Categoria::get();
+    }
 }

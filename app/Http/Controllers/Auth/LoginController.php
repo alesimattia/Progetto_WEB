@@ -19,22 +19,12 @@ class LoginController extends Controller {
 
 use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-//    protected $redirectTo = '/home';
-
-    /**
-     * Override:: definisce la homepage per i diversi utenti.
-     *
-     * @var string
-     */
-    protected function redirectTo() {        
-        $role = auth()->user()->role;
-        switch ($role) {
+    protected function redirectTo() {
+        $ruolo = auth()->user()->ruolo;
+        switch ($ruolo) {
             case 'admin': return '/admin';
+                break;
+            case 'staff': return '/staff';
                 break;
             case 'user': return '/user';
                 break;

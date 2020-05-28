@@ -21,16 +21,16 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers;     //trait php per validazione form
 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    
-    //protected $redirectTo = '/home';
-    protected $redirectTo = '/';
+
+    protected $redirectTo = '/user';
+    protected $_utente;
 
     /**
      * Create a new controller instance.
@@ -39,7 +39,10 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //vincola l'accesso di questo controller
+        $this->middleware('guest');   //guest è il ruolo predefinito degli utenti non registrati
+        $this->_utente = new User;
+        
     }
 
     /**
@@ -51,11 +54,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'username' => ['required', 'string', 'min:8', 'unique:users'],
+            'nome' => ['required', 'string', 'max:20'],
+            'cognome' => ['required', 'string', 'max:20'],
+            'residenza' => ['required', 'string', 'max:30'],
+            'dataNascita' => ['required', 'date'],
+            'occupazione' => ['required', 'string', 'max:30'],
+            'username' => ['required', 'string', 'min:8', 'unique:utente'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+
         ]);
     }
 
@@ -67,12 +73,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         return User::create([
-            'name' => $data['name'],
-            'surname' => $data['surname'],
-            'email' => $data['email'],
+            'nome' => $data['nome'],
+            'cognome' => $data['cognome'],
+            'residenza' => $data['residenza'],
+            'dataNascita' => $data['dataNascita'],
+            'occupazione' => $data['occupazione'],
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
+            'ruolo' => 'user',
         ]);
     }
+
+    
+    public function showRegistrationForm(){
+        return view('auth.register')
+            ->with('occupazione' , $this->_utente->occupazione());
+    }
+    
 }

@@ -2,33 +2,80 @@
 	margin-left: 12px; 	/*altrimenti tropo attaccato agli elementi della nav*/
 }
 
+.footer_margin{
+	margin: auto;
+}
+
+.footer_contatti{
+	float: left;
+	margin-right: 2em;
+	text-align: right;
+}
+
+.scontato{
+	color:rgb(197, 64, 64);
+	text-decoration: line-through;
+}
+
+.box_prodotto{
+	margin-top: 1em;
+}
+
 .lista-opzioni{
 	padding: .375rem .75rem;
 	font-size: 1.1em;
 }
 
 .registra-box-campi{
-	margin-bottom: 3em;
+	margin-top: 1.5em;
 	margin-right: auto;
 	margin-left: auto;
+	width: 100%;
 }
 
+.paginator{
+	padding-top:3%;
+	margin: auto;
+	text-align: center;
+}
 
-.filterDiv {
-	float: left;
-	display: none; /* Hidden by default */
-  }
-  
-  /* The "show" class is added to the filtered elements */
-  .show {
-	display: block;
-  }
+.icona_paginator{
+	height: 2em;
+	margin: 0px 0.5em;
+}
 
+.main_category{
+	font-size: 1.3em;
+	text-align: center;
+	border: none;
+	padding: 0.5em;
+}
 
-/**Regole originali**/
+.sub_category{
+	text-align: center;
+	color: #384aeb;
+	padding: 0.5em 1em;
+}
+
+.category_block{
+	text-align: center;
+	margin: auto;
+}
+
+.selected{
+	border: 0.1em solid #384aeb;
+	padding-bottom: 0.1em;
+}
+
+.error{
+	color: red;
+	list-style: none;
+}
+
+/****** Regole originali  ************************************************************************************/
 body
 {
-	color:rgb(87, 87, 87);
+	color:#555;
 	font-family:"Roboto",sans-serif;
 	font-size:15px;
 	font-weight:400;
@@ -73,6 +120,7 @@ h1,.h1
 
 h2,.h2
 {
+	text-align: center;
 	font-size:36px;
 	font-weight:600
 }
@@ -92,7 +140,6 @@ h3,.h3
 
 h4,.h4
 {
-	font-size:20px;
 	font-weight:400;
 	line-height:1.3
 }
@@ -118,20 +165,20 @@ a
 
 .section-margin
 {
-	margin:45px 0
+	margin:2% 0
 }
 
 @media (min-width: 980px) {
 	.section-margin
 	{
-		margin:70px 0
+		margin:3% 0
 	}
 }
 
 @media (min-width: 1100px) {
 	.section-margin
 	{
-		margin:6% 0
+		margin:3% 0
 	}
 
 	.section-margin.calc-60px
@@ -148,7 +195,7 @@ a
 @media (min-width: 1000px) {
 	.section-margin--small
 	{
-		margin:98px 0
+		margin:3% 0
 	}
 }
 
@@ -160,7 +207,7 @@ a
 @media (min-width: 1000px) {
 	.section-padding
 	{
-		padding:130px 0
+		padding:3% 0
 	}
 }
 
@@ -197,22 +244,29 @@ a
 	border-radius:0
 }
 
+.nav-link
+{
+	font-size: 1.12em;
+	border-bottom: 0.1em solid #384aeb;
+}
+
 .header_area .navbar .nav .nav-item
 {
-	margin-right:45px
+	margin-right:3.5rem
 }
 
 .header_area .navbar .nav .nav-item .nav-link
 {
+
 	text-transform:capitalize;
 	color:#222;
 	display:inline-block
 }
 
 @media (min-width: 991px) {
-	.header_area .navbar .nav .nav-item .nav-link
+	.header_area .navbar .nav
 	{
-		padding:32px 0
+		/*padding:32px 0*/
 	}
 }
 
@@ -905,6 +959,7 @@ a
 
 .section-intro__style
 {
+	font-size: 1em;
 	border-bottom:0.1em solid #384aeb;
 	padding-bottom:0.1em;
 }
@@ -1074,7 +1129,7 @@ a
 .card-product
 {
 	border:0;
-	margin-bottom:30px
+	/*margin-bottom:30px */
 }
 
 .card-product p
@@ -1089,11 +1144,14 @@ a
 
 .card-product__imgOverlay
 {
-	background:rgba(255,255,255,0.5);
+	color: #fdfdfd;
+	font-size: 1.2em;
+	background:rgba(149, 149, 149, 0.7);
 	position:absolute;
 	bottom:0;
 	left:0;
 	width:100%;
+	height: 60%;
 	padding:30px 5px;
 	transform:translateY(30px);
 	opacity:0;
@@ -1138,7 +1196,7 @@ a
 
 .card-product__price
 {
-	font-size:18px;
+	font-size:1.3em;
 	font-weight:500
 }
 
@@ -1156,26 +1214,28 @@ a
 
 .offer
 {
-	background:url(../img/home/parallax-bg.png) right center no-repeat;
-	background-size:cover
+	background:url(../img/home/parallax-bg.png)   no-repeat;
+	background-size: cover;
+	background-position-x: 60%;
+	background-position-y: 20px
 }
 
 @media (min-width: 1200px) {
 	.offer
 	{
-		background-size:100% 100%
+		/*background-size:100% 100%*/
 	}
 }
 
 .offer__content
 {
-	padding:100px 0 110px
+	padding:18% 0 8%
 }
 
 @media (min-width: 1000px) {
 	.offer__content
 	{
-		padding:122px 0 135px
+		padding:25% 0 15%
 	}
 }
 
@@ -1201,6 +1261,7 @@ a
 
 .offer__content p
 {
+	font-size: 1.2em;
 	color:#555
 }
 
@@ -1338,7 +1399,7 @@ a
 
 .subscribe
 {
-	padding:45px 10px;
+	padding: 3%;
 	background:#fff;
 	border-radius:5px;
 	box-shadow:0 -5px 20px 0 rgba(56,74,235,0.1)
@@ -1347,7 +1408,7 @@ a
 @media (min-width: 1000px) {
 	.subscribe
 	{
-		padding:85px 10px
+		padding: 3%
 	}
 }
 
@@ -1421,8 +1482,7 @@ a
 	.subscribe-position
 	{
 		position:relative;
-		top:100px;
-		margin-bottom:0
+		padding-top:5%;
 	}
 }
 
@@ -1528,10 +1588,10 @@ a
 
 .button-header
 {
-	padding: 5px 35px;
+	padding: 0.5em 1.6em;
 	background:transparent;
 	color:#222;
-	border-color:rgb(149, 144, 184)
+	border-color:rgb(122, 113, 168);
 }
 
 .button-hero
@@ -1541,6 +1601,7 @@ a
 
 .button--active
 {
+	font-size: 1.15em;
 	background:#384aeb;
 	color:#fff
 }
@@ -1567,10 +1628,9 @@ a
 
 .button-register
 {
-	font-size:14px;
 	border:0;
 	border-radius:30 px;
-	padding:1em 1em;
+	padding:1.05em 1em;
 	text-transform:uppercase;
 	background:#c5322d;
 	margin-bottom: 1.2em;
@@ -4365,8 +4425,8 @@ a
 @media (min-width: 1000px) {
 	.login_form_inner
 	{
-		padding-top:115px;
-		padding-bottom:0
+		padding-top:8%;
+		/*padding-bottom:0*/
 	}
 }
 
@@ -4375,7 +4435,6 @@ a
 	color:#222;
 	text-transform:uppercase;
 	font-size:32px;
-	margin-bottom:70px
 }
 
 .login_form_inner .login_form
@@ -4396,11 +4455,12 @@ a
 
 .login_form .form-group
 {
-	margin-bottom:22px
+	/*margin-bottom:8%*/
 }
 
 .login_form .form-group input
 {
+	margin: 2em 0em;
 	height:40px;
 	border:none;
 	border-bottom:1px solid #ccc;
@@ -4467,6 +4527,10 @@ a
 	color:#777;
 	margin-top:20px;
 	display:block
+}
+
+#edit_form{
+	padding: 2%;
 }
 
 .register_form_inner
@@ -5480,7 +5544,7 @@ a
 @media (min-width: 1000px) {
 	.footer-area
 	{
-		padding: 5% 0 2%;
+		padding: 2em;
 	}
 }
 
@@ -5628,8 +5692,15 @@ a
 }
 .modfooter{
 	flex: 0 0 30%;
-	max-width: 30%
+	max-width: 30%;
+	margin: auto;
 }
 .imgacq{
 	text-align: center;
+}
+
+input.submit{
+	padding-bottom: 38px;
+	color: white;
+	border-radius: 40px
 }

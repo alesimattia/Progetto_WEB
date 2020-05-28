@@ -323,11 +323,11 @@ fieldset {
 }
 
 legend {
+    margin-top: 1em;
     display: block;
     width: 100%;
     max-width: 100%;
     padding: 0;
-    margin-bottom: 1.5rem;
     font-size: 1.5rem;
     line-height: inherit;
     color: inherit;
@@ -1404,7 +1404,7 @@ pre code {
         margin-left: 0
     }
     .offset-lg-1 {
-        margin-left: 8.333333%
+        margin-left: 8.333333%;
     }
     .offset-lg-2 {
         margin-left: 16.666667%
@@ -4088,7 +4088,7 @@ input[type=submit].btn-block {
 
 .nav-link {
     display: block;
-    padding: .5rem 1rem
+    padding-bottom: 0.2em;
 }
 
 .nav-link:focus,
@@ -4619,7 +4619,7 @@ input[type=submit].btn-block {
 .card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    padding: 1.25rem
+    padding: 1rem
 }
 
 .card-title {
@@ -6405,7 +6405,7 @@ button.bg-danger:hover {
 }
 
 .bg-light {
-    background-color: #f8f9fa!important
+    background-color: #eeeeeea1 !important
 }
 
 a.bg-light:focus,
