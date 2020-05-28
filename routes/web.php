@@ -11,17 +11,17 @@
  */
 
 /***********************  GUEST  **********************/
-Route::view('/contatti', 'contatti')
-        ->name('contatti');
-
 Route::get('/', 'PublicController@index')
         ->name('index');
+
+Route::get('/catalogo', 'PublicController@showCatalog')
+        ->name('catalogo');
 
 Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
         ->name('catalogo/{categoria}');
 
-Route::get('/catalogo', 'PublicController@showCatalog')
-        ->name('catalogo');
+Route::view('/catalogo/desc/{prodotto}', 'PublicController@showDesc')
+        ->name('desc/{prodotto}');
 
 /***********************  USER  **********************/
 Route::get('/user', 'UserController@index')
