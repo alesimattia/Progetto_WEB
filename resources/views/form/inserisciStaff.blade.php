@@ -1,24 +1,12 @@
-@extends('layouts.public')
+@extends('layouts.admin')
 
-@section('title', 'Registrazione')
+@section('title', 'Area Admin')
 
 @section('main')
 
-<section class="login_box_area section-margin" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="login_box_img ">
-                    <div class="hover">
-                        <h4 style="margin-bottom: 10%;">Hai già un account?</h4>
-                        <a class="button button-account" href="{{ route('login') }}">Accedi</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="login_form_inner register_form_inner">
-                    <h3>Crea il tuo account</h3>
+<div class="col-12">
+    <div class="login_form_inner register_form_inner" id="edit_form">
+                    <h3>Crea account Staff</h3>
                     {{ Form::open(array('route' => 'register', 'class' => 'row login_form', 'id'=>'register_form')) }}
                     @csrf
                         <fielset class="registra-box-campi">
@@ -44,13 +32,6 @@
                             </div>
                             <div class="col-md-12 form-group">
                                 {{ Form::text('residenza', '', ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
-                                @if($errors->first('cognome'))
-                                <ul class="error">
-                                    @foreach($errors->get('residenza') as $message)
-                                    <li>{{ $message }}</li>
-                                    @endforeach
-                                </ul>
-                                @endif
                             </div>
                             <div class="col-md-12 form-group">
                                 {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
@@ -91,13 +72,10 @@
                         </fieldset>
 
                         <div class="col-md-12 form-group">
-                            {{ Form::submit('REGISTRATI', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
+                            {{ Form::submit('CREA', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
                         </div>
 
                     {{ Form::close() }}
                 </div>
             </div>
-        </div>
-    </div>
-</section>
 @endsection

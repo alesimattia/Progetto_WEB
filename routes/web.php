@@ -44,6 +44,10 @@ Route::get('/admin/nuovoUtente', 'AdminController@addUser')
 Route::post('/admin/nuovoUtente', 'AdminController@storeUser')
         ->name('nuovoUtente.store');
 
+Route::get('/admin/nuovoUtente', 'AdminController@aggiungiStaff')
+        ->name('nuovoStaff');
+
+
 /*********************** STAFF **********************/
 Route::get('/staff', 'StaffController@index')
         ->name('staff')
@@ -52,8 +56,11 @@ Route::get('/staff', 'StaffController@index')
 Route::get('/staff/addProduct', 'StaffController@addProduct')
         ->name('nuovoProdotto');
 
-Route::post('/staff/addProduct', 'staff@storeProduct')
+Route::post('/staff/addProduct', 'StaffController@storeProduct')
         ->name('nuovoProdotto.store');
+
+Route::get('/staff/modificaProdotto', 'StaffController@modificaProdotto')
+        ->name ('modificaProdotto');
 
 
 /*********************** AUTENTICAZIONE *********************/
