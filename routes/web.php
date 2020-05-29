@@ -11,22 +11,21 @@
  */
 
 /***********************  GUEST  **********************/
-Route::view('/contatti', 'contatti')
-        ->name('contatti');
-
 Route::get('/', 'PublicController@index')
         ->name('index');
-
-Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
-        ->name('catalogo/{categoria}');
 
 Route::get('/catalogo', 'PublicController@showCatalog')
         ->name('catalogo');
 
+Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
+        ->name('catalogo/{categoria}');
+
+Route::view('/catalogo/desc/{prodotto}', 'PublicController@showDesc')
+        ->name('desc/{prodotto}');
+
 /***********************  USER  **********************/
 Route::get('/user', 'UserController@index')
-        ->name('user')
-        ->middleware('can:isUser');
+        ->name('user');
 
 Route::get('/user/modificaProfilo', 'UserController@modificaProfilo')
         ->name('modificaProfilo');
@@ -45,15 +44,23 @@ Route::get('/admin/nuovoUtente', 'AdminController@addUser')
 Route::post('/admin/nuovoUtente', 'AdminController@storeUser')
         ->name('nuovoUtente.store');
 
+Route::get('/admin/nuovoUtente', 'AdminController@aggiungiStaff')
+        ->name('nuovoStaff');
+
+
 /*********************** STAFF **********************/
 Route::get('/staff', 'StaffController@index')
-        ->name('staff');
+        ->name('staff')
+        ->middleware('can:isStaff');
 
 Route::get('/staff/addProduct', 'StaffController@addProduct')
         ->name('nuovoProdotto');
 
-Route::post('/staff/addProduct', 'staff@storeProduct')
+Route::post('/staff/addProduct', 'StaffController@storeProduct')
         ->name('nuovoProdotto.store');
+
+Route::get('/staff/modificaProdotto', 'StaffController@modificaProdotto')
+        ->name ('modificaProdotto');
 
 
 /*********************** AUTENTICAZIONE *********************/

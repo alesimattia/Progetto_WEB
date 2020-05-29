@@ -28,10 +28,15 @@ class PublicController extends Controller {
         $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc' , true);
     
         return view('catalogo')
-                        ->with('mainCats', $mainCats)
-                        ->with('subCats', $subCats)
-                        ->with('selected', $categoria)
-                        ->with('prodotti', $prodotti);
+                    ->with('mainCats', $mainCats)
+                    ->with('subCats', $subCats)
+                    //->with('selected', $categoria)
+                    ->with('prodotti', $prodotti);
     }
 
+    public function showDesc($prodotto){
+        return view('product.prodotto');
+        //return view('product.prodotto');
+                    //->with('prodotto', $prodotto);
+    }
 }

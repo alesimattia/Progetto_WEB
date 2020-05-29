@@ -82,8 +82,7 @@ class RegisterController extends Controller
             'occupazione' => $data['occupazione'],
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
-            'ruolo' => 'user'
-
+            'ruolo' => 'user',
         ]);
     }
 
@@ -92,4 +91,5 @@ class RegisterController extends Controller
         return view('auth.register')
             ->with('occupazione' , $this->_utente->occupazione());
     }
+    
 }

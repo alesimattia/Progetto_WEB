@@ -49,5 +49,9 @@ class AdminController extends Controller {
 
         return redirect()->action('AdminController@index');
     }
+    
+    public function aggiungiStaff(){
+        return view('form.inserisciStaff');
+    }
 
 }

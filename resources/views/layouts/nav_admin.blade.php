@@ -27,7 +27,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                 aria-expanded="false">Gestisci Staff</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="#">Inserisci utente staff</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('nuovoStaff')}}">Inserisci utente staff</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Modifica staff</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Cancella utente staff</a></li>                                  
                             </ul>

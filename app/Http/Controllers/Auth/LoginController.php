@@ -24,7 +24,7 @@ use AuthenticatesUsers;
         switch ($ruolo) {
             case 'admin': return '/admin';
                 break;
-            case 'user': return '/user';
+            case 'staff': return '/staff';
                 break;
             case 'user': return '/user';
                 break;

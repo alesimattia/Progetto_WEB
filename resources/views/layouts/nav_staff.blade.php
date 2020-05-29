@@ -12,15 +12,14 @@
 
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="catalogo.html">Catalogo</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contatti</a></li>                           
+                        <li class="nav-item active"><a class="nav-link" href="{{ route('staff') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>                        
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                 aria-expanded="false">Gestisci prodotti</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="#">Inserisci prodotto</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Modifica prodotto</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('nuovoProdotto')}}">Inserisci prodotto</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('modificaProdotto') }}">Modifica prodotto</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Cancella prodotto</a></li>                                  
                             </ul>
                         </li>                          
