@@ -6,8 +6,13 @@
 
 <div class="col-12">
     <div class="login_form_inner register_form_inner" id="edit_form">
+                    @isset($confirm)
+                        <h4 style="color:#c5322d" > {{ $confirm }}</h4>
+                    @endisset
+
                     <h3>Crea account Staff</h3>
-                    {{ Form::open(array('route' => 'register', 'class' => 'row login_form', 'id'=>'register_form')) }}
+
+                    {{ Form::open(array('route' => 'addStaff.store', 'class' => 'row login_form', 'id'=>'register_form')) }}
                     @csrf
                         <fielset class="registra-box-campi">
                             <div class="col-md-12 form-group">
@@ -19,8 +24,7 @@
                                     @endforeach
                                 </ul>
                                 @endif
-                            </div>
-                            <div class="col-md-12 form-group">
+                            
                                 {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'cognome','placeholder'=>'Cognome']) }}
                                 @if($errors->first('cognome'))
                                 <ul class="error">
@@ -29,17 +33,6 @@
                                     @endforeach
                                 </ul>
                                 @endif
-                            </div>
-                            <div class="col-md-12 form-group">
-                                {{ Form::text('residenza', '', ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
-                            </div>
-                            <div class="col-md-12 form-group">
-                                {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
-
-                            </div>
-                            <div class="col-md-12 form-group" >
-                                {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-                                {{ Form::select('occupazione', array("studente","operaio","impiegato","disoccupato") , '', ['class' => '','id' => 'occupation']) }}
                             </div>
                         </fielset>
 

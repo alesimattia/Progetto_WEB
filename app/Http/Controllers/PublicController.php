@@ -34,8 +34,8 @@ class PublicController extends Controller {
                     ->with('prodotti', $prodotti);
     }
 
-    public function showDesc($prodotto){
-        return view('product.prodotto');
+    public function showDesc($prodotto = NULL){
+        return view('product.descProdotto');
         //return view('product.prodotto');
                     //->with('prodotto', $prodotto);
     }

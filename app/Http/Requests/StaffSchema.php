@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProductSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
+class StaffSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
 
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,10 @@ class ProductSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
      */
     public function rules() {
         return [
-            'nome' => 'required|max:25',
-            'subCat' => 'required',
-            'prezzo' => 'required|numeric|min:0',
-            'percSconto' => 'required|integer|min:0|max:95',
-            'descBreve' => 'required|max:50',
-            'descEstesa' => 'required|max:500',
-            'foto' => 'required|image|max:2048'
+            'nome' => ['required', 'string', 'max:20'],
+            'cognome' => ['required', 'string', 'max:20'],
+            'username' => ['required', 'string', 'min:8', 'unique:utente'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
 
