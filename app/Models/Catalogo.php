@@ -7,21 +7,22 @@ use App\Models\Resources\Sottocategoria;
 use App\Models\Resources\Prodotto;
 
 class Catalogo {
-
-    public function getAllMainCat() {
+    
+    //serve per la option-list con le (sotto)categorie assegnabili ad un nuovo prodotto
+    public static function getAllMainCat() {
         return Categoria::get();
     }
 
-    public function getAllSubCat(){
+    public static function getAllSubCat(){
         return Sottocategoria::get();
     }
 
-    public function whatSubCat($mainCat) {
+    public static function whatSubCat($mainCat) {
         return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
                 ->where('nomeCat','=', $mainCat)
                 ->get('nomeSubCat');
     }
-    public function getParentCat($subCat){
+    public static function getParentCat($subCat){
         return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
                 ->where('nomeSubCat','=', $subCat)
                 ->get('nomeCat');

@@ -35,7 +35,11 @@
                     <div class="card text-center card-product">
                         <a href="{{ route('desc/{prodotto}', [$prodotto] ) }}">
                             <div class="card-product__img">
-                                <img class="card-img" src="{{ URL::asset('/img/'. $prodotto->nomeCat .'/'. $prodotto->nomeSubCat .'/'. $prodotto->foto) }}">
+                                @if($prodotto->foto == 'dummy.jpg' )
+                                    <img class="card-img" src="{{ URL::asset('/img/home/dummy.jpg') }}">
+                                @else
+                                    <img class="card-img" src="{{ URL::asset('/img/'. $prodotto->nomeCat .'/'. $prodotto->nomeSubCat .'/'. $prodotto->foto) }}">
+                                @endif
                                 <div class="card-product__imgOverlay">
                                     @if($prodotto->percSconto>0)
                                         <p>Sconto &nbsp;{{ $prodotto->percSconto }}%</p><br>

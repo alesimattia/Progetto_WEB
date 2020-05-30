@@ -6,6 +6,9 @@ use App\Models\Admin;
 use App\Models\Resources\Prodotto;
 use App\Http\Requests\ProductSchema;
 
+use App\User;
+use App\Http\Requests\StaffSchema;
+
 class AdminController extends Controller {
 
     protected $_adminModel;
@@ -50,8 +53,27 @@ class AdminController extends Controller {
         return redirect()->action('AdminController@index');
     }
     
-    public function aggiungiStaff(){
+/*------------------------------------------------------------------------------------------*/
+
+    public function addStaff() {
         return view('form.inserisciStaff');
+    }
+
+                                //request object tipizzato dalla classe
+    public function storeStaff(StaffSchema $request) {
+        
+        $user = new User;
+        $user->residenza=NULL;
+        $user->occupazione=NULL;
+        $user->dataNascita=NULL;
+        $user->ruolo='staff';
+        $user->fill($request->validated());  //valorizza le proprietà dell'oggetto user con ciò che era nel request object (dal form)
+        $user->save();   //genera query nel dbms
+
+        
+        $confirm="Utente Staff aggiunto correttamente";
+        return view('form.inserisciStaff')
+                    ->with('confirm', $confirm);
     }
 
 }

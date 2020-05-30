@@ -3,6 +3,7 @@
 @section('title', 'Area Staff')
 
 @section('main')
+
 <div class="col-12">
     <div class="login_form_inner register_form_inner">
     <h3>Aggiungi Prodotto</h3>
@@ -20,14 +21,12 @@
                     @endforeach
                 </ul>
                 @endif
-            </div>
+           
 
-            <div class="col-md-12 form-group">
                 {{ Form::label('subCat', 'Categoria', ['class' => 'lista-opzioni']) }}
-                {{ Form::select('subCat', $cats, '', ['class' => '','id' => 'subCat']) }}
-            </div>
+                {{ Form::select('subCat', $subCats, '', ['class' => '','id' => 'subCat']) }}
+            <
 
-            <div class="col-md-12 form-group">
                 <!--{{ Form::file('foto', ['class' => 'form-control','id' => 'fotoprodotto','placeholder'=>'Immagine'])  }}-->
                 {{ Form::label('foto', 'Immagine', ['class' => 'label-input']) }}
                 {{ Form::file('foto', ['class' => 'input', 'id' => 'image']) }}
@@ -38,9 +37,8 @@
                     @endforeach
                 </ul>
                 @endif
-            </div>
 
-            <div class="col-md-12 form-group">
+
                 {{ Form::text('descBreve', '', ['class' => 'form-control','id' => 'descBreve','placeholder'=>'Descrizione breve'])  }}               
                 @if ($errors->first('descBreve'))
                 <ul class="error">
@@ -49,9 +47,8 @@
                     @endforeach
                 </ul>
                 @endif
-            </div>
+           
 
-            <div class="col-md-12 form-group">
                 {{ Form::text('prezzo', '', ['class' => 'form-control','id' => 'prezzo','placeholder'=>'Prezzo'])  }}              
                 @if ($errors->first('prezzo'))
                 <ul class="error">
@@ -60,9 +57,8 @@
                     @endforeach
                 </ul>
                 @endif
-            </div>
+            
 
-            <div class="col-md-12 form-group">
                 {{ Form::text('percSconto', '', ['class' => 'form-control','id' => 'percSconto','placeholder'=>'Sconto (%)'])  }}
                 @if ($errors->first('percSconto'))
                 <ul class="error">
@@ -71,16 +67,11 @@
                     @endforeach
                 </ul>
                 @endif
-            </div>
+            
 
-            <div class="col-md-12 form-group">
-                {{ Form::label('discounted', 'In Sconto', ['class' => 'label-input']) }}
-                {{ Form::select('discounted', ['1' => 'Si', '0' => 'No'], 1, ['class' => 'input','id' => 'discounted']) }}
-            </div>
-
-            <div class="col-md-12 form-group">
                 {{ Form::label('descEstesa', 'Descrizione Estesa', ['class' => 'label-input']) }}
                 {{ Form::textarea('descEstesa', '', ['class' => 'input', 'id' => 'descLong', 'rows' => 2]) }}
+
                 @if ($errors->first('descEstesa'))
                 <ul class="error">
                     @foreach ($errors->get('descEstesa') as $message)

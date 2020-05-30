@@ -32,7 +32,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'username', 'password', 'remember_token',
+        'username', 'remember_token',
     ];
 
     /**
@@ -41,7 +41,6 @@ class User extends Authenticatable {
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     public function hasRole($ruolo) { //usato in app/providers/AuthServiceProvider
@@ -49,11 +48,7 @@ class User extends Authenticatable {
         return in_array($this->ruolo, $ruolo);
     }
 
-    public function ruoli(){
-        return array("user","staff");
-    }
-
-    public function occupazione(){
+    public static function occupazione(){
         return array("studente"=>"studente","operaio"=>"operaio","impiegato"=>"impiegato","disoccupato"=>"disoccupato");
     }
 

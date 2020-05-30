@@ -27,8 +27,11 @@ Route::view('/catalogo/desc/{prodotto}', 'PublicController@showDesc')
 Route::get('/user', 'UserController@index')
         ->name('user');
 
-Route::get('/user/modificaProfilo', 'UserController@modificaProfilo')
-        ->name('modificaProfilo');
+Route::get('/user/editProfilo', 'UserController@editProfilo')
+        ->name('editProfilo');
+
+Route::post('/user/editProfilo', 'UserController@storeProfilo')
+        ->name('editProfilo.store');
 
 Route::get('/user/catalogo', 'UserController@showCatalog')
         ->name('catalogoUser');
@@ -38,20 +41,15 @@ Route::get('/user/catalogo', 'UserController@showCatalog')
 Route::get('/admin', 'AdminController@index')
         ->name('admin');
 
-Route::get('/admin/nuovoUtente', 'AdminController@addUser')
-        ->name('nuovoUtente');
+Route::get('/admin/addStaff', 'AdminController@addStaff')
+        ->name('addStaff');
 
-Route::post('/admin/nuovoUtente', 'AdminController@storeUser')
-        ->name('nuovoUtente.store');
-
-Route::get('/admin/nuovoUtente', 'AdminController@aggiungiStaff')
-        ->name('nuovoStaff');
-
+Route::post('/admin/addStaff', 'AdminController@storeStaff')
+        ->name('addStaff.store');
 
 /*********************** STAFF **********************/
 Route::get('/staff', 'StaffController@index')
-        ->name('staff')
-        ->middleware('can:isStaff');
+        ->name('staff');
 
 Route::get('/staff/addProduct', 'StaffController@addProduct')
         ->name('nuovoProdotto');

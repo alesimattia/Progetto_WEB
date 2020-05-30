@@ -12,10 +12,9 @@
 
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                        <li class="nav-item active"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>   <!--CATALOGO_GUEST-->
-                        <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Contatti</a></li>               
-                        <li class="nav-item"><a class="nav-link" href="{{ route('modificaProfilo') }}">Modifica profilo</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{{ route('user') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>               
+                        <li class="nav-item"><a class="nav-link" href="{{ route('editProfilo') }}">Modifica profilo</a></li>
                     </ul>
                     
                     <ul class="nav-shop">

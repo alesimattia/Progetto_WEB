@@ -27,13 +27,12 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                 aria-expanded="false">Gestisci Staff</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('nuovoStaff')}}">Inserisci utente staff</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('addStaff')}}">Inserisci utente staff</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Modifica staff</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Cancella utente staff</a></li>                                  
+                                <li class="nav-item"><a class="nav-link" href="#">Cancella staff</a></li>                                  
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#">Elimina profilo Cliente</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Modifica profilo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Elimina Cliente</a></li>
                     </ul>
     
                     <ul class="nav-shop">
