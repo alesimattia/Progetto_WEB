@@ -22,6 +22,7 @@ class Catalogo {
                 ->where('nomeCat','=', $mainCat)
                 ->get('nomeSubCat');
     }
+    
     public static function getParentCat($subCat){
         return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
                 ->where('nomeSubCat','=', $subCat)

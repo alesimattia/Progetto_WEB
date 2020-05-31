@@ -33,10 +33,6 @@ Route::get('/user/editProfilo', 'UserController@editProfilo')
 Route::post('/user/editProfilo', 'UserController@storeProfilo')
         ->name('editProfilo.store');
 
-Route::get('/user/catalogo', 'UserController@showCatalog')
-        ->name('catalogoUser');
-
-
 /*********************** ADMIN **********************/
 Route::get('/admin', 'AdminController@index')
         ->name('admin');

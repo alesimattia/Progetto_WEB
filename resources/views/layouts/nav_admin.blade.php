@@ -12,8 +12,8 @@
 
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="catalogo.html">Catalogo</a></li>                           
+                        <li class="nav-item active"><a class="nav-link" href="{{ route('admin')}}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>                           
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                 aria-expanded="false">Gestisci prodotti</a>
@@ -38,8 +38,8 @@
                     <ul class="nav-shop">
                     @auth
                         <li>
-                            <a class="button button-header" title="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <img src="{{ URL::asset('img/icon/login.png') }}" style="height: 20px">Logout
+                            <a href="" class="button button-header" title="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <img src="{{ URL::asset('img/icon/login.png') }}" style="height: 20px">&nbsp; Logout
                             </a>
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
