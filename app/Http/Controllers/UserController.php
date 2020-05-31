@@ -12,7 +12,8 @@ class userController extends Controller {
     protected $_catalogModel;
 
     public function __construct() {
-        //$this->middleware('can:isUser');
+        $this->middleware('can:isUser');
+        $this->_catalogModel = new Catalogo;
     }
 
     public function index() {
@@ -22,16 +23,20 @@ class userController extends Controller {
 
     public function showCatalog($categoria = 'computer') {
 
+        /*Le prime due instruzioni servono a estrarre dal db
+        gli elementi con cui popolare i filtri del catalogo*/
+
         $mainCats = $this->_catalogModel->getAllMainCat();
-        $subCats = $this->_catalogModel->getAllSubCat();
+        $subCats = $this->_catalogModel->getAllSubCat();    
 
+        //Tutti i prodotti della categoria selezionata, ordinati per sconto decrescente
         $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc');
-
+    
         return view('catalogo')
-                        ->with('mainCats', $mainCats)
-                        ->with('subCats', $subCats)
-                        ->with('selected', $categoria)
-                        ->with('prodotti', $prodotti);
+                    ->with('mainCats', $mainCats)
+                    ->with('subCats', $subCats)
+                    //->with('selected', $categoria)
+                    ->with('prodotti', $prodotti);
     }
 
 

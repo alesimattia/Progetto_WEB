@@ -31,7 +31,7 @@ class ProductSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
             'percSconto' => 'required|integer|min:0|max:95',
             'descBreve' => 'required|max:50',
             'descEstesa' => 'required|max:500',
-            'foto' => 'required|image|max:2048'
+            'foto' => 'image|max:2048'
         ];
     }
 
