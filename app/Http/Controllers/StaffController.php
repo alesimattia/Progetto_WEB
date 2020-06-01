@@ -12,7 +12,7 @@ use App\Http\Requests\ProductSchema;
 use App\Models\Catalogo;
 
 class staffController extends Controller {
-    
+
     protected $_adminModel;
 
     public function __construct() {
@@ -22,32 +22,34 @@ class staffController extends Controller {
     public function index() {
         return view('staffHome');
     }
-    
+
     public function addProduct() {
       $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id');
         return view('product.inserisciprodotto')
             ->with('subCats',$subCats);
     }
-    
+
     public function storeProduct(ProductSchema $request) {
-        
+
         if ($request->hasFile('foto')) {
             $image = $request->file('foto');
             $imageName = $image->getClientOriginalName();
-        } 
+        }
         else    $imageName = 'dummy.jpg';
-        
+
         $prodotto = new Prodotto;
         $prodotto->fill($request->validated());
         $prodotto->foto=$imageName;
-        $prodotto->save(); 
-        
+        $prodotto->save();
+
         if (!is_null($imageName)) {
             $destinationPath = public_path() . '/img/' . Catalogo::getParentCat($request->subCat) . '/' . $request->subCat;
             $image->move($destinationPath, $imageName);
         };
+        return response()->json(['redirect' => route('staff')]);
+
     }
-    
+
     public function modificaProdotto() {
         return view('product.modificaprodotto');
     }

@@ -2,6 +2,28 @@
 
 @section('title', 'Registrazione')
 
+@section('scripts')
+
+@parent
+<script src="{{ asset('js/functions.js') }}" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(function () {
+    var actionUrl = "{{ route('register') }}";
+    var formId = 'register_form';
+    $(":input").on('blur', function (event) {
+        var formElementId = $(this).attr('id');
+        doElemValidation(formElementId, actionUrl, formId);
+    });
+    $("#addproduct").on('submit', function (event) {
+        event.preventDefault();
+        doFormValidation(actionUrl, formId);
+    });
+});
+</script>
+
+@endsection
+
 @section('main')
 
 <section class="login_box_area section-margin" >
@@ -24,36 +46,15 @@
                         <fielset class="registra-box-campi">
                             <div class="col-md-12 form-group">
                                 {{ Form::text('nome', '', ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome']) }}
-                                @if($errors->first('nome'))
-                                <ul class="error">
-                                    @foreach($errors->get('nome') as $message)
-                                    <li>{{ $message }}</li>
-                                    @endforeach
-                                </ul>
-                                @endif
 
                                 {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'cognome','placeholder'=>'Cognome']) }}
-                                @if($errors->first('cognome'))
-                                <ul class="error">
-                                    @foreach($errors->get('cognome') as $message)
-                                    <li>{{ $message }}</li>
-                                    @endforeach
-                                </ul>
-                                @endif
 
                                 {{ Form::text('residenza', '', ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
-                                @if($errors->first('cognome'))
-                                <ul class="error">
-                                    @foreach($errors->get('residenza') as $message)
-                                    <li>{{ $message }}</li>
-                                    @endforeach
-                                </ul>
-                                @endif
 
                                 {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
 
                                 {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-                                
+
                                 {{ Form::select('occupazione', $lista_occupaz , '', ['class' => '','id' => 'occupation']) }}
                             </div>
                         </fielset>
@@ -62,22 +63,9 @@
                             <legend>Dati di accesso</legend>
                             <div class="col-md-12 form-group">
                                 {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username'] )}}                       <!--in caso di errori ripropone-->
-                                    @if($errors->first('username'))
-                                    <ul class="error">
-                                        @foreach($errors->get('username') as $message)
-                                        <li>{{ $message }}</li>
-                                        @endforeach
-                                    </ul>
-                                    @endif
+
 
                                 {{ Form::password('password', ['class' => 'form-control','id' => 'password','placeholder'=>'Password'] )}}                       <!--in caso di errori ripropone-->
-                                    @if($errors->first('password'))
-                                    <ul class="error">
-                                        @foreach($errors->get('password') as $message)
-                                        <li>{{ $message }}</li>
-                                        @endforeach
-                                    </ul>
-                                    @endif
 
                                 {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm','placeholder'=>'Conferma password']) }}
                             </div>
