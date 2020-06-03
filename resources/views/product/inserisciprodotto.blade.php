@@ -27,11 +27,14 @@ $(function () {
 @section('main')
 
 <div class="col-12">
-    <div class="login_form_inner register_form_inner">
+    <div class="login_form_inner register_form_inner add_prodotto">
+    @isset($conferma)
+        <h4 style="color:#c54040 " > {{ $confirm }}</h4>
+    @endisset
     <h3>Aggiungi Prodotto</h3>
-    <p>Utilizza questa form per inserire un nuovo prodotto nel Catalogo</p>
+    <p>Inserisci un nuovo elemento nel catalogo</p>
 
-    <fielset class="registra-box-campi">
+    <fieldset class="registra-box-campi">
 
             {{ Form::open(array('route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form')) }}
             <div class="col-md-12 form-group">
@@ -40,10 +43,8 @@ $(function () {
                 {{ Form::label('subCat', 'Sottocategoria', ['class' => 'lista-opzioni']) }}
                 {{ Form::select('subCat', $subCats, '', ['class' => 'select','id' => 'subCat']) }}
 
-                <!--{{ Form::file('foto', ['class' => 'form-control','id' => 'fotoprodotto','placeholder'=>'Immagine'])  }}-->
-                <br>
                 {{ Form::label('foto', 'Immagine', ['class' => 'label-input']) }}
-                <br>
+                
                 {{ Form::file('foto', ['class' => 'form-control', 'id' => 'image']) }}
 
                 {{ Form::text('descBreve', '', ['class' => 'form-control','id' => 'descBreve','placeholder'=>'Descrizione breve'])  }}
@@ -54,7 +55,7 @@ $(function () {
 
 
                 {{ Form::label('descEstesa', 'Descrizione Estesa', ['class' => 'label-input']) }}
-                {{ Form::textarea('descEstesa', '', ['class' => 'input', 'id' => 'descLong', 'rows' => 2]) }}
+                {{ Form::textarea('descEstesa', '', ['class' => 'input', 'id' => 'descLong', 'rows' => 3]) }}
 
 
             </div>
@@ -65,7 +66,7 @@ $(function () {
 
             {{ Form::close() }}
 
-    </fielset>
+    </fieldset>
     </div>
 </div>
 @endsection

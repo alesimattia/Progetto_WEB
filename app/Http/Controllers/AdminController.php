@@ -14,7 +14,7 @@ class AdminController extends Controller {
 
 
     public function __construct() {
-        //$this->middleware('can:isAdmin');     //altrimenti la rotta non è raggiungibile inserendo direttamente l'url
+        $this->middleware('can:isAdmin');
     }
 
     public function index() {
@@ -40,12 +40,11 @@ class AdminController extends Controller {
         $product = new Prodotto;
         $product->fill($request->validated());  //valorizza le proprietà dell'oggetto product con ciò che era nel request object (dal form)
         $product->foto = $imgName;
-        $product->save();   //genera query nel dbms
+        $product->save(); 
 
         if (!is_null($imgName)) {
-            //costruire path con /img/mainCat/subCat
-
-            $destinationPath = public_path() . '/img/' . $product->getMainCat() . '/' . $product->getSubCat();
+            //path costruito con /img/mainCat/subCat
+            $destinationPath = public_path() . '/img/' . $product->getMainCat()->nomeCat . '/' . $product->getSubCat()->nomeSubCat;
             $image->move($destinationPath, $imgName);
         };
 

@@ -17,30 +17,37 @@ class Catalogo {
         return Sottocategoria::get();
     }
 
-    public static function whatSubCat($mainCat) {
+    //Non usata -- Dato il NOME restituisce la sottocategoria
+    /*public static function whatSubCat($mainCat) {
         return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
                 ->where('nomeCat','=', $mainCat)
-                ->get('nomeSubCat');
-    }
+                ->get()
+                ->pluck('nomeSubCat')
+                ->first();
+    }*/
     
-    public static function getParentCat($subCat){
+    public static function getParentCat($subCatId){
         return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
-                ->where('nomeSubCat','=', $subCat)
-                ->get('nomeCat');
-                //->only(['nomeCat'])->all();
+                ->where('mainCat','=', $subCatId)
+                ->get()
+                ->pluck('nomeCat')
+                ->first();
     }
 
+    public static function subCatToName($subCatId){
+        return Sottocategoria::where('id','=', $subCatId)
+                    ->get()
+                    ->pluck('nomeSubCat')
+                    ->first();
+    }
 
-    public function getProdsByCat($category, $paged = 1, $order = null, $only_discounted = false) {
+    public function getProdsByCat($category, $paged = 1, $order = null) {
 
         $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                 ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
                 ->whereIn('nomeSubCat', $category)
                 ->orWhereIn('nomeCat', $category);
 
-        if ($only_discounted) {
-            $prods = $prods->where('percSconto', '>', 0);
-        }
         if (!is_null($order)) {
             $prods = $prods->orderBy('percSconto', $order);
         }

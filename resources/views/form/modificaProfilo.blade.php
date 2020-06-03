@@ -9,7 +9,7 @@
         <h3>Modifica informazioni profilo</h3>
         {{ Form::open(array('route' => 'editProfilo.store', 'class' => 'row login_form', 'id'=>'register_form')) }}
         @csrf
-            <fielset class="registra-box-campi">
+            <fieldset class="registra-box-campi">
                 <div class="col-md-12 form-group">
                     {{ Form::password('password', ['class' => 'form-control', 'id' => 'password','placeholder'=>'Password']) }}
                             @if($errors->first('password'))

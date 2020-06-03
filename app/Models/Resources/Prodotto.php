@@ -23,8 +23,8 @@ class Prodotto extends Model {
 
     public function getSubCat(){
         return Sottocategoria::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
-                        ->where('prodotto.nome','=', $this->nome)
-                        ->get('sottocategoria.nome');
+                        ->where('prodotto.id','=', $this->id)
+                        ->get('sottocategoria.nomeSubCat');
     }
 
     public function getMainCat(){

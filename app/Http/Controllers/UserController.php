@@ -23,13 +23,9 @@ class userController extends Controller {
 
     public function showCatalog($categoria = 'computer') {
 
-        /*Le prime due instruzioni servono a estrarre dal db
-        gli elementi con cui popolare i filtri del catalogo*/
-
         $mainCats = $this->_catalogModel->getAllMainCat();
         $subCats = $this->_catalogModel->getAllSubCat();    
 
-        //Tutti i prodotti della categoria selezionata, ordinati per sconto decrescente
         $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc');
     
         return view('catalogo')
@@ -50,7 +46,7 @@ class userController extends Controller {
 
     public function storeProfilo(ProfileSchema $request){
 
-        /*$user = User::find( Auth::user() );
+        /*$user = App\User::find(Auth::user()->username);
         $user->nome = $request->nome;
         $user->cognome = $request->cognome;
         $user->password = Hash::make($request->password);
@@ -62,7 +58,7 @@ class userController extends Controller {
 
 
         /*DB::table('utente')
-              ->where('username', Auth::user() )
+              ->where('id', Auth::id() )
               ->update(['nome' => $request->nome,
                         'cognome' =>  $request->cognome,
                         'password' => $request->password,
@@ -83,18 +79,19 @@ class userController extends Controller {
 
 
 
-        /*$user = User::findOrFail(Auth::user()->username);
+        /*$user = App\User::find(Auth::id());
         $user->nome=$request->input('nome');
         $user->cognome=$request->input('cognome');
         $user->password=$request->input('password');
         $user->residenza=$request->input('residenza');
         $user->dataNascita=$request->input('dataNascita');
         $user->occupazione=$request->input('occupazione');
-        $user->save(); */
+        $user->save();
+        $user->update();*/
         
 
 
-        /*$user = Auth::user();
+        /*$user = App\User::find(Auth::user()->username);
         $user->update($request->all());*/
 
 
@@ -120,14 +117,25 @@ class userController extends Controller {
         $user->save();*/
 
 
-        $user = User::findOrFail( Auth::user() );
+        /*$user = User::findOrFail( Auth::user() );
         $user->nome = $request['nome'];
         $user->cognome = $request['cognome'];
         $user->residenza = $request['residenza'];
         $user->password = $request['password'];
         $user->dataNascita = $request['dataNascita'];
         $user->occupazione = $request['occupazione'];
+        $user->save();*/
+
+        
+        $user = App\User::find(Auth::user()->username);
+        $user->nome=(string) $request->input('nome');
+        $user->cognome=(string) $request->input('cognome');
+        $user->password=(string) $request->input('password');
+        $user->residenza=(string) $request->input('residenza');
+        $user->dataNascita=(string) $request->input('dataNascita');
+        $user->occupazione=(string) $request->input('occupazione');
         $user->save();
+        
 
 
         return Redirect::route('user');

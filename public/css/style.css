@@ -13,8 +13,9 @@
 }
 
 .scontato{
-	color:rgb(197, 64, 64);
+	color: #e70808;
 	text-decoration: line-through;
+	font-size: 1.3em;
 }
 
 .box_prodotto{
@@ -68,11 +69,15 @@
 }
 
 .error{
-	color: red;
+	color: #c54040;
 	list-style: none;
 }
 
-/****** Regole originali  ************************************************************************************/
+.add_prodotto{	/*forza l'allineamento in alto*/
+	padding-top: 2%!important;
+}
+
+/************************** Regole originali  ************************************************************************************/
 body
 {
 	color:#555;
