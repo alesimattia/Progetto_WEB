@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    @include('layouts/nav_user')
+    @include('layouts/navbar')
     <main class="site-main">
 
         <!-- ================ Banner centrale ================= -->

@@ -38,7 +38,7 @@ $(function () {
 
             {{ Form::open(array('route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form')) }}
             <div class="col-md-12 form-group">
-                {{ Form::text('nome', '', ['class' => 'form-control','id' => 'nomeprodotto','placeholder'=>'Nome prodotto'])  }}
+                {{ Form::text('nome', '', ['class' => 'form-control','id' => 'nome','placeholder'=>'Nome prodotto'])  }}
 
                 {{ Form::label('subCat', 'Sottocategoria', ['class' => 'lista-opzioni']) }}
                 {{ Form::select('subCat', $subCats, '', ['class' => 'select','id' => 'subCat']) }}
