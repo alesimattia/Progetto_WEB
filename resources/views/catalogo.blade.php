@@ -41,15 +41,13 @@
                                     <img class="card-img" src="{{ URL::asset('/img/'. $prodotto->nomeCat .'/'. $prodotto->nomeSubCat .'/'. $prodotto->foto) }}">
                                 @endif
                                 <div class="card-product__imgOverlay">
-                                    @if($prodotto->percSconto>0)
-                                        <p>Sconto &nbsp;{{ $prodotto->percSconto }}%</p><br>
-                                    @endif
+                                    @include('helpers/productPrice')
                                     <p>{{ $prodotto->descBreve }}</p>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <h4 class="card-product__title"><a href="single-product.html">{{ $prodotto->nome }}</a></h4>
-                                <p class="card-product__price">€ {{ $prodotto->prezzo }}</p>
+                                <p class="card-product__price">€{{ number_format($prodotto->getPrezzo(), 2, ',', '.') }}</p>
                             </div>
                         </a>
                     </div>

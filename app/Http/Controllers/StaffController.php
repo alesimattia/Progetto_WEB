@@ -25,8 +25,9 @@ class staffController extends Controller {
 
     public function addProduct() {
       $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id');
-        return view('product.inserisciprodotto')
-            ->with('subCats',$subCats);
+        return view('product.inserisciProdotto')
+            ->with('subCats', $subCats);
+            //->with('conferma');
     }
 
     public function storeProduct(ProductSchema $request) {
@@ -43,10 +44,14 @@ class staffController extends Controller {
         $prodotto->save();
 
         if (!is_null($imageName)) {
-            $destinationPath = public_path() . '/img/' . Catalogo::getParentCat($request->subCat) . '/' . $request->subCat;
+            $destinationPath = public_path() . '/img/' . (String) Catalogo::getParentCat($request->subCat) 
+                                                . '/' . (String) Catalogo::subCatToName($request->subCat);
             $image->move($destinationPath, $imageName);
         };
-        return response()->json(['redirect' => route('staff')]);
+
+        //$messaggio="Prodotto aggiunto correttamente";
+        return redirect()->action('StaffController@addProduct');
+                    //->with('conferma', $messaggio);
 
     }
 
