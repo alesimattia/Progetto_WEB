@@ -46,27 +46,28 @@ class userController extends Controller {
 
     public function storeProfilo(ProfileSchema $request){
 
-        /*$user = App\User::find(Auth::user()->username);
-        $user->nome = $request->nome;
-        $user->cognome = $request->cognome;
-        $user->password = Hash::make($request->password);
-        $user->residenza = $request->residenza;
-        $user->dataNascita = $request->dataNascita;
-        $user->occupazione = $request->occupazione;
+        
+        /*$user = User::find(Auth::user()->username);   //$user = User::where('username', Auth::user()->username)->first();
+        $user->nome = (String) $request->nome;
+        $user->cognome = (String)$request->cognome;
+        $user->password = (String)Hash::make($request->password);
+        $user->residenza = (String)$request->residenza;
+        $user->dataNascita = (String)$request->dataNascita;
+        $user->occupazione = (String)$request->occupazione;
         $user->save();*/
 
+        
+        //User::find(Auth::user())->update(ProfileSchema::all());
 
 
-        /*DB::table('utente')
-              ->where('id', Auth::id() )
+        User::where('username', 'testModifica')
               ->update(['nome' => $request->nome,
                         'cognome' =>  $request->cognome,
                         'password' => $request->password,
                         'residenza' =>  $request->residenza,
                         'dataNascita' => $request->dataNascita,
                         'occupazione' =>  $request->occupazione,
-              ]);*/
-
+              ]);
 
 
         /*DB::table('utente')
@@ -126,7 +127,7 @@ class userController extends Controller {
         $user->occupazione = $request['occupazione'];
         $user->save();*/
 
-        
+        /*
         $user = App\User::find(Auth::user()->username);
         $user->nome=(string) $request->input('nome');
         $user->cognome=(string) $request->input('cognome');
@@ -134,7 +135,7 @@ class userController extends Controller {
         $user->residenza=(string) $request->input('residenza');
         $user->dataNascita=(string) $request->input('dataNascita');
         $user->occupazione=(string) $request->input('occupazione');
-        $user->save();
+        $user->save();*/
         
 
 

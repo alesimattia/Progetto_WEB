@@ -27,7 +27,6 @@ class staffController extends Controller {
       $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id');
         return view('product.inserisciProdotto')
             ->with('subCats', $subCats);
-            //->with('conferma');
     }
 
     public function storeProduct(ProductSchema $request) {
@@ -35,25 +34,20 @@ class staffController extends Controller {
         if ($request->hasFile('foto')) {
             $image = $request->file('foto');
             $imageName = $image->getClientOriginalName();
+            $destinationPath = public_path() . '/img/' . (String) Catalogo::getParentCat($request->subCat) 
+                                                . '/' . (String) Catalogo::subCatToName($request->subCat);
+            $image->move($destinationPath, $imageName);
         }
         else    $imageName = 'dummy.jpg';
 
         $prodotto = new Prodotto;
-        $prodotto->fill($request->validated());
         $prodotto->foto=$imageName;
+        $prodotto->fill($request->validated());
         $prodotto->save();
 
-        if (!is_null($imageName)) {
-            $destinationPath = public_path() . '/img/' . (String) Catalogo::getParentCat($request->subCat) 
-                                                . '/' . (String) Catalogo::subCatToName($request->subCat);
-            $image->move($destinationPath, $imageName);
-        };
-
-        //$messaggio="Prodotto aggiunto correttamente";
-        return redirect()->action('StaffController@addProduct');
-                    //->with('conferma', $messaggio);
-
+        return redirect()->route('catalogo');
     }
+
 
     public function modificaProdotto() {
         return view('product.modificaprodotto');

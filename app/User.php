@@ -32,7 +32,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'username', 'remember_token',
+        'remember_token',
     ];
 
     /**
