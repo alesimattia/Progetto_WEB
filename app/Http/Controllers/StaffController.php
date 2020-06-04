@@ -53,7 +53,7 @@ class staffController extends Controller {
     public function listaProdotti() {
 
         $prodotti = new Prodotto;
-        $prodotti = $this->_catalogModel->getProdsByCat([NULL], 4);
+        $prodotti = $this->_catalogModel->getProdsByCat(['notebook'], 4);
 
         return view('product.listaProdotti')
                     ->with('prodotti', $prodotti);

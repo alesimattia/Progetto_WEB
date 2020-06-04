@@ -26,14 +26,14 @@
                         <tr> 
                             <td>
                                 <div class="media">
-                                    <div class="d-flex">
+                                    <div >
                                         @if($prodotto->foto == 'dummy.jpg' )
                                             <img  src="{{ URL::asset('/img/home/dummy.jpg') }}">
                                         @else
                                             <img  src="{{ URL::asset('/img/'. $prodotto->nomeCat .'/'. $prodotto->nomeSubCat .'/'. $prodotto->foto) }}">
                                         @endif
                                     </div>
-                                    <div class="media-body">
+                                    <div class="media-body" style="width: 100px">
                                         <p>{{ $prodotto->descBreve }}</p>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                         <tr class="bottom_button">
                             <td></td><td></td><td></td>
                             <td>
-                                <div class="cupon_text d-flex">
+                                <div class="cupon_text">
                                     <a class="primary-btn ml2" href="#">Elimina selezionati</a>
                                 </div>
                             </td>
