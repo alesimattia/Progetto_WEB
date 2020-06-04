@@ -41,16 +41,24 @@ class Catalogo {
                     ->first();
     }
 
+
     public function getProdsByCat($category, $paged = 1, $order = null) {
 
-        $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
-                ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
-                ->whereIn('nomeSubCat', $category)
-                ->orWhereIn('nomeCat', $category);
+        if(is_null($category)){  //estrae i prodotti da tutte le categorie se non si è selezionata una
+            $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
+                             ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat');
+        }
+        else{
+            $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
+                    ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
+                    ->whereIn('nomeSubCat', $category)
+                    ->orWhereIn('nomeCat', $category);
+        }
 
-        if (!is_null($order)) {
+        if (!is_null($order)){
             $prods = $prods->orderBy('percSconto', $order);
         }
+
         return $prods->paginate($paged);
     }
 

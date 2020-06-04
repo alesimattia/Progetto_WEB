@@ -7,7 +7,7 @@
 <div class="col-12">
     <div class="login_form_inner register_form_inner" id="edit_form">
         <h3>Modifica informazioni profilo</h3>
-        {{ Form::open(array('route' => 'editProfilo.store', 'class' => 'row login_form', 'id'=>'register_form')) }}
+        {{ Form::open(['route' => 'editProfilo.store', 'class' => 'row login_form', 'id'=>'register_form']) }}
         @csrf
             <fieldset class="registra-box-campi">
                 <div class="col-md-12 form-group">
@@ -45,7 +45,7 @@
                     {{ Form::date('dataNascita', $utente->dataNascita, ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
 
                     {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-                    {{ Form::select('occupazione', $lista_occupaz , $utente->occupazione, ['class' => '','id' => 'occupation']) }}
+                    {{ Form::select('occupazione', $lista_occupaz , $utente->occupazione, ['class' => 'select_box','id' => 'occupazione']) }}
                 </div>
             </fielset>
             <div class="col-md-12 form-group">

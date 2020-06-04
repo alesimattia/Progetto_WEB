@@ -43,8 +43,8 @@ $(function () {
                     <h3>Crea il tuo account</h3>
                     {{ Form::open(array('route' => 'register', 'class' => 'row login_form', 'id'=>'register_form')) }}
                     @csrf
-                        <fielset class="registra-box-campi">
-                            <div class="col-md-12 form-group">
+                        <div class="col-md-12 form-group">
+                            <fieldset class="registra-box-campi">
                                 {{ Form::text('nome', '', ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome']) }}
 
                                 {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'cognome','placeholder'=>'Cognome']) }}
@@ -55,29 +55,21 @@ $(function () {
 
                                 {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
 
-                                {{ Form::select('occupazione', $lista_occupaz , '', ['class' => '','id' => 'occupation']) }}
-                            </div>
-                        </fielset>
+                                {{ Form::select('occupazione', $lista_occupaz , '', ['class' => 'select_box','id' => 'occupation']) }}
+                            </fieldset>
 
-                        <fieldset class="registra-box-campi">
-                            <legend>Dati di accesso</legend>
-                            <div class="col-md-12 form-group">
-                                {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username'] )}}                       <!--in caso di errori ripropone-->
+                                <legend>Dati di accesso</legend>
+                                {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username'] )}}                       
 
-
-                                {{ Form::password('password', ['class' => 'form-control','id' => 'password','placeholder'=>'Password'] )}}                       <!--in caso di errori ripropone-->
-
+                                {{ Form::password('password', ['class' => 'form-control','id' => 'password','placeholder'=>'Password'] )}}                       
                                 {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm','placeholder'=>'Conferma password']) }}
-                            </div>
-                        </fieldset>
 
-                        <div class="col-md-12 form-group">
-                            {{ Form::submit('REGISTRATI', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
+                                {{ Form::submit('REGISTRATI', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
                         </div>
-
                     {{ Form::close() }}
                 </div>
             </div>
+            
         </div>
     </div>
 </section>

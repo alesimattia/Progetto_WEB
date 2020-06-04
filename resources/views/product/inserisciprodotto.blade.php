@@ -1,6 +1,6 @@
 @extends('layouts.staff')
 
-@section('title', 'Area Staff')
+@section('title', 'Aggiungi Prodotto')
 
 @section('scripts')
 
@@ -29,14 +29,14 @@ $(function () {
 <div class="col-12">
     <div class="login_form_inner register_form_inner add_prodotto">
     @isset($conferma)
-        <h4 style="color:#c54040 " > {{ $confirm }}</h4>
+        <h4 style="color:#c54040 " > {{ $conferma }}</h4>
     @endisset
-    <h3>Aggiungi Prodotto</h3>
-    <p>Inserisci un nuovo elemento nel catalogo</p>
+        <h3>Aggiungi Prodotto</h3>
+        <p>Inserisci un nuovo elemento nel catalogo</p>
 
-    <fieldset class="registra-box-campi">
-
+        <fieldset class="registra-box-campi">
             {{ Form::open(array('route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form')) }}
+
             <div class="col-md-12 form-group">
                 {{ Form::text('nome', '', ['class' => 'form-control','id' => 'nome','placeholder'=>'Nome prodotto'])  }}
 
@@ -53,20 +53,14 @@ $(function () {
 
                 {{ Form::text('percSconto', '', ['class' => 'form-control','id' => 'percSconto','placeholder'=>'Sconto (%)'])  }}
 
-
                 {{ Form::label('descEstesa', 'Descrizione Estesa', ['class' => 'label-input']) }}
-                {{ Form::textarea('descEstesa', '', ['class' => 'input', 'id' => 'descLong', 'rows' => 3]) }}
+                {{ Form::textarea('descEstesa', '', ['class' => 'input', 'id' => 'descLong', 'rows' => 2]) }}
 
-
-            </div>
-
-            <div class="col-md-12 form-group">
                 {{ Form::submit('Aggiungi Prodotto', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
             </div>
-
+            
             {{ Form::close() }}
-
-    </fieldset>
+        </fieldset>
     </div>
 </div>
 @endsection
