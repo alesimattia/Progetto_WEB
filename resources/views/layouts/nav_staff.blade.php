@@ -13,15 +13,14 @@
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
                         <li class="nav-item active"><a class="nav-link" href="{{ route('staff') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Catalogo</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>                           
+                        <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>                        
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                 aria-expanded="false">Gestisci prodotti</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('nuovoProdotto')}}">Inserisci prodotto</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{route('modificaProdotto')}}">Modifica prodotto</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Cancella prodotto</a></li>                                  
+                                <li class="nav-item"><a class="nav-link" href="{{ route('nuovoProdotto') }}">Inserisci prodotto</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('modificaProdotto') }}">Modifica prodotto</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('eliminaProdotto') }}">Cancella prodotto</a></li>                                  
                             </ul>
                         </li>                          
                         <li class="nav-item"><a class="nav-link" href="#">Modifica profilo</a></li>
@@ -30,8 +29,8 @@
                     <ul class="nav-shop">
                     @auth
                         <li>
-                            <a class="button button-header" title="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <img src="{{ URL::asset('img/icon/login.png') }}" style="height: 20px">Logout
+                            <a href="" class="button button-header" title="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <img src="{{ URL::asset('img/icon/login.png') }}" style="height: 20px">&nbsp; Logout
                             </a>
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

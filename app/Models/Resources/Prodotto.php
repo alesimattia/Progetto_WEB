@@ -39,5 +39,10 @@ class Prodotto extends Model {
     public function prodCat() {
         return $this->hasOne(Sottocategoria::class, 'id', 'id');
     }
+   
+    
+    public static function getAll() {
+        return Prodotto::get();
+    }
     
 }

@@ -31,8 +31,7 @@
                                     @endforeach
                                 </ul>
                                 @endif
-                            </div>
-                            <div class="col-md-12 form-group">
+
                                 {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'cognome','placeholder'=>'Cognome']) }}
                                 @if($errors->first('cognome'))
                                 <ul class="error">
@@ -41,8 +40,7 @@
                                     @endforeach
                                 </ul>
                                 @endif
-                            </div>
-                            <div class="col-md-12 form-group">
+
                                 {{ Form::text('residenza', '', ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
                                 @if($errors->first('cognome'))
                                 <ul class="error">
@@ -51,14 +49,12 @@
                                     @endforeach
                                 </ul>
                                 @endif
-                            </div>
-                            <div class="col-md-12 form-group">
+
                                 {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
 
-                            </div>
-                            <div class="col-md-12 form-group" >
                                 {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-                                {{ Form::select('occupazione', array("studente","operaio","impiegato","disoccupato") , '', ['class' => '','id' => 'occupation']) }}
+                                
+                                {{ Form::select('occupazione', $lista_occupaz , '', ['class' => '','id' => 'occupation']) }}
                             </div>
                         </fielset>
 
@@ -73,8 +69,7 @@
                                         @endforeach
                                     </ul>
                                     @endif
-                            </div>
-                            <div class="col-md-12 form-group">
+
                                 {{ Form::password('password', ['class' => 'form-control','id' => 'password','placeholder'=>'Password'] )}}                       <!--in caso di errori ripropone-->
                                     @if($errors->first('password'))
                                     <ul class="error">
@@ -84,8 +79,6 @@
                                     </ul>
                                     @endif
 
-                            </div>
-                            <div  class="col-md-12 form-group">
                                 {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm','placeholder'=>'Conferma password']) }}
                             </div>
                         </fieldset>

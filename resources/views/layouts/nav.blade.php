@@ -14,7 +14,7 @@
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Documentazione</a></li>
                     </ul>
 
                     <ul class="nav-shop">

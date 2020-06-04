@@ -18,9 +18,9 @@ class Utente extends Migration
             $table->string("password");
             $table->string("nome", 20);
             $table->string("cognome", 20);
-            $table->string("residenza", 30);
-            $table->date("dataNascita");
-            $table->string("occupazione", 30);
+            $table->string("residenza", 30)->nullable();
+            $table->date("dataNascita")->nullable();
+            $table->string("occupazione", 30)->nullable();
             $table->string("ruolo", 15)->default('user');
         });
     }

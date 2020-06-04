@@ -40,9 +40,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         //vincola l'accesso di questo controller
-        $this->middleware('guest');   //guest è il ruolo predefinito degli utenti non registrati
-        $this->_utente = new User;
-        
+        //$this->middleware('guest');   //guest è il ruolo predefinito degli utenti non registrati
     }
 
     /**
@@ -73,7 +71,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
         return User::create([
             'nome' => $data['nome'],
             'cognome' => $data['cognome'],
@@ -89,7 +86,7 @@ class RegisterController extends Controller
     
     public function showRegistrationForm(){
         return view('auth.register')
-            ->with('occupazione' , $this->_utente->occupazione());
+            ->with('lista_occupaz' , User::occupazione() );
     }
     
 }

@@ -21,7 +21,7 @@
                     <div class="col-xl-5">
                         <div class="offer__content text-center">
                             <h2>Area Staff</h2>
-                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('nuovoProdotto')}}">Inserisci prodotti</a>
+                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('nuovoProdotto') }}">Inserisci prodotti</a>
                         </div>
                     </div>
                 </div>

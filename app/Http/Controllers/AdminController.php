@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
-use App\Models\Resources\Prodotto;
+
+use App\Http\Requests\StaffSchema;
 use App\Http\Requests\ProductSchema;
+
+use App\User;
+use App\Http\Catalogo;
+use App\Models\Resources\Prodotto;
 
 class AdminController extends Controller {
 
-    protected $_adminModel;
 
     public function __construct() {
         //$this->middleware('can:isAdmin');     //altrimenti la rotta non è raggiungibile inserendo direttamente l'url
-        $this->_adminModel = new Admin;
     }
 
     public function index() {
@@ -21,7 +23,7 @@ class AdminController extends Controller {
 
 
     public function addProduct() {
-        $prodCats = $this->_adminModel->getProdsCats()->pluck('name', 'catId');
+        $prodCats = Catalogo::getProdsCats()->pluck('name', 'catId');
         return view('product.insert')
                     ->with('cats', $prodCats);
     }
@@ -50,8 +52,56 @@ class AdminController extends Controller {
         return redirect()->action('AdminController@index');
     }
     
-    public function aggiungiStaff(){
+/*------------------------------------------------------------------------------------------*/
+
+    public function addStaff() {
         return view('form.inserisciStaff');
     }
 
+                                //request object tipizzato dalla classe
+    public function storeStaff(StaffSchema $request) {
+        
+        $user = new User;
+        $user->residenza=NULL;
+        $user->occupazione=NULL;
+        $user->dataNascita=NULL;
+        $user->ruolo='staff';
+        $user->fill($request->validated());  //valorizza le proprietà dell'oggetto user con ciò che era nel request object (dal form)
+        $user->save();   //genera query nel dbms
+
+        
+        $confirm="Utente Staff aggiunto correttamente";
+        return view('form.inserisciStaff')
+                    ->with('confirm', $confirm);
+    }
+    
+/*------------------------------------------------------------------------------------------*/
+    
+    public function eliminaStaff() {
+        return view('form.eliminaStaff')
+                ->with('staff', User::getAll()->where('ruolo','staff'));
+    }
+    
+    public function eliminaStaffSel() {
+        $stf= User::getAll()->find($_POST["username"]);
+        $stf->delete();
+        
+        return view('adminHome');
+    }
+
+/*------------------------------------------------------------------------------------------*/
+    
+    public function eliminaUtente() {
+        return view('form.eliminaUtente')
+                ->with('utente', User::getAll()->where('ruolo','user'));
+    }
+    
+    public function eliminaUtenteSel() {
+        $utn= User::getAll()->find($_POST["username"]);
+        $utn->delete();
+        
+        return view('adminHome');
+    }
 }
+
+
