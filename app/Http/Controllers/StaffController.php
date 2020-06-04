@@ -49,6 +49,7 @@ class staffController extends Controller {
         return redirect()->route('catalogo');
     }
 
+/*----------------------------------------------------------------------------*/
 
     public function listaProdotti() {
         return view('product.listaProdotti')
@@ -57,14 +58,33 @@ class staffController extends Controller {
 
     public function modificaProdotto($id){
         
-        $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id'); 
-        $prodotto = Prodotto::get()->where('id','=', $id);
+        $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id');
+        $prodotto = Prodotto::where('id','=', $id)
+                                ->get()->first();
         
-        return view('product.prodSelezionato')
-            ->with('prodotto', $prodotto)
-            ->with('subCats', $subCats);
+        return view('product.modificaProdotto')
+                    ->with('prodotto', $prodotto)
+                    ->with('subCats', $subCats);
     }
-    
+
+    public function updateProduct(ProductSchema $request) {
+
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+            $imageName = $image->getClientOriginalName();
+            $destinationPath = public_path() . '/img/' . (String) Catalogo::getParentCat($request->subCat) 
+                                                . '/' . (String) Catalogo::subCatToName($request->subCat);
+            $image->move($destinationPath, $imageName);
+        }
+
+        $prodotto = new Prodotto;
+        $prodotto->find($request->id)
+                 ->update($request->validated());
+
+        return redirect()->route('catalogo');
+    }
+
+/*----------------------------------------------------------------------------*/
     public function eliminaProdotto() {
         return view('product.eliminaProdotto')
                 ->with('prodotto', prodotto::all());

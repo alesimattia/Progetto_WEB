@@ -11,16 +11,16 @@
 
     <fieldset class="registra-box-campi">
                 
-            {{ Form::open(array('route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form')) }}
+            {{ Form::open(array('route' => 'updateProdotto', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form')) }}
+            @csrf
             <div class="col-md-12 form-group">
                 {{ Form::text('nome', $prodotto->nome , ['class' => 'form-control','id' => 'nomeprodotto','placeholder'=>'Nome prodotto'])  }}
                 
                 {{ Form::label('subCat', 'Categoria', ['class' => 'lista-opzioni']) }}
-                {{ Form::select('subCat', $subCats, '', ['class' => '','id' => 'subCat']) }}
+                {{ Form::select('subCat', $subCats, '', ['class' => '','id' => 'subCat']) }}<br>
                 
-                
-                {{ Form::label('foto', 'Immagine', ['class' => 'label-input']) }}
-                {{ Form::file('foto',['class' => 'input', 'id' => 'image']) }}
+                {{ Form::label('foto', 'Immagine', ['class' => 'label-input']) }}<br>
+                {{ Form::file('foto', ['class' => 'input', 'id' => 'image']) }}
                 
 
                 {{ Form::text('descBreve', $prodotto->descBreve, ['class' => 'form-control','id' => 'descBreve','placeholder'=>'Descrizione breve'])  }}               
@@ -34,7 +34,7 @@
                 {{ Form::label('descEstesa', 'Descrizione Estesa', ['class' => 'label-input']) }}
                 {{ Form::textarea('descEstesa', $prodotto->descEstesa, ['class' => 'input', 'id' => 'descLong', 'rows' => 3]) }}
 
-               
+                {{ Form::hidden('id', $prodotto->id) }}
             </div>
             
             <div class="col-md-12 form-group">                

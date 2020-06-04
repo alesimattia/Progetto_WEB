@@ -12,7 +12,6 @@ class Catalogo {
     public static function getAllMainCat() {
         return Categoria::get();
     }
-
     public static function getAllSubCat(){
         return Sottocategoria::get();
     }
