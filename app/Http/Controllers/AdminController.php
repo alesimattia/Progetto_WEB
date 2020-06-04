@@ -73,5 +73,34 @@ class AdminController extends Controller {
         return view('form.inserisciStaff')
                     ->with('confirm', $confirm);
     }
+    
+/*------------------------------------------------------------------------------------------*/
+    
+    public function eliminaStaff() {
+        return view('form.eliminaStaff')
+                ->with('staff', User::getAll()->where('ruolo','staff'));
+    }
+    
+    public function eliminaStaffSel() {
+        $stf= User::getAll()->find($_POST["username"]);
+        $stf->delete();
+        
+        return view('adminHome');
+    }
 
+/*------------------------------------------------------------------------------------------*/
+    
+    public function mostraUtenti() {
+        return view('form.eliminaUtente')
+                ->with('utente', User::getAll()->where('ruolo','user'));
+    }
+    
+    public function eliminaUtenti() {
+        $utn= User::getAll()->find($_POST["username"]);
+        $utn->delete();
+        
+        return view('adminHome');
+    }
 }
+
+

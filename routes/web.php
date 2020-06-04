@@ -43,6 +43,20 @@ Route::get('/admin/addStaff', 'AdminController@addStaff')
 Route::post('/admin/addStaff', 'AdminController@storeStaff')
         ->name('addStaff.store');
 
+
+Route::get('/admin/showUsers', 'AdminController@mostraUtenti')
+        ->name ('mostraUtenti');
+
+Route::post('/admin/showUsers', 'AdminController@eliminaUtenti')
+        ->name ('eliminaUtenti');
+
+
+Route::get('/admin/showStaff', 'AdminController@mostraStaff')
+        ->name ('mostraStaff');
+
+Route::post('/admin/showStaff', 'AdminController@eliminaStaff')
+        ->name ('eliminaStaff');
+
 /*********************** STAFF **********************/
 Route::get('/staff', 'StaffController@index')
         ->name('staff');
@@ -53,12 +67,18 @@ Route::get('/staff/addProduct', 'StaffController@addProduct')
 Route::post('/staff/addProduct', 'StaffController@storeProduct')
         ->name('nuovoProdotto.store');
 
-Route::get('/staff/modificaProdotto', 'StaffController@modificaProdotto')
-        ->name ('modificaProdotto');
-
 Route::get('/staff/listaProdotti', 'StaffController@listaProdotti')
         ->name('listaProdotti');
-        
+
+Route::get('/staff/modificaProdotto/{id}', 'StaffController@modificaProdotto')
+        ->name ('modificaProdotto/{id}');
+
+Route::post('/staff/modificaProdotto', 'StaffController@prodottoSelezionato')
+        ->name ('prodottoSelezionato');
+
+Route::get('/staff/eliminaProdotto', 'StaffController@eliminaProdotto')
+        ->name ('eliminaProdotto');
+
 /*********************** AUTENTICAZIONE *********************/
 
 Route::get('login', 'Auth\LoginController@showLoginForm')

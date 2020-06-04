@@ -45,7 +45,6 @@ $(function () {
                     @csrf
                         <div class="col-md-12 form-group">
                             <fieldset class="registra-box-campi">
-                            
                                 {{ Form::text('nome', '', ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome']) }}
 
                                 {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'cognome','placeholder'=>'Cognome']) }}

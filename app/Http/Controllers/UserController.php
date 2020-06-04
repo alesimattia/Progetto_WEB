@@ -23,11 +23,15 @@ class userController extends Controller {
 
     public function showCatalog($categoria = null) {
 
+        /*Le prime due instruzioni servono a estrarre dal db
+        gli elementi con cui popolare i filtri del catalogo*/
+
         $mainCats = $this->_catalogModel->getAllMainCat();
-        $subCats = $this->_catalogModel->getAllSubCat();
+        $subCats = $this->_catalogModel->getAllSubCat();    
 
+        //Tutti i prodotti della categoria selezionata, ordinati per sconto decrescente
         $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc');
-
+    
         return view('catalogo')
                     ->with('mainCats', $mainCats)
                     ->with('subCats', $subCats)
@@ -37,7 +41,6 @@ class userController extends Controller {
 
 
     public function editProfilo(){
-
         return view('form.modificaProfilo')
                 ->with('lista_occupaz', User::occupazione() )
                 ->with('utente',  Auth::user() );

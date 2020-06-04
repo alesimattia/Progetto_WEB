@@ -16,7 +16,7 @@ class staffController extends Controller {
     protected $_adminModel;
 
     public function __construct() {
-        //$this->middleware('auth');
+        $this->middleware('auth');
         $this->_catalogModel = new Catalogo;
     }
 
@@ -25,7 +25,7 @@ class staffController extends Controller {
     }
 
     public function addProduct() {
-      $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id');
+        $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id');
         return view('product.inserisciProdotto')
             ->with('subCats', $subCats);
     }
@@ -51,12 +51,29 @@ class staffController extends Controller {
 
 
     public function listaProdotti() {
-
-        $prodotti = new Prodotto;
-        $prodotti = $this->_catalogModel->getProdsByCat(['notebook'], 4);
-
         return view('product.listaProdotti')
-                    ->with('prodotti', $prodotti);
+                    ->with('prodotti', Prodotto::get() );
     }
 
+    public function modificaProdotto($id){
+        
+        $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id'); 
+        $prodotto = Prodotto::get()->where('id','=', $id);
+        
+        return view('product.prodSelezionato')
+            ->with('prodotto', $prodotto)
+            ->with('subCats', $subCats);
+    }
+    
+    public function eliminaProdotto() {
+        return view('product.eliminaProdotto')
+                ->with('prodotto', prodotto::all());
+    }
+    
+    public function eliminaProdottoConf() {
+        $prod= Prodotto::getAll()->find($_POST["id"]);
+        $prod->delete();
+        
+        return view('staffHome');
+    }
 }
