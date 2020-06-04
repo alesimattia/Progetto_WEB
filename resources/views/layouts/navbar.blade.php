@@ -55,8 +55,8 @@
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('addStaff')}}">Inserisci staff</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Modifica staff</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Cancella staff</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Elimina cliente</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('mostraStaff') }}">Cancella staff</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('mostraUtenti') }}">Elimina cliente</a></li>
                             </ul>
                         </li>
                         @endcan

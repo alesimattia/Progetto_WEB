@@ -9,31 +9,30 @@
     <h3>Modifica Prodotto</h3>
     <p>Utilizza questa form per modificare un prodotto nel Catalogo</p>
 
-    <fielset class="registra-box-campi">
+    <fieldset class="registra-box-campi">
                 
             {{ Form::open(array('route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form')) }}
             <div class="col-md-12 form-group">
-                {{ Form::text('nome', $prodotto , ['class' => 'form-control','id' => 'nomeprodotto','placeholder'=>'Nome prodotto'])  }}
+                {{ Form::text('nome', $prodotto->nome , ['class' => 'form-control','id' => 'nomeprodotto','placeholder'=>'Nome prodotto'])  }}
                 
                 {{ Form::label('subCat', 'Categoria', ['class' => 'lista-opzioni']) }}
-                {{ Form::select('subCat', $subCats, $subC, ['class' => '','id' => 'subCat']) }}
+                {{ Form::select('subCat', $subCats, '', ['class' => '','id' => 'subCat']) }}
                 
-                                <!--{{ Form::file('foto', ['class' => 'form-control','id' => 'fotoprodotto','placeholder'=>'Immagine'])  }}-->
                 
                 {{ Form::label('foto', 'Immagine', ['class' => 'label-input']) }}
                 {{ Form::file('foto',['class' => 'input', 'id' => 'image']) }}
                 
 
-                {{ Form::text('descBreve', $dbreve, ['class' => 'form-control','id' => 'descBreve','placeholder'=>'Descrizione breve'])  }}               
+                {{ Form::text('descBreve', $prodotto->descBreve, ['class' => 'form-control','id' => 'descBreve','placeholder'=>'Descrizione breve'])  }}               
 
-                {{ Form::text('prezzo', $prezzo, ['class' => 'form-control','id' => 'prezzo','placeholder'=>'Prezzo'])  }}              
+                {{ Form::text('prezzo', $prodotto->prezzo, ['class' => 'form-control','id' => 'prezzo','placeholder'=>'Prezzo'])  }}              
 
 
-                {{ Form::text('percSconto', $psconto, ['class' => 'form-control','id' => 'percSconto','placeholder'=>'Sconto (%)'])  }}
+                {{ Form::text('percSconto', $prodotto->percSconto, ['class' => 'form-control','id' => 'percSconto','placeholder'=>'Sconto (%)'])  }}
                
 
                 {{ Form::label('descEstesa', 'Descrizione Estesa', ['class' => 'label-input']) }}
-                {{ Form::textarea('descEstesa', $destesa, ['class' => 'input', 'id' => 'descLong', 'rows' => 3]) }}
+                {{ Form::textarea('descEstesa', $prodotto->descEstesa, ['class' => 'input', 'id' => 'descLong', 'rows' => 3]) }}
 
                
             </div>
@@ -44,7 +43,7 @@
             
             {{ Form::close() }}
         
-    </fielset>
+    </fieldset>
     </div>
 </div>
 @endsection

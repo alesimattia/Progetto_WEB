@@ -87,6 +87,10 @@
 	color: #333;
 }
 
+.miniatura{
+	height: 7em;
+	padding-right: 1em;
+}
 /************************** Regole originali  ************************************************************************************/
 body
 {
@@ -4657,17 +4661,19 @@ a
 .cart_inner .table thead tr th
 {
 	border-top:0;
-	font-size:16px;
-	font-weight:500;
+	font-size:1.1em;
+	font-weight:600;
 	font-family:"Oswald",sans-serif;
 	color:#222;
-	border-bottom:0!important
+	border-bottom:0!important;
+	text-align: center;
 }
 
 .cart_inner .table tbody tr td
 {
-	padding-top:30px;
-	padding-bottom:30px;
+	/*padding-top:30px;
+	padding-bottom:30px;*/
+	text-align: center;
 	vertical-align:middle;
 	align-self:center
 }

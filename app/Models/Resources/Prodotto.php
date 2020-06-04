@@ -22,27 +22,21 @@ class Prodotto extends Model {
     }
 
     public function getSubCat(){
-        return Sottocategoria::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
+        return Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                         ->where('prodotto.id','=', $this->id)
-                        ->get('sottocategoria.nomeSubCat');
+                        ->get()
+                        ->pluck('nomeSubCat')
+                        ->first();
     }
 
     public function getMainCat(){
-        return Categoria::join('sottocategoria', 'sottocategoria.id', '=', 'categoria.id')
+        return Categoria::join('sottocategoria', 'sottocategoria.mainCat', '=', 'categoria.id')
                     ->join('prodotto', 'sottocategoria.id', '=', 'prodotto.subCat')
-                    ->where('prodotto.nome','=', $this->nome)
-                    ->get('categoria.nomeCat');
-}
+                    ->where('prodotto.id','=', $this->id)
+                    ->get()
+                    ->pluck('nomeCat')
+                    ->first();
+    }
 
-    // Realazione One-To-One con Categoria
-    //Serve perchè dobbiamo recuperare prodotti sia se appartengono ad una macro-categoria, sia sotto-cat
-    public function prodCat() {
-        return $this->hasOne(Sottocategoria::class, 'id', 'id');
-    }
-   
-    
-    public static function getAll() {
-        return Prodotto::get();
-    }
     
 }
