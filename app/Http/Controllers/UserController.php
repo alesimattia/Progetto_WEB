@@ -21,7 +21,7 @@ class userController extends Controller {
     }
 
 
-    public function showCatalog($categoria = 'computer') {
+    public function showCatalog($categoria = null) {
 
         $mainCats = $this->_catalogModel->getAllMainCat();
         $subCats = $this->_catalogModel->getAllSubCat();    

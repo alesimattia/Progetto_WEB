@@ -56,7 +56,9 @@ Route::post('/staff/addProduct', 'StaffController@storeProduct')
 Route::get('/staff/modificaProdotto', 'StaffController@modificaProdotto')
         ->name ('modificaProdotto');
 
-
+Route::get('/staff/listaProdotti', 'StaffController@listaProdotti')
+        ->name('listaProdotti');
+        
 /*********************** AUTENTICAZIONE *********************/
 
 Route::get('login', 'Auth\LoginController@showLoginForm')

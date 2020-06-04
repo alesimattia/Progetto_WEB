@@ -45,7 +45,7 @@
                     {{ Form::date('dataNascita', $utente->dataNascita, ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
 
                     {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-                    {{ Form::select('occupazione', $lista_occupaz , $utente->occupazione, ['class' => '','id' => 'occupation']) }}
+                    {{ Form::select('occupazione', $lista_occupaz , $utente->occupazione, ['class' => 'select_box','id' => 'occupation']) }}
                 </div>
             </fielset>
             <div class="col-md-12 form-group">

@@ -15,8 +15,8 @@ class PublicController extends Controller {
         return view('home');
     }
 
-                                //mostrare tutto se non cliccato
-    public function showCatalog($categoria = 'computer') {
+                            //mostra tutto se non cliccato
+    public function showCatalog($categoria = null) {
 
         /*Estraggono dal db gli elementi con cui popolare i filtri del catalogo*/
         $mainCats = $this->_catalogModel->getAllMainCat();

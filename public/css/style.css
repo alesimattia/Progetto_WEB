@@ -24,11 +24,10 @@
 
 .lista-opzioni{
 	padding: .375rem .75rem;
-	font-size: 1.1em;
+	font-size: 1.15em;
 }
 
 .registra-box-campi{
-	margin-top: 1.5em;
 	margin-right: auto;
 	margin-left: auto;
 	width: 100%;
@@ -75,6 +74,17 @@
 
 .add_prodotto{	/*forza l'allineamento in alto*/
 	padding-top: 2%!important;
+}
+
+.select_box{
+	display: block;
+    width: 100%;
+    background: #f1f6f7;
+    border: 1px solid #eeeeee;
+    height: 2em;
+	font-size: 1.13em;
+	padding-left: 0.75em;
+	color: #333;
 }
 
 /************************** Regole originali  ************************************************************************************/
@@ -1583,7 +1593,8 @@ a
 {
 	padding:7px 42px;
 	background:transparent;
-	border-color:#fff
+	border-color:#fff;
+	font-size: 1.1em;
 }
 
 .button-account:hover
@@ -2909,8 +2920,6 @@ a
 .contact-banner-area
 {
 	height:280px;
-	background:url(../../assets/images/contact-bg.png) center center no-repeat;
-	background-size:cover;
 	position:relative;
 	z-index:1
 }
@@ -4424,7 +4433,9 @@ a
 	box-shadow:0 10px 40px 0 rgba(56,74,235,0.1);
 	height:100%;
 	text-align:center;
-	padding:30px 0
+	padding:30px 0;
+	background-image: url("../img/home/");
+	background-size:cover;
 }
 
 @media (min-width: 1000px) {
@@ -4465,7 +4476,7 @@ a
 
 .login_form .form-group input
 {
-	margin: 2em 0em;
+	margin: 1.8em 0em;
 	height:40px;
 	border:none;
 	border-bottom:1px solid #ccc;
@@ -4473,7 +4484,7 @@ a
 	outline:none;
 	box-shadow:none;
 	font-size:16px;
-	color:#999
+	color:#555
 }
 
 .login_form .form-group input.placeholder
@@ -4767,13 +4778,13 @@ a
 
 .cart_inner .table tbody tr.bottom_button td .cupon_text
 {
-	margin-left:-429px
+	/*margin-left:-429px*/
 }
 
 @media (min-width: 991px) {
 	.cart_inner .table tbody tr.bottom_button td .cupon_text
 	{
-		margin-left:-465px
+		/*margin-left:-465px*/
 	}
 }
 
@@ -5695,11 +5706,13 @@ a
 .navico{
 	max-width: 40%
 }
+
 .modfooter{
 	flex: 0 0 30%;
 	max-width: 30%;
 	margin: auto;
 }
+
 .imgacq{
 	text-align: center;
 }

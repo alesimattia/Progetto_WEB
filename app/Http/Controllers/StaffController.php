@@ -17,6 +17,7 @@ class staffController extends Controller {
 
     public function __construct() {
         //$this->middleware('auth');
+        $this->_catalogModel = new Catalogo;
     }
 
     public function index() {
@@ -49,7 +50,13 @@ class staffController extends Controller {
     }
 
 
-    public function modificaProdotto() {
-        return view('product.modificaprodotto');
+    public function listaProdotti() {
+
+        $prodotti = new Prodotto;
+        $prodotti = $this->_catalogModel->getProdsByCat([NULL], 4);
+
+        return view('product.listaProdotti')
+                    ->with('prodotti', $prodotti);
     }
+
 }

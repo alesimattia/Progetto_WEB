@@ -38,8 +38,7 @@
                             <span class="nav-link dropdown-toggle">Gestisci prodotti</span>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('nuovoProdotto')}}">Inserisci prodotto</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('modificaProdotto') }}">Modifica prodotto</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Cancella prodotto</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('listaProdotti') }}">Modifica Catalogo</a></li>
                             </ul>
                         </li>
                         @endcan
@@ -48,8 +47,7 @@
                             <span class="nav-link dropdown-toggle">Gestisci prodotti</span>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('nuovoProdotto') }}">Inserisci prodotti</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Modifica prodotti</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Cancella prodotti</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('listaProdotti') }}">Modifica Catalogo</a></li>
                             </ul>
                         </li>
                         <li class="nav-item submenu dropdown">
