@@ -30,8 +30,8 @@ class ProfileSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
             'residenza' => ['required', 'string', 'max:30'],
             'dataNascita' => ['required', 'date'],
             'occupazione' => ['required', 'string', 'max:30'],
-            'username' => ['required', 'string', 'min:8', 'unique:utente'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            /*'username' => ['required', 'string', 'min:8', 'unique:utente'],*/
+            'password' => [ 'string', 'confirmed'],
         ];
     }
 
