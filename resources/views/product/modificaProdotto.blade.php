@@ -34,7 +34,7 @@
                 {{ Form::label('descEstesa', 'Descrizione Estesa', ['class' => 'label-input']) }}
                 {{ Form::textarea('descEstesa', $prodotto->descEstesa, ['class' => 'input', 'id' => 'descLong', 'rows' => 3]) }}
 
-                {{ Form::hidden('id', $prodotto->id) }}
+                {{ Form::hidden('id', $prodotto->id) }} <!--necessario alla query, per individuare il prodotto da modificare-->
             </div>
             
             <div class="col-md-12 form-group">                

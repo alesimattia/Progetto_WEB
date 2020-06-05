@@ -8,7 +8,8 @@ use App\Models\Resources\Prodotto;
 
 class Catalogo {
     
-    //serve per la option-list con le (sotto)categorie assegnabili ad un nuovo prodotto
+    /**popola la option-list con le (sotto)categorie assegnabili ad un nuovo prodotto
+     * non applicate ad un particolare oggetto di questa classe */
     public static function getAllMainCat() {
         return Categoria::get();
     }
@@ -25,14 +26,14 @@ class Catalogo {
                 ->first();
     }*/
     
+    /** Invocati spesso da oggetti di tipo FormRequest e non Catalogo */
     public static function getParentCat($subCatId){
         return Sottocategoria::join('categoria', 'sottocategoria.mainCat', '=', 'categoria.id')
-                ->where('mainCat','=', $subCatId)
+                ->where('sottocategoria.id','=', $subCatId)
                 ->get()
                 ->pluck('nomeCat')
                 ->first();
     }
-
     public static function subCatToName($subCatId){
         return Sottocategoria::where('id','=', $subCatId)
                     ->get()
@@ -41,22 +42,21 @@ class Catalogo {
     }
 
 
-    public function getProdsByCat($category, $paged = 1, $order = null) {
+    public function getProdsByCat($category = null, $paged = 1, $order = null) {
 
-        if(is_null($category)){  //estrae i prodotti da tutte le categorie se non si è selezionata una
+        if(is_null($category))  //estrae i prodotti da tutte le categorie se non si è selezionata una
             $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
-                             ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat');
-        }
-        else{
+                ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat');
+    
+        else
             $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                     ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
                     ->whereIn('nomeSubCat', $category)
                     ->orWhereIn('nomeCat', $category);
-        }
 
-        if (!is_null($order)){
+
+        if (!is_null($order))
             $prods = $prods->orderBy('percSconto', $order);
-        }
 
         return $prods->paginate($paged);
     }
