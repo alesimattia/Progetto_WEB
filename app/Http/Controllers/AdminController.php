@@ -20,44 +20,13 @@ class AdminController extends Controller {
     public function index() {
         return view('adminHome');
     }
-
-
-    public function addProduct() {
-        $prodCats = Catalogo::getProdsCats()->pluck('name', 'catId');
-        return view('product.insert')
-                    ->with('cats', $prodCats);
-    }
-
-                                //request object tipizzato dalla classe
-    public function storeProduct(ProductSchema $request) {
-
-        if ($request->hasFile('foto')) {
-            $image = $request->file('foto');
-            $imgName = $image->getClientOriginalName();
-        } 
-        else  $imgName = NULL;
-
-        $product = new Prodotto;
-        $product->fill($request->validated());  //valorizza le proprietà dell'oggetto product con ciò che era nel request object (dal form)
-        $product->foto = $imgName;
-        $product->save(); 
-
-        if (!is_null($imgName)) {
-            //path costruito con /img/mainCat/subCat
-            $destinationPath = public_path() . '/img/' . $product->getMainCat()->nomeCat . '/' . $product->getSubCat()->nomeSubCat;
-            $image->move($destinationPath, $imgName);
-        };
-
-        return redirect()->action('AdminController@index');
-    }
     
-/*------------------------------------------------------------------------------------------*/
 
     public function addStaff() {
         return view('form.inserisciStaff');
     }
 
-                                //request object tipizzato dalla classe
+                            //request object tipizzato dalla classe
     public function storeStaff(StaffSchema $request) {
         
         $user = new User;
@@ -76,31 +45,32 @@ class AdminController extends Controller {
     
 /*------------------------------------------------------------------------------------------*/
     
-    public function eliminaStaff() {
-        return view('form.eliminaStaff')
-                ->with('staff', User::getAll()->where('ruolo','staff'));
+    public function listaUtenti($ruolo = null) {
+        switch($ruolo){
+            case 'user':
+                return view('form.listaUtenti')
+                    ->with('profili', User::get()->where('ruolo','user'));
+            break;
+
+            case 'staff':
+                return view('form.listaUtenti')
+                    ->with('profili', User::get()->where('ruolo','staff'));
+            break;
+
+            default :
+                return view('form.listaUtenti')
+                        ->with('profili', User::get()->notIn('ruolo','amdin'));
+            break;
+        }
     }
     
-    public function eliminaStaffSel() {
-        $stf= User::getAll()->find($_POST["username"]);
-        $stf->delete();
-        
-        return view('adminHome');
+
+    public function eliminaProfilo() {
+
+        User::get()->find($_POST["username"])->delete();
+        return route()->action('listaUtenti');
     }
 
-/*------------------------------------------------------------------------------------------*/
-    
-    public function mostraUtenti() {
-        return view('form.eliminaUtente')
-                ->with('utente', User::getAll()->where('ruolo','user'));
-    }
-    
-    public function eliminaUtenti() {
-        $utn= User::getAll()->find($_POST["username"]);
-        $utn->delete();
-        
-        return view('adminHome');
-    }
 }
 
 

@@ -971,16 +971,17 @@ a
 	}
 }
 
-.section-intro p
+.section-intro
 {
-	margin-bottom:3px
+	margin-bottom:3px;
+	text-align: center; padding-bottom: 3%;
 }
 
 .section-intro__style
 {
 	font-size: 1em;
 	border-bottom:0.1em solid #384aeb;
-	padding-bottom:0.1em;
+	padding-bottom:0.11em;
 }
 
 .hero-banner
@@ -1649,7 +1650,7 @@ a
 .button-register
 {
 	border:0;
-	border-radius:30 px;
+	border-radius: 40px;
 	padding:1.05em 1em;
 	text-transform:uppercase;
 	background:#c5322d;
@@ -4650,7 +4651,6 @@ a
 .cart_area
 {
 	padding-top:90px;
-	padding-bottom:55px
 }
 
 .cart_inner .table th,.cart_inner .table td

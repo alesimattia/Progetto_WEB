@@ -42,17 +42,18 @@ class Catalogo {
     }
 
 
-    public function getProdsByCat($category = null, $paged = 1, $order = null) {
+    public function getProdsByCat($category = null, $paged = 1, $order = null, $filtered) {
 
         if(is_null($category))  //estrae i prodotti da tutte le categorie se non si è selezionata una
             $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
-                ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat');
+                            ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat');
     
         else
             $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                     ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
                     ->whereIn('nomeSubCat', $category)
                     ->orWhereIn('nomeCat', $category);
+                    //->where('nome', 'LIKE', '%'.$filtered.'%');
 
 
         if (!is_null($order))
