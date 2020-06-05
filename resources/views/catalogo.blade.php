@@ -55,7 +55,7 @@
             @endforeach                                    
             @endisset
         </div>                  <!--oggetto a cui viene inviato il contenuto da paginare-->
-        @include ('pagination.paginator', ['paginator' => $prodotti])
+        @include ('helpers.paginator', ['paginator' => $prodotti])
 
         @section('desc')    @endsection
     </div>

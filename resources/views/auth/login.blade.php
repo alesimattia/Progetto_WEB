@@ -38,7 +38,7 @@
                                         @endforeach
                                     </ul>
                                     @endif
-                                {{ Form::submit('ACCEDI', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
+                                {{ Form::submit('ACCEDI', ['class' => 'submit button-register w-100 ']) }}
                             </div>
                         {{ Form::close() }}
                     </div>

@@ -73,10 +73,10 @@ Route::get('/staff/listaProdotti', 'StaffController@listaProdotti')
 Route::get('/staff/modificaProdotto/{id}', 'StaffController@modificaProdotto')
         ->name ('modificaProdotto/{id}');
 
-Route::post('/staff/modificaProdotto', 'StaffController@prodottoSelezionato')
-        ->name ('prodottoSelezionato');
+Route::post('/staff/updateProdotto', 'StaffController@updateProdotto')
+        ->name ('updateProdotto');
 
-Route::get('/staff/eliminaProdotto', 'StaffController@eliminaProdotto')
+Route::post('/staff/eliminaProdotto', 'StaffController@eliminaProdotto')
         ->name ('eliminaProdotto');
 
 /*********************** AUTENTICAZIONE *********************/
