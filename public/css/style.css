@@ -5748,3 +5748,8 @@ select.select{
 	width: 50%;
 	height: 40px;
 }
+.centra{
+	margin: auto;
+	max-width: 500px;
+	max-height: 300px;
+}

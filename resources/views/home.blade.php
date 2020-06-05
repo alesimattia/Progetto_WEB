@@ -56,6 +56,34 @@
     </div>
     </div>
 </section>
+
+<section class="blog" id="acquista">
+    <div class="container">
+    <div class="section-intro pb-60px">
+        <h2><span class="section-intro__style">Dove trovarci</span></h2>
+    </div>
+
+    <div class="row">
+        <div class="centra">
+            <iframe width="500px" height="300px" frameborder="0" scrolling="no" src="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=Via+Brecce+Bianche,+12,+Ancona&amp;aq=0&amp;sll=41.442726,12.392578&amp;sspn=23.377375,53.657227&amp;ie=UTF8&amp;hq=&amp;hnear=Via+Brecce+Bianche,+12,+60131+Ancona,+Marche&amp;z=14&amp;ll=43.581248,13.515684&amp;output=embed"></iframe>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 centra">
+        <div class="card card-blog imgacq">
+            <div class="card-blog__img">
+            <img src="img/icon/chi.ico">
+            </div>
+            <div class="card-body">
+
+                <h4 class="card-blog__title"><a href="single-blog.html">Chi siamo</a></h4>
+                <p>Mattia Alesi --- Marco Incipini </p>
+                <p>Lorenzo Piccioni --- Loris Ramovini </p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+
 <section class="subscribe-position">
     <div class="container">
     <div class="subscribe text-center">
