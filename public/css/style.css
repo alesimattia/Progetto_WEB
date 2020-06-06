@@ -91,6 +91,10 @@
 	height: 7em;
 	padding-right: 1em;
 }
+.controls{
+	float: right;
+	margin-right: 1.5em;
+}
 /************************** Regole originali  ************************************************************************************/
 body
 {
@@ -1654,7 +1658,6 @@ a
 	padding:1.05em 1em;
 	text-transform:uppercase;
 	background:#c5322d;
-	margin-bottom: 1.2em;
 	color: white!important;
 }
 
@@ -4775,7 +4778,9 @@ a
 @media (min-width: 1000px) {
 	.cart_inner .table tbody tr.bottom_button .button
 	{
-		padding:7px 45px
+		padding:7px 45px;
+		background: #384aeb;
+		color: #fff;
 	}
 }
 

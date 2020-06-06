@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\StaffSchema;
 use App\Http\Requests\ProductSchema;
+use App\Http\Requests\StaffSchema;
+use Illuminate\Support\Facades\Hash;
 
 use App\User;
 use App\Http\Catalogo;
@@ -34,10 +35,10 @@ class AdminController extends Controller {
         $user->occupazione=NULL;
         $user->dataNascita=NULL;
         $user->ruolo='staff';
-        $user->fill($request->validated());  //valorizza le proprietà dell'oggetto user con ciò che era nel request object (dal form)
+        $user->fill([$request->validated(), 'password' => Hash::make($request->password)]);  
+        //valorizza le proprietà dell'oggetto user con ciò che era nel request object (dal form)
         $user->save();   //genera query nel dbms
 
-        
         $confirm="Utente Staff aggiunto correttamente";
         return view('form.inserisciStaff')
                     ->with('confirm', $confirm);
@@ -49,17 +50,17 @@ class AdminController extends Controller {
         switch($ruolo){
             case 'user':
                 return view('form.listaUtenti')
-                    ->with('profili', User::get()->where('ruolo','user'));
+                    ->with('utenti', User::get()->where('ruolo','user'));
             break;
 
             case 'staff':
                 return view('form.listaUtenti')
-                    ->with('profili', User::get()->where('ruolo','staff'));
+                    ->with('utenti', User::get()->where('ruolo','staff'));
             break;
 
             default :
                 return view('form.listaUtenti')
-                        ->with('profili', User::get()->notIn('ruolo','amdin'));
+                        ->with('utenti', User::get()->where('ruolo', '<>', 'admin'));
             break;
         }
     }
@@ -67,10 +68,49 @@ class AdminController extends Controller {
 
     public function eliminaProfilo() {
 
-        User::get()->find($_POST["username"])->delete();
-        return route()->action('listaUtenti');
+        if( isset($_POST['selezionati']) && is_array($_POST['selezionati']) )
+            foreach($_POST['selezionati'] as $selezionato)
+                User::get()->find($selezionato)->delete();
+        
+        return redirect()->route('listaUtenti');
     }
 
+
+    public function modificaStaff($username){
+
+        return view('form.modificaProfilo')
+                ->with('utente',  User::find($username) );
+    }
+
+
+    public function updateStaff(StaffSchema $request){
+
+        $user = new User;
+        $user->find($request->oldUsername)
+             ->update([ $request->validated(), 'password' => Hash::make($request->password) ]);
+
+        return redirect()->action('AdminController@listaUtenti');
+    }
+
+
+    public function updateProdotto(ProductSchema $request) {
+
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+            $imageName = $image->getClientOriginalName();
+            $destinationPath = public_path() . '/img/' . Catalogo::getParentCat($request->subCat) 
+                                                . '/' . Catalogo::subCatToName($request->subCat);
+            $image->move($destinationPath, $imageName);
+        }
+
+        $prodotto = new Prodotto;
+        $prodotto->find($request->id)
+                 ->update($request->validated());
+
+        return redirect()->route('catalogo');
+    }
+
+    
 }
 
 

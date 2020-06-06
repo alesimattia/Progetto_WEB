@@ -27,7 +27,7 @@ class staffController extends Controller {
     public function addProduct() {
         $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id');
         return view('product.inserisciProdotto')
-            ->with('subCats', $subCats);
+                ->with('subCats', $subCats);
     }
 
     public function storeProduct(ProductSchema $request) {
@@ -88,7 +88,7 @@ class staffController extends Controller {
 
 /*----------------------------------------------------------------------------*/
     
-    public function eliminaProdotto() {
+    public function eliminaProdotti() {
 
         if( isset($_POST['selezionati']) && is_array($_POST['selezionati']) )
             foreach($_POST['selezionati'] as $selezionato)

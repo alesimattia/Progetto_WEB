@@ -51,6 +51,11 @@ Route::get('/admin/listaUtenti', 'AdminController@listaUtenti')
 Route::post('/admin/eliminaProfilo', 'AdminController@eliminaProfilo')
         ->name ('eliminaProfilo');
 
+Route::get('/admin/modificaStaff/{username}', 'AdminController@modificaStaff')
+        ->name('modificaStaff/{username}');
+
+Route::post('/admin/modificaStaff', 'AdminController@updateStaff')
+        ->name('modificaStaff.store');
 /*********************** STAFF ****************************/
 
 Route::get('/staff', 'StaffController@index')
@@ -71,8 +76,8 @@ Route::get('/staff/modificaProdotto/{id}', 'StaffController@modificaProdotto')
 Route::post('/staff/updateProdotto', 'StaffController@updateProdotto')
         ->name ('updateProdotto');
 
-Route::post('/staff/eliminaProdotto', 'StaffController@eliminaProdotto')
-        ->name ('eliminaProdotto');
+Route::post('/staff/eliminaProdotti', 'StaffController@eliminaProdotti')
+        ->name ('eliminaProdotti');
 
 /*********************** AUTENTICAZIONE ****************************/
 

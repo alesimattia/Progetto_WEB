@@ -22,7 +22,7 @@
         </thead>
         @isset ($prodotti)
         <tbody>
-                {{ Form::open(array('route' => 'eliminaProdotto', 'id' => 'deleteProduct', 'files' => true, 'class' => 'row login_form')) }}
+                {{ Form::open(array('route' => 'eliminaProdotti', 'id' => 'deleteProduct', 'files' => true, 'class' => 'row login_form')) }}
                 @csrf
                 
                 @foreach ($prodotti as $prodotto)
