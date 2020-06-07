@@ -29,6 +29,13 @@
 
                                 <div class="col-md-12 form-group">
                                     {{ Form::text('nomeCat', '', ['class' => 'form-control','id' => 'nomeCat','placeholder'=>'Nome Categoria'])  }}
+                                    @if($errors->first('nomeCat'))
+                                        <ul class="error">
+                                        @foreach($errors->get('nomeCat') as $message)
+                                            <li>{{ $message }}</li>
+                                        @endforeach
+                                        </ul>
+                                    @endif
             
                                     {{ Form::submit('Aggiungi Categoria', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
                                 </div>
@@ -55,7 +62,14 @@
                                 <div class="col-md-12 form-group">
                                 
                                     {{ Form::text('nomeSubCat', '', ['class' => 'form-control','id' => 'nomeSubCat','placeholder'=>'Nome Sottocategoria'])  }}
-                 
+                                        @if($errors->first('nomeSubCat'))
+                                            <ul class="error">
+                                                @foreach($errors->get('nomeSubCat') as $message)
+                                                    <li>{{ $message }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    
                                     {{ Form::label('mainCat', 'Categoria', ['class' => 'lista-opzioni']) }}
                                     {{ Form::select('mainCat' , $Cats, '', ['class' => 'select','id' => 'mainCat']) }}
                 
