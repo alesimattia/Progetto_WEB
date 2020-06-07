@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\StaffSchema;
 use App\Http\Requests\ProductSchema;
+use App\Http\Requests\StaffSchema;
+use Illuminate\Support\Facades\Hash;
 
 use App\User;
 use App\Http\Catalogo;
@@ -14,51 +15,19 @@ class AdminController extends Controller {
 
 
     public function __construct() {
-        //$this->middleware('can:isAdmin');     //altrimenti la rotta non è raggiungibile inserendo direttamente l'url
+        $this->middleware('can:isAdmin');
     }
 
     public function index() {
         return view('adminHome');
     }
-
-
-    public function addProduct() {
-        $prodCats = Catalogo::getProdsCats()->pluck('name', 'catId');
-        return view('product.insert')
-                    ->with('cats', $prodCats);
-    }
-
-                                //request object tipizzato dalla classe
-    public function storeProduct(ProductSchema $request) {
-
-        if ($request->hasFile('foto')) {
-            $image = $request->file('foto');
-            $imgName = $image->getClientOriginalName();
-        } 
-        else  $imgName = NULL;
-
-        $product = new Prodotto;
-        $product->fill($request->validated());  //valorizza le proprietà dell'oggetto product con ciò che era nel request object (dal form)
-        $product->foto = $imgName;
-        $product->save();   //genera query nel dbms
-
-        if (!is_null($imgName)) {
-            //costruire path con /img/mainCat/subCat
-
-            $destinationPath = public_path() . '/img/' . $product->getMainCat() . '/' . $product->getSubCat();
-            $image->move($destinationPath, $imgName);
-        };
-
-        return redirect()->action('AdminController@index');
-    }
     
-/*------------------------------------------------------------------------------------------*/
 
     public function addStaff() {
         return view('form.inserisciStaff');
     }
 
-                                //request object tipizzato dalla classe
+                            //request object tipizzato dalla classe
     public function storeStaff(StaffSchema $request) {
         
         $user = new User;
@@ -66,10 +35,10 @@ class AdminController extends Controller {
         $user->occupazione=NULL;
         $user->dataNascita=NULL;
         $user->ruolo='staff';
-        $user->fill($request->validated());  //valorizza le proprietà dell'oggetto user con ciò che era nel request object (dal form)
+        $user->fill([$request->validated(), 'password' => Hash::make($request->password)]);  
+        //valorizza le proprietà dell'oggetto user con ciò che era nel request object (dal form)
         $user->save();   //genera query nel dbms
 
-        
         $confirm="Utente Staff aggiunto correttamente";
         return view('form.inserisciStaff')
                     ->with('confirm', $confirm);
@@ -77,31 +46,71 @@ class AdminController extends Controller {
     
 /*------------------------------------------------------------------------------------------*/
     
-    public function eliminaStaff() {
-        return view('form.eliminaStaff')
-                ->with('staff', User::getAll()->where('ruolo','staff'));
+    public function listaUtenti($ruolo = null) {
+        switch($ruolo){
+            case 'user':
+                return view('form.listaUtenti')
+                    ->with('utenti', User::get()->where('ruolo','user'));
+            break;
+
+            case 'staff':
+                return view('form.listaUtenti')
+                    ->with('utenti', User::get()->where('ruolo','staff'));
+            break;
+
+            default :
+                return view('form.listaUtenti')
+                        ->with('utenti', User::get()->where('ruolo', '<>', 'admin'));
+            break;
+        }
     }
     
-    public function eliminaStaffSel() {
-        $stf= User::getAll()->find($_POST["username"]);
-        $stf->delete();
+
+    public function eliminaProfilo() {
+
+        if( isset($_POST['selezionati']) && is_array($_POST['selezionati']) )
+            foreach($_POST['selezionati'] as $selezionato)
+                User::get()->find($selezionato)->delete();
         
-        return view('adminHome');
+        return redirect()->route('listaUtenti');
     }
 
-/*------------------------------------------------------------------------------------------*/
-    
-    public function eliminaUtente() {
-        return view('form.eliminaUtente')
-                ->with('utente', User::getAll()->where('ruolo','user'));
+
+    public function modificaStaff($username){
+
+        return view('form.modificaProfilo')
+                ->with('utente',  User::find($username) );
     }
-    
-    public function eliminaUtenteSel() {
-        $utn= User::getAll()->find($_POST["username"]);
-        $utn->delete();
-        
-        return view('adminHome');
+
+
+    public function updateStaff(StaffSchema $request){
+
+        $user = new User;
+        $user->find($request->oldUsername)
+             ->update([ $request->validated(), 'password' => Hash::make($request->password) ]);
+
+        return redirect()->action('AdminController@listaUtenti');
     }
+
+
+    public function updateProdotto(ProductSchema $request) {
+
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+            $imageName = $image->getClientOriginalName();
+            $destinationPath = public_path() . '/img/' . Catalogo::getParentCat($request->subCat) 
+                                                . '/' . Catalogo::subCatToName($request->subCat);
+            $image->move($destinationPath, $imageName);
+        }
+
+        $prodotto = new Prodotto;
+        $prodotto->find($request->id)
+                 ->update($request->validated());
+
+        return redirect()->route('catalogo');
+    }
+
+    
 }
 
 

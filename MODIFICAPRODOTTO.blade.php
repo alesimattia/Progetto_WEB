@@ -4,11 +4,12 @@
 
 @section('main')
 <div class="col-12">
-    <h3>Elimina prodotto</h3>
-    <p>Seleziona il prodotto da eliminare</p>
+    <div class="login_form_inner register_form_inner">
+    <h3>Modifica prodotto</h3>
+    <p>Utilizza questa form per modificare un prodotto nel Catalogo</p>
 
     <div>
-        {{ Form::open(array('route' => 'eliminaProdotto.store', 'id' => 'eliminaProdotto', 'class' => 'row login_form')) }}
+        {{ Form::open(array('route' => 'prodottoSelezionato', 'id' => 'selezionaProdotto', 'class' => 'row login_form')) }}
         <table>            
             <tr><th>Id</th><th>Nome</th><th>Sotto Categoria</th><th>Prezzo</th><th>Percentuale Sconto</th><th>Descrizione Breve</th></tr>
             @foreach ($prodotto as $pippo)
@@ -21,9 +22,10 @@
                 </tr>
             @endforeach 
         </table>
-        {{ Form::submit('ELIMINA', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
+        {{ Form::submit('MODIFICA', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
         {{ Form::close() }}
     </div>
-
+    </div>
 </div>
 @endsection
+

@@ -32,7 +32,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'username', 'remember_token',
+        'remember_token',
     ];
 
     /**
@@ -52,8 +52,5 @@ class User extends Authenticatable {
         return array("studente"=>"studente","operaio"=>"operaio","impiegato"=>"impiegato","disoccupato"=>"disoccupato");
     }
     
-    public static function getAll() {
-        return User::get();
-    }
 
 }

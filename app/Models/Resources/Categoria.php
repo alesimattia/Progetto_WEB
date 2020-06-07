@@ -9,4 +9,5 @@ class Categoria extends Model {
     protected $table = 'categoria';
     protected $primaryKey = 'id';
     public $timestamps = false;     //disattiva l'aggiornamento del timestamp quando si modifica un dato
+    protected $guarded = ['id'];
 }

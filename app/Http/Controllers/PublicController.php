@@ -15,17 +15,14 @@ class PublicController extends Controller {
         return view('home');
     }
 
-                                //mostrare tutto se non cliccato
-    public function showCatalog($categoria = 'computer') {
+                            //mostra tutto se non cliccato
+    public function showCatalog($categoria = null) {
 
-        /*Le prime due instruzioni servono a estrarre dal db
-        gli elementi con cui popolare i filtri del catalogo*/
-
+        /*Estraggono dal db gli elementi con cui popolare i filtri del catalogo*/
         $mainCats = $this->_catalogModel->getAllMainCat();
         $subCats = $this->_catalogModel->getAllSubCat();    
 
-        //Tutti i prodotti della categoria selezionata, ordinati per sconto decrescente
-        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc' , true);
+        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc', $filter=null);
     
         return view('catalogo')
                     ->with('mainCats', $mainCats)
@@ -34,9 +31,8 @@ class PublicController extends Controller {
                     ->with('prodotti', $prodotti);
     }
 
-    public function showDesc($prodotto = NULL){
-        return view('product.descProdotto');
-        //return view('product.prodotto');
-                    //->with('prodotto', $prodotto);
+    public function showDesc($prodotto){
+        return view('product.descProdotto')
+                    ->with('prodotto', $prodotto);
     }
 }

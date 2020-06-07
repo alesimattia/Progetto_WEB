@@ -8,10 +8,14 @@
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @section('link')
+    @show
+    @section('scripts')
+    @show
 </head>
 
 <body>
-    @include('layouts/nav_staff') 
+    @include('layouts/navbar')
     <main class="site-main">
 
         <!-- ================ Banner centrale ================= -->
@@ -20,7 +24,7 @@
                 <div class="row">
                     <div class="col-xl-5">
                         <div class="offer__content text-center">
-                            <h2>Area Staff</h2>
+                            <h3>Area Staff</h3>
                             <a class="button button--active mt-3 mt-xl-4" href="{{ route('nuovoProdotto') }}">Inserisci prodotti</a>
                         </div>
                     </div>
@@ -80,7 +84,7 @@
                                         <span class="fa"></span> Email
                                     </p>
                                     <p style="text-align: right;">
-                                        S1234567@studenti.univpm.it<br> 
+                                        S1234567@studenti.univpm.it<br>
                                         S8765432@studenti.univpm.it
                                     </p>
                                 </div>
@@ -93,4 +97,3 @@
 </body>
 
 </html>
-

@@ -8,10 +8,14 @@
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @section('link')
+    @show
+    @section('scripts')
+    @show
 </head>
 
 <body>
-    @include('layouts/nav')
+    @include('layouts/navbar')
     <main class="site-main">
 
         <!-- ================ Banner centrale ================= -->
@@ -82,7 +86,7 @@
                                         <span class="fa"></span> Email
                                     </p>
                                     <p style="text-align: right;">
-                                        S1234567@studenti.univpm.it<br> 
+                                        S1234567@studenti.univpm.it<br>
                                         S8765432@studenti.univpm.it
                                     </p>
                                 </div>

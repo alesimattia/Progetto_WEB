@@ -8,10 +8,14 @@
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @section('link')
+    @show
+    @section('scripts')
+    @show
 </head>
 
 <body>
-    @include('layouts/nav_admin')
+    @include('layouts/navbar')
     <main class="site-main">
 
         <!-- ================ Banner centrale ================= -->
@@ -22,7 +26,7 @@
                         <div class="offer__content text-center">
                             <h3>Account Amministratore</h3>
                             <h5>Accesso completo alla gestione sito</h5>
-                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('catalogo') }}">Acquista ora</a>
+                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('catalogo') }}">Catalogo</a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +85,7 @@
                                         <span class="fa"></span> Email
                                     </p>
                                     <p style="text-align: right;">
-                                        S1234567@studenti.univpm.it<br> 
+                                        S1234567@studenti.univpm.it<br>
                                         S8765432@studenti.univpm.it
                                     </p>
                                 </div>

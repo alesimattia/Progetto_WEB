@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProfileSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
+class SubCatSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
 
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,8 @@ class ProfileSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
      */
     public function rules() {
         return [
-            'nome' => ['required', 'string', 'max:20'],
-            'cognome' => ['required', 'string', 'max:20'],
-            'residenza' => ['required', 'string', 'max:30'],
-            'dataNascita' => ['required', 'date'],
-            'occupazione' => ['required', 'string', 'max:30'],
-            /*'username' => ['required', 'string', 'min:8', 'unique:utente'],*/
-            'password' => [ 'string', 'confirmed'],
+            'nomeSubCat' => ['required', 'string', 'max:20'],
+            'mainCat' => 'required'
         ];
     }
 

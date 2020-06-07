@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+// Aggiunti per response JSON
+use Illuminate\Http\Exceptions\HttpResponseException;
+//use Illuminate\Contracts\Validation\Validator;
+use Symfony\Component\HttpFoundation\Response;
+
 class RegisterController extends Controller
 {
     /*
@@ -81,12 +86,21 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'ruolo' => 'user',
         ]);
+        return response()->json(['redirect' => route('/user')]);
     }
 
-    
+
     public function showRegistrationForm(){
-        return view('auth.register')
-            ->with('lista_occupaz' , User::occupazione() );
+        return view('auth.registrazione')
+                ->with('lista_occupaz' , User::occupazione() );
     }
-    
+
+    /**
+     * Override: response in formato JSON
+    */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY));
+    }
+
 }

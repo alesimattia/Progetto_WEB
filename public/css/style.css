@@ -13,8 +13,9 @@
 }
 
 .scontato{
-	color:rgb(197, 64, 64);
+	color: #e70808;
 	text-decoration: line-through;
+	font-size: 1.3em;
 }
 
 .box_prodotto{
@@ -23,11 +24,10 @@
 
 .lista-opzioni{
 	padding: .375rem .75rem;
-	font-size: 1.1em;
+	font-size: 1.15em;
 }
 
 .registra-box-campi{
-	margin-top: 1.5em;
 	margin-right: auto;
 	margin-left: auto;
 	width: 100%;
@@ -68,11 +68,34 @@
 }
 
 .error{
-	color: red;
+	color: #c54040;
 	list-style: none;
 }
 
-/****** Regole originali  ************************************************************************************/
+.add_prodotto{	/*forza l'allineamento in alto*/
+	padding-top: 2%!important;
+}
+
+.select_box{
+	display: block;
+    width: 100%;
+    background: #f1f6f7;
+    border: 1px solid #eeeeee;
+    height: 2em;
+	font-size: 1.13em;
+	padding-left: 0.75em;
+	color: #333;
+}
+
+.miniatura{
+	height: 7em;
+	padding-right: 1em;
+}
+.controls{
+	float: right;
+	margin-right: 1.5em;
+}
+/************************** Regole originali  ************************************************************************************/
 body
 {
 	color:#555;
@@ -301,7 +324,7 @@ a
 		position:absolute;
 		top:120%;
 		left:0;
-		min-width:200px;
+		min-width:210px;
 		text-align:left;
 		opacity:0;
 		transition:all 300ms ease-in;
@@ -952,16 +975,17 @@ a
 	}
 }
 
-.section-intro p
+.section-intro
 {
-	margin-bottom:3px
+	margin-bottom:3px;
+	text-align: center; padding-bottom: 3%;
 }
 
 .section-intro__style
 {
 	font-size: 1em;
 	border-bottom:0.1em solid #384aeb;
-	padding-bottom:0.1em;
+	padding-bottom:0.11em;
 }
 
 .hero-banner
@@ -1578,7 +1602,8 @@ a
 {
 	padding:7px 42px;
 	background:transparent;
-	border-color:#fff
+	border-color:#fff;
+	font-size: 1.1em;
 }
 
 .button-account:hover
@@ -1629,11 +1654,11 @@ a
 .button-register
 {
 	border:0;
-	border-radius:30 px;
+	border-radius: 40px;
 	padding:1.05em 1em;
 	text-transform:uppercase;
 	background:#c5322d;
-	margin-bottom: 1.2em;
+	color: white!important;
 }
 
 .button-register:hover
@@ -2904,8 +2929,6 @@ a
 .contact-banner-area
 {
 	height:280px;
-	background:url(../../assets/images/contact-bg.png) center center no-repeat;
-	background-size:cover;
 	position:relative;
 	z-index:1
 }
@@ -4419,7 +4442,9 @@ a
 	box-shadow:0 10px 40px 0 rgba(56,74,235,0.1);
 	height:100%;
 	text-align:center;
-	padding:30px 0
+	padding:30px 0;
+	background-image: url("../img/home/");
+	background-size:cover;
 }
 
 @media (min-width: 1000px) {
@@ -4460,15 +4485,15 @@ a
 
 .login_form .form-group input
 {
-	margin: 2em 0em;
+	margin: 1.8em 0em;
 	height:40px;
 	border:none;
 	border-bottom:1px solid #ccc;
-	border-radius:0;
 	outline:none;
 	box-shadow:none;
 	font-size:16px;
-	color:#999
+	color:#555;
+
 }
 
 .login_form .form-group input.placeholder
@@ -4629,7 +4654,6 @@ a
 .cart_area
 {
 	padding-top:90px;
-	padding-bottom:55px
 }
 
 .cart_inner .table th,.cart_inner .table td
@@ -4641,23 +4665,26 @@ a
 .cart_inner .table thead tr th
 {
 	border-top:0;
-	font-size:16px;
-	font-weight:500;
+	font-size:1.1em;
+	font-weight:600;
 	font-family:"Oswald",sans-serif;
 	color:#222;
-	border-bottom:0!important
+	border-bottom:0!important;
+	text-align: center;
 }
 
 .cart_inner .table tbody tr td
 {
-	padding-top:30px;
-	padding-bottom:30px;
+	/*padding-top:30px;
+	padding-bottom:30px;*/
+	text-align: center;
 	vertical-align:middle;
 	align-self:center
 }
 
 .cart_inner .table tbody tr td .media .d-flex
 {
+	width: 18%;
 	padding-right:30px
 }
 
@@ -4751,7 +4778,9 @@ a
 @media (min-width: 1000px) {
 	.cart_inner .table tbody tr.bottom_button .button
 	{
-		padding:7px 45px
+		padding:7px 45px;
+		background: #384aeb;
+		color: #fff;
 	}
 }
 
@@ -4762,13 +4791,13 @@ a
 
 .cart_inner .table tbody tr.bottom_button td .cupon_text
 {
-	margin-left:-429px
+	/*margin-left:-429px*/
 }
 
 @media (min-width: 991px) {
 	.cart_inner .table tbody tr.bottom_button td .cupon_text
 	{
-		margin-left:-465px
+		/*margin-left:-465px*/
 	}
 }
 
@@ -5690,11 +5719,13 @@ a
 .navico{
 	max-width: 40%
 }
+
 .modfooter{
 	flex: 0 0 30%;
 	max-width: 30%;
 	margin: auto;
 }
+
 .imgacq{
 	text-align: center;
 }
@@ -5703,4 +5734,39 @@ input.submit{
 	padding-bottom: 38px;
 	color: white;
 	border-radius: 40px
+}
+
+label.label-input{
+	margin-top: 15px;
+	font-family: sans-serif;
+	font-size: 16px;
+}
+
+input#image{
+	margin-top: 5px;
+}
+select.select{
+	font-family: Arial;
+	background-color: #f0f0f0;
+	border: none;
+	-webkit-appearance: none;
+	width: 50%;
+	height: 40px;
+}
+.centra{
+	margin: auto;
+	max-width: 500px;
+	max-height: 300px;
+}
+/*Modifiche lorenzo*/
+.alert{        
+        background:#384aeb;
+        width: 70%;
+        margin: 0 auto;
+        display: inline-block;
+        text-align: center;
+        margin: 1.8em 0em;
+        color:#fff;
+        border-radius: 30px; 
+        line-height:1.667;        
 }
