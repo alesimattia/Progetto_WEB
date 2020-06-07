@@ -25,10 +25,9 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->registerPolicies();
 
-        Gate::define('isAdmin', function ($user) {
-            return $user->hasRole('admin');
-        });
-
+        /** "Eredita" le funzioni del controller di livello più alto 
+         * in modo da aumentare il riutilizzo del codice
+         * (es. admin@modificaStaff usa user@modificaProfilo) */
         Gate::define('isUser', function ($user) {
             return $user->hasRole('user');
         });
@@ -37,6 +36,9 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasRole('staff');
         });
 
+        Gate::define('isAdmin', function ($user) {
+            return $user->hasRole('admin');   
+        });
 
         Gate::define('showDiscount', function ($user) {
             return $user->hasRole(['user','staff','admin']);

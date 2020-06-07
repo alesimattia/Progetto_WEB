@@ -22,7 +22,7 @@ class PublicController extends Controller {
         $mainCats = $this->_catalogModel->getAllMainCat();
         $subCats = $this->_catalogModel->getAllSubCat();    
 
-        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc');
+        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc', $filter=null);
     
         return view('catalogo')
                     ->with('mainCats', $mainCats)

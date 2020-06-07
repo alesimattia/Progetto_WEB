@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileSchema;
 use App\Models\Catalogo;
 use App\User;
@@ -25,15 +26,14 @@ class userController extends Controller {
         return view('form.modificaProfilo')
                 ->with('lista_occupaz', User::occupazione() )
                 ->with('utente',  Auth::user() );
-                                    //facade    oppure auth()->user();
+                                    //facade    oppure helper: auth()->user();
     }
 
     public function storeProfilo(ProfileSchema $request){
 
         $user = new User;
         $user->find(Auth::user()->username)
-             ->update($request->validated())
-             ->save();
+             ->update([$request->validated(), 'password' => Hash::make($request->password)]);
 
         return redirect()->action('UserController@index');
     }

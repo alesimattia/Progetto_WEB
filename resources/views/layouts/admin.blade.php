@@ -26,7 +26,7 @@
                         <div class="offer__content text-center">
                             <h3>Account Amministratore</h3>
                             <h5>Accesso completo alla gestione sito</h5>
-                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('catalogo') }}">Acquista ora</a>
+                            <a class="button button--active mt-3 mt-xl-4" href="{{ route('catalogo') }}">Catalogo</a>
                         </div>
                     </div>
                 </div>

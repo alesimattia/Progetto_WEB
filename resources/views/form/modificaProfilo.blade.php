@@ -7,10 +7,28 @@
 <div class="col-12">
     <div class="login_form_inner register_form_inner" id="edit_form">
         <h3>Modifica informazioni profilo</h3>
-        {{ Form::open(['route' => 'editProfilo.store', 'class' => 'row login_form', 'id'=>'register_form']) }}
+
+        @if($utente->ruolo == 'user')
+            {{ Form::open(['route' => 'editProfilo.store', 'class' => 'row login_form', 'id'=>'register_form']) }}
+        @else
+            {{ Form::open(['route' => 'modificaStaff.store', 'class' => 'row login_form', 'id'=>'register_form']) }}
+        @endif
+
         @csrf
             <fieldset class="registra-box-campi">
                 <div class="col-md-12 form-group">
+
+                    @if($utente->ruolo == 'staff')
+                        {{ Form::text('username', $utente->username, ['class' => 'form-control', 'id' => 'username','placeholder'=>'Username']) }}
+                        @if($errors->first('username'))
+                        <ul class="error">
+                            @foreach($errors->get('username') as $message)
+                            <li>{{ $message }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    @endif
+
                     {{ Form::password('password', ['class' => 'form-control', 'id' => 'password','placeholder'=>'Password']) }}
                             @if($errors->first('password'))
                             <ul class="error">
@@ -40,14 +58,20 @@
                     </ul>
                     @endif
 
+                    @if($utente->ruolo =='user')
                     {{ Form::text('residenza', $utente->residenza, ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
               
                     {{ Form::date('dataNascita', $utente->dataNascita, ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
 
                     {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
                     {{ Form::select('occupazione', $lista_occupaz , $utente->occupazione, ['class' => 'select_box','id' => 'occupazione']) }}
+                    @endif
+
+                    <!--per ritrovare la tupla in fase di update con un nuovo username-->
+                    {{ Form::hidden('oldUsername', $utente->username) }}
                 </div>
-            </fielset>
+            </fieldset>
+
             <div class="col-md-12 form-group">
                 {{ Form::submit('MODIFICA', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
             </div>
