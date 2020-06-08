@@ -17,10 +17,14 @@ Route::get('/', 'PublicController@index')
 Route::get('/catalogo', 'PublicController@showCatalog')
         ->name('catalogo');
 
+/** La ricerca fa uso di un form con metodo POST */
+Route::post('/catalogo', 'PublicController@showCatalog') 
+        ->name('catalogo');
+
 Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
         ->name('catalogo/{categoria}');
 
-Route::view('/catalogo/desc/{prodotto}', 'PublicController@showDesc')
+Route::get('/catalogo/desc/{prodotto}', 'PublicController@showDesc')
         ->name('desc/{prodotto}');
 
 /***********************  USER  ****************************/
@@ -56,6 +60,7 @@ Route::get('/admin/modificaStaff/{username}', 'AdminController@modificaStaff')
 
 Route::post('/admin/modificaStaff', 'AdminController@updateStaff')
         ->name('modificaStaff.store');
+
 /*********************** STAFF ****************************/
 
 Route::get('/staff', 'StaffController@index')
@@ -78,6 +83,15 @@ Route::post('/staff/updateProdotto', 'StaffController@updateProdotto')
 
 Route::post('/staff/eliminaProdotti', 'StaffController@eliminaProdotti')
         ->name ('eliminaProdotti');
+
+Route::get('/staff/aggiungiCategoria','StaffController@aggiungiCat')
+        ->name ('aggiungiCategoria');
+
+Route::post('/staff/aggiungiCategoria','StaffController@storeCat')
+        ->name ('aggiungiCategoria.store');
+
+Route::post('/staff/aggiungiSub','StaffController@storeSub')
+        ->name ('aggiungiSub.store');
 
 /*********************** AUTENTICAZIONE ****************************/
 

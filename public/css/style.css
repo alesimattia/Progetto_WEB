@@ -1,5 +1,6 @@
+/**--------Modifiche Alesi-----*/
 .button-navbar{
-	margin-left: 12px; 	/*altrimenti tropo attaccato agli elementi della nav*/
+	margin-left: 12px;
 }
 
 .footer_margin{
@@ -91,9 +92,20 @@
 	height: 7em;
 	padding-right: 1em;
 }
+
 .controls{
 	float: right;
 	margin-right: 1.5em;
+}
+
+.search{
+	margin-top: -2.65em; 
+	margin-bottom: 80px;
+}
+
+.messaggio{
+	color:#c5322d;
+	text-align: center;
 }
 /************************** Regole originali  ************************************************************************************/
 body
@@ -185,7 +197,9 @@ a
 {
 	display:flex
 }
-
+.mt-n2{
+	margin-top: -1.2em;
+}
 .section-margin
 {
 	margin:2% 0
@@ -1158,7 +1172,8 @@ a
 
 .card-product p
 {
-	margin-bottom:0
+	margin-bottom:0;
+	margin-top: 0;
 }
 
 .card-product__img
@@ -1383,7 +1398,7 @@ a
 
 .card-blog__title
 {
-	font-size:20px;
+	font-size:1.3em;
 	margin-bottom:20px
 }
 
@@ -5715,6 +5730,7 @@ a
 	}
 }
 
+
 /*Modifiche marco*/
 .navico{
 	max-width: 40%
@@ -5757,4 +5773,18 @@ select.select{
 	margin: auto;
 	max-width: 500px;
 	max-height: 300px;
+}
+
+
+/*Modifiche lorenzo*/
+.alert{        
+        background:#384aeb;
+        width: 70%;
+        margin: 0 auto;
+        display: inline-block;
+        text-align: center;
+        margin: 1.8em 0em;
+        color:#fff;
+        border-radius: 30px; 
+        line-height:1.667;        
 }

@@ -40,7 +40,9 @@
                                 <li class="nav-item"><a class="nav-link" href="{{ route('nuovoProdotto')}}">Inserisci prodotto</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('listaProdotti') }}">Modifica Catalogo</a></li>
                             </ul>
+                          
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('aggiungiCategoria') }}">Gestisci categorie</a></li>
                         @endcan
                         @can('isAdmin')
                         <li class="nav-item submenu dropdown">
@@ -80,7 +82,6 @@
                             </form>
                         @endauth
                     </ul>
-
 
                 </div>
             </div>
