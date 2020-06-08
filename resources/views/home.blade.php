@@ -14,7 +14,7 @@
         <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
         <div class="card card-blog imgacq">
             <div class="card-blog__img">
-            <img src="img/icon/pen.ico">
+            <img src="img/icon/pen.png">
             </div>
             <div class="card-body">
 
@@ -28,7 +28,7 @@
         <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
         <div class="card card-blog imgacq">
             <div class="card-blog__img">
-            <img src="img/icon/per.ico">
+            <img src="img/icon/per.png">
             </div>
             <div class="card-body">
 
@@ -42,7 +42,7 @@
         <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
         <div class="card card-blog imgacq">
             <div class="card-blog__img">
-            <img src="img/icon/bas.ico">
+            <img src="img/icon/bas.png">
             </div>
             <div class="card-body">
 
@@ -59,7 +59,7 @@
 
 <section class="blog" id="acquista">
     <div class="container">
-    <div class="section-intro pb-60px">
+    <div class="section-intro pb-60px mt-4">
         <h2><span class="section-intro__style">Dove trovarci</span></h2>
     </div>
 
@@ -70,7 +70,7 @@
         <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 centra">
         <div class="card card-blog imgacq">
             <div class="card-blog__img">
-            <img src="img/icon/chi.ico">
+            <img src="img/icon/chi.png">
             </div>
             <div class="card-body">
 

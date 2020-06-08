@@ -49,17 +49,17 @@ class AdminController extends Controller {
     public function listaUtenti($ruolo = null) {
         switch($ruolo){
             case 'user':
-                return view('form.listaUtenti')
+                return view('listaUtenti')
                     ->with('utenti', User::get()->where('ruolo','user'));
             break;
 
             case 'staff':
-                return view('form.listaUtenti')
+                return view('listaUtenti')
                     ->with('utenti', User::get()->where('ruolo','staff'));
             break;
 
             default :
-                return view('form.listaUtenti')
+                return view('listaUtenti')
                         ->with('utenti', User::get()->where('ruolo', '<>', 'admin'));
             break;
         }

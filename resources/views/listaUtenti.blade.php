@@ -14,7 +14,7 @@
         <thead>
             <tr>
                 <th scope="col">Username</th>
-                <th scope="col">Ruolo</th>
+                <th scope="col"><i>Ruolo</i></th>
                 <th scope="col">Nome</th>
                 <th scope="col">Cognome</th>
                 <th scope="col">Data Nascita</th>
@@ -36,13 +36,13 @@
                                 <a href="{{ route('modificaStaff/{username}', [$utente->username]) }}">
                             @endif
                                 {{ $utente->username }}
-                            @if($utente->ruolo =='user')
+                            @if($utente->ruolo =='staff')
                                 </a>
                             @endif
                         </div>
                     </td>
                     <td>
-                        {{ $utente->ruolo }}
+                        <i><b>{{ $utente->ruolo }}</b></i>
                     </td>
                     <td>
                         {{ $utente->nome }}

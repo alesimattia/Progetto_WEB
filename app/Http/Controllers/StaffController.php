@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
 
-use App\Models\Resources\Prodotto;
 use App\Http\Requests\ProductSchema;
+use App\Models\Resources\Prodotto;
 use App\Models\Catalogo;
 
 class staffController extends Controller {

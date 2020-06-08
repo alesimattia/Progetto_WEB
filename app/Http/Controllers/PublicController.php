@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use App\Models\Catalogo;
 
+
 class PublicController extends Controller {
+
 
     protected $_catalogModel;
 
@@ -15,21 +19,21 @@ class PublicController extends Controller {
         return view('home');
     }
 
-                            //mostra tutto se non cliccato
-    public function showCatalog($categoria = null) {
+                            
+    public function showCatalog(Request $search, $categoria = 'monitor') {
 
         /*Estraggono dal db gli elementi con cui popolare i filtri del catalogo*/
         $mainCats = $this->_catalogModel->getAllMainCat();
         $subCats = $this->_catalogModel->getAllSubCat();    
 
-        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc', $filter=null);
+        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc', $search->prodotto);
     
         return view('catalogo')
                     ->with('mainCats', $mainCats)
                     ->with('subCats', $subCats)
-                    //->with('selected', $categoria)
                     ->with('prodotti', $prodotti);
     }
+
 
     public function showDesc($prodotto){
         return view('product.descProdotto')

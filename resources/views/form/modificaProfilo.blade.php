@@ -73,7 +73,7 @@
             </fieldset>
 
             <div class="col-md-12 form-group">
-                {{ Form::submit('MODIFICA', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
+                {{ Form::submit('MODIFICA', ['class' => 'submit button-register w-100 ']) }}
             </div>
 
         {{ Form::close() }}        

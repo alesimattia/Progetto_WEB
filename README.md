@@ -16,10 +16,10 @@ A causa del framework, c'è una serie di linee guida da rispettare:
   - Quindi la pagina iniziale si compone, creando una nuova vista ( */layouts/public.blade.php* ) prendendo gli elementi da *layout_base.html* e iniettando (*@yield*) &nbsp; *home.blade.php* 
   - Si può fare copia-incolla dal layout_base per creare una nuova vista (come ad esempio *public.blade.php*)
   <br>
-- Tutti i form devono essere convertiti usando i facade del package ***Laravel Collective*** <par style="font-size: 13px;">(lezione.18/05)</par>
-<br>
-- I file che creiamo, se hanno l'obiettivo di essere iniettati (in una vista in /layouts)  **NON DEVONO AVERE** i tag <code>html</code> e <code>body</code> ma direttamente "le div" con il contenuto --> sarebbero quelli fuori da */views/layouts*
-<br>
+- Tutti i form devono essere convertiti usando i facade del package ***Laravel Collective*** <par style="font-size: 13px;">(lezione.18/05)</par><br>
+
+- I file che creiamo, se hanno l'obiettivo di essere iniettati (in una vista in /layouts)  **NON DEVONO AVERE** i tag <code>html</code> e <code>body</code> ma direttamente "le div" con il contenuto --> sarebbero quelli fuori da */views/layouts*<br>
+  
 - __Tutti i file delle viste__ devono avere formato ***.blade.php*** (anche se contengono codice html)
   - In */resources/views/layouts*  &nbsp; inseriamo tutte le viste di struttura
   - In */resources/views* &nbsp; salviamo le viste che contengono il contenuto specifico da iniettare in un layout come:&nbsp; *registrati*, *login*, *catalogo*, *contattaci*.

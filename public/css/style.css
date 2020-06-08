@@ -91,9 +91,15 @@
 	height: 7em;
 	padding-right: 1em;
 }
+
 .controls{
 	float: right;
 	margin-right: 1.5em;
+}
+
+.search{
+	margin-top: -2.65em; 
+	margin-bottom: 80px;
 }
 /************************** Regole originali  ************************************************************************************/
 body
@@ -185,7 +191,9 @@ a
 {
 	display:flex
 }
-
+.mt-n2{
+	margin-top: -1.2em;
+}
 .section-margin
 {
 	margin:2% 0
@@ -1158,7 +1166,8 @@ a
 
 .card-product p
 {
-	margin-bottom:0
+	margin-bottom:0;
+	margin-top: 0;
 }
 
 .card-product__img
@@ -1383,7 +1392,7 @@ a
 
 .card-blog__title
 {
-	font-size:20px;
+	font-size:1.3em;
 	margin-bottom:20px
 }
 
