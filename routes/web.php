@@ -49,8 +49,8 @@ Route::get('/admin/addStaff', 'AdminController@addStaff')
 Route::post('/admin/addStaff', 'AdminController@storeStaff')
         ->name('addStaff.store');
 
-Route::get('/admin/listaUtenti', 'AdminController@listaUtenti')
-        ->name ('listaUtenti');
+Route::get('/admin/listaUtenti/{ruolo}', 'AdminController@listaUtenti')
+        ->name ('listaUtenti/{ruolo}');
 
 Route::post('/admin/eliminaProfilo', 'AdminController@eliminaProfilo')
         ->name ('eliminaProfilo');

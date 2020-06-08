@@ -66,7 +66,7 @@ class AdminController extends Controller {
         }
     }
     
-
+ 
     public function eliminaProfilo() {
 
         if( isset($_POST['selezionati']) && is_array($_POST['selezionati']) )

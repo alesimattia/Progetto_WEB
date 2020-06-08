@@ -20,7 +20,7 @@ class staffController extends Controller {
     protected $_adminModel;
 
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware('can:isStaff');
         $this->_catalogModel = new Catalogo;
     }
 

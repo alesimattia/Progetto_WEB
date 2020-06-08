@@ -45,15 +45,8 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('aggiungiCategoria') }}">Gestisci categorie</a></li>
                         @endcan
                         @can('isAdmin')
-                        <li class="nav-item submenu dropdown">
-                            <span class="nav-link dropdown-toggle">Gestisci prodotti</span>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('nuovoProdotto') }}">Inserisci prodotti</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('listaProdotti') }}">Modifica Catalogo</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('listaUtenti')}}">Gestisci Utenti</a></li>
-                        
+                        <li class="nav-item"><a class="nav-link" href="{{ route('listaUtenti/{ruolo}', ['user']) }}">Elimina Clienti</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('listaUtenti/{ruolo}', ['staff']) }}">Gestisci Staff</a></li>
                         @endcan
                     </ul>
 
