@@ -1,5 +1,6 @@
+/**--------Modifiche Alesi-----*/
 .button-navbar{
-	margin-left: 12px; 	/*altrimenti tropo attaccato agli elementi della nav*/
+	margin-left: 12px;
 }
 
 .footer_margin{
@@ -101,6 +102,7 @@
 	margin-top: -2.65em; 
 	margin-bottom: 80px;
 }
+
 /************************** Regole originali  ************************************************************************************/
 body
 {
@@ -5724,6 +5726,7 @@ a
 	}
 }
 
+
 /*Modifiche marco*/
 .navico{
 	max-width: 40%
@@ -5766,4 +5769,18 @@ select.select{
 	margin: auto;
 	max-width: 500px;
 	max-height: 300px;
+}
+
+
+/*Modifiche lorenzo*/
+.alert{        
+        background:#384aeb;
+        width: 70%;
+        margin: 0 auto;
+        display: inline-block;
+        text-align: center;
+        margin: 1.8em 0em;
+        color:#fff;
+        border-radius: 30px; 
+        line-height:1.667;        
 }

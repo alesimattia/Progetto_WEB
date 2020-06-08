@@ -25,6 +25,7 @@ class Catalogo {
                 ->pluck('nomeCat')
                 ->first();
     }
+    
     public static function subCatToName($subCatId){
         return Sottocategoria::where('id','=', $subCatId)
                     ->get()

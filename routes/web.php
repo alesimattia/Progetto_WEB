@@ -84,6 +84,15 @@ Route::post('/staff/updateProdotto', 'StaffController@updateProdotto')
 Route::post('/staff/eliminaProdotti', 'StaffController@eliminaProdotti')
         ->name ('eliminaProdotti');
 
+Route::get('/staff/aggiungiCategoria','StaffController@aggiungiCat')
+        ->name ('aggiungiCategoria');
+
+Route::post('/staff/aggiungiCategoria','StaffController@storeCat')
+        ->name ('aggiungiCategoria.store');
+
+Route::post('/staff/aggiungiSub','StaffController@storeSub')
+        ->name ('aggiungiSub.store');
+
 /*********************** AUTENTICAZIONE ****************************/
 
 Route::get('login', 'Auth\LoginController@showLoginForm')

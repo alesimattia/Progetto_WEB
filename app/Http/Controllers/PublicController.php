@@ -22,10 +22,9 @@ class PublicController extends Controller {
                             
     public function showCatalog(Request $search, $categoria = 'monitor') {
 
-        /*Estraggono dal db gli elementi con cui popolare i filtri del catalogo*/
+        /** Estraggono dal db gli elementi con cui popolare i filtri del catalogo*/
         $mainCats = $this->_catalogModel->getAllMainCat();
         $subCats = $this->_catalogModel->getAllSubCat();    
-
         $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc', $search->prodotto);
     
         return view('catalogo')
@@ -33,7 +32,6 @@ class PublicController extends Controller {
                     ->with('subCats', $subCats)
                     ->with('prodotti', $prodotti);
     }
-
 
     public function showDesc($prodotto){
         return view('product.descProdotto')

@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ProductSchema;
 use App\Models\Resources\Prodotto;
 use App\Models\Catalogo;
+use App\Models\Resources\Categoria;
+use App\Http\Requests\CatSchema;
+use App\Models\Resources\Sottocategoria;
+use App\Http\Requests\SubCatSchema;
 
 class staffController extends Controller {
 
@@ -48,7 +52,7 @@ class staffController extends Controller {
         return redirect()->route('catalogo');
     }
 
-/*----------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------*/
 
     public function listaProdotti() {
         return view('product.listaProdotti')
@@ -85,8 +89,7 @@ class staffController extends Controller {
         return redirect()->route('catalogo');
     }
 
-/*----------------------------------------------------------------------------*/
-    
+
     public function eliminaProdotti() {
 
         if( isset($_POST['selezionati']) && is_array($_POST['selezionati']) )
@@ -95,4 +98,36 @@ class staffController extends Controller {
         
         return redirect()->route('listaProdotti');
     }
+
+/*--------------------------------------------------------------------------------------*/
+    
+    public function aggiungiCat() {
+        $Cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
+        return view ('form.aggiungiCategoria')
+            ->with('Cats', $Cats)
+            ->with('Conferma',0);
+        
+    }
+
+    public function storeCat(CatSchema $request) {
+        $categoria = new Categoria;
+        $categoria->fill($request->validated());     
+        $categoria->save();
+        $Cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
+        return view ('form.aggiungiCategoria')
+            ->with('Conferma', 1)
+            ->with('Cats', $Cats);
+    }
+
+    public function storeSub(SubCatSchema $request) {
+        $sub = new Sottocategoria;
+        $sub->fill($request->validated());     
+        $sub->save();
+        $Cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
+        return view ('form.aggiungiCategoria')
+            ->with('Conferma', 2)
+            ->with('Cats', $Cats);
+    }
+    
+    
 }
