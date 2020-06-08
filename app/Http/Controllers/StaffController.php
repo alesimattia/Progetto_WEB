@@ -6,13 +6,14 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-use App\Http\Requests\ProductSchema;
+use App\Models\Resources\Sottocategoria;
+use App\Models\Resources\Categoria;
 use App\Models\Resources\Prodotto;
 use App\Models\Catalogo;
-use App\Models\Resources\Categoria;
-use App\Http\Requests\CatSchema;
-use App\Models\Resources\Sottocategoria;
+
+use App\Http\Requests\ProductSchema;
 use App\Http\Requests\SubCatSchema;
+use App\Http\Requests\CatSchema;
 
 class staffController extends Controller {
 
@@ -102,31 +103,36 @@ class staffController extends Controller {
 /*--------------------------------------------------------------------------------------*/
     
     public function aggiungiCat() {
-        $Cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
+
+        $cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
         return view ('form.aggiungiCategoria')
-            ->with('Cats', $Cats)
-            ->with('Conferma',0);
-        
+                ->with('cats', $cats);
     }
+
 
     public function storeCat(CatSchema $request) {
         $categoria = new Categoria;
         $categoria->fill($request->validated());     
         $categoria->save();
-        $Cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
+        $cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
+        $msg = "Categoria aggiunta correttamente";
+
         return view ('form.aggiungiCategoria')
-            ->with('Conferma', 1)
-            ->with('Cats', $Cats);
+                ->with('cats', $cats)
+                ->with('confirm', $msg);
     }
+
 
     public function storeSub(SubCatSchema $request) {
         $sub = new Sottocategoria;
         $sub->fill($request->validated());     
         $sub->save();
-        $Cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
+        $cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
+        $msg = "Sottocategoria aggiunta correttamente";
+
         return view ('form.aggiungiCategoria')
-            ->with('Conferma', 2)
-            ->with('Cats', $Cats);
+                ->with('cats', $cats)
+                ->with('confirm', $msg);
     }
     
     

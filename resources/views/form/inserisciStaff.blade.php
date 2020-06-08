@@ -7,7 +7,7 @@
 <div class="col-12">
     <div class="login_form_inner register_form_inner" id="edit_form">
             @isset($confirm)
-                <h4 style="color:#c5322d" > {{ $confirm }}</h4>
+                <h4 class="messaggio" > {{ $confirm }}</h4>
             @endisset
 
             <h3>Crea account Staff</h3>

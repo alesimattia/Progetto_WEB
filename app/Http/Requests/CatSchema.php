@@ -25,7 +25,7 @@ class CatSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
      */
     public function rules() {
         return [
-            'nomeCat' => ['required', 'string', 'max:20']            
+            'nomeCat' => ['required', 'string', 'max:20', 'unique:categoria']            
         ];
     }
 

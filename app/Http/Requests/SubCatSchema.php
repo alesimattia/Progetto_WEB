@@ -25,7 +25,7 @@ class SubCatSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
      */
     public function rules() {
         return [
-            'nomeSubCat' => ['required', 'string', 'max:20'],
+            'nomeSubCat' => ['required', 'string', 'max:20', 'unique:sottocategoria'],
             'mainCat' => 'required'
         ];
     }

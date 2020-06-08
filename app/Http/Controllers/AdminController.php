@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\ProductSchema;
 use App\Http\Requests\StaffSchema;
 use Illuminate\Support\Facades\Hash;
@@ -31,12 +30,14 @@ class AdminController extends Controller {
     public function storeStaff(StaffSchema $request) {
         
         $user = new User;
+        $user->fill($request->validated()); //valorizza le proprietà dell'oggetto user con ciò che era nel request object (dal form)
+        
         $user->residenza=NULL;
         $user->occupazione=NULL;
         $user->dataNascita=NULL;
         $user->ruolo='staff';
-        $user->fill([$request->validated(), 'password' => Hash::make($request->password)]);  
-        //valorizza le proprietà dell'oggetto user con ciò che era nel request object (dal form)
+        $user->password = Hash::make($request->password);
+        
         $user->save();   //genera query nel dbms
 
         $confirm="Utente Staff aggiunto correttamente";
