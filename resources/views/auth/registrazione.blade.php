@@ -2,28 +2,6 @@
 
 @section('title', 'Registrazione')
 
-@section('scripts')
-
-@parent
-<script src="{{ asset('js/functions.js') }}" ></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-$(function () {
-    var actionUrl = "{{ route('register') }}";
-    var formId = 'register_form';
-    $(":input").on('blur', function (event) {
-        var formElementId = $(this).attr('id');
-        doElemValidation(formElementId, actionUrl, formId);
-    });
-    $("#addproduct").on('submit', function (event) {
-        event.preventDefault();
-        doFormValidation(actionUrl, formId);
-    });
-});
-</script>
-
-@endsection
-
 @section('main')
 
 <section class="login_box_area section-margin" >
@@ -46,16 +24,53 @@ $(function () {
                         <div class="col-md-12 form-group">
                             <fieldset class="registra-box-campi">
                                 {{ Form::text('nome', '', ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome']) }}
-
+                                @if($errors->first('nome'))
+                                <ul class="errore">
+                                    @foreach($errors->get('nome') as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
                                 {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'cognome','placeholder'=>'Cognome']) }}
-
+                                @if($errors->first('cognome'))
+                                <ul class="errore">
+                                    @foreach($errors->get('cognome') as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
                                 {{ Form::text('residenza', '', ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
-
+                                @if($errors->first('residenza'))
+                                <ul class="errore">
+                                    @foreach($errors->get('residenza') as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
                                 {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
-
+                                @if($errors->first('dataNascita'))
+                                <ul class="errore">
+                                    @foreach($errors->get('dataNascita') as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
                                 {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-
+                                @if($errors->first('occupazione'))
+                                <ul class="errore">
+                                    @foreach($errors->get('occupazione') as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
                                 {{ Form::select('occupazione', $lista_occupaz , '', ['class' => 'select_box','id' => 'occupation']) }}
+                                @if($errors->first('nome'))
+                                <ul class="occupazione">
+                                    @foreach($errors->get('occupazione') as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
                             </fieldset>
 
                                 <legend>Dati di accesso</legend>

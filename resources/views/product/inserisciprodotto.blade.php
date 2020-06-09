@@ -10,11 +10,13 @@
     <script>
     $(function () {
         var actionUrl = "{{ route('nuovoProdotto.store') }}";
-        var formId = 'addproduct';
+        var formId = $(this).closest("form").attr('id');    //recupera l'id del form senza conoscerlo
+        
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');     //memorizza l'id dell'elemento di cui si è perso il focus
             validaCampo(formElementId, actionUrl, formId);
         });
+
         $("#addproduct").on('submit', function (event) {
             event.preventDefault();     //interrompe il processo predefinito di submit
             validaForm(actionUrl, formId);    //gestisce il processo di submit 

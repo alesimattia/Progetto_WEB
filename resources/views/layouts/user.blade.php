@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @section('link')
-    @show
+        @show
     @section('scripts')
-    @show
+        @show
 </head>
 
 <body>
