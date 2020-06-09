@@ -20,7 +20,7 @@
                     <div class="login_form_inner">
                         <h3>Login</h3>
                         {{ Form::open(array('route'=>'login', 'class'=>'row login_form')) }}
-                            @csrf
+
                             <div class="col-md-12 form-group">
                                 {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username'] )}}                       <!--in caso di errori ripropone-->
                                     @if($errors->first('username'))

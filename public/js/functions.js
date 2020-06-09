@@ -1,10 +1,11 @@
-function getErrorHtml(elemErrors) {
+function scriviErrore(elemErrors) {
     if ((typeof (elemErrors) === 'undefined') || (elemErrors.length < 1))
         return;
     var out = '<ul class="errore">';
-    for (var i = 0; i < elemErrors.length; i++) {
+   
+    for (var i = 0; i < elemErrors.length; i++) 
         out += '<li>' + elemErrors[i] + '</li>';
-    }
+
     out += '</ul>';
     return out;
 }
@@ -28,7 +29,7 @@ function validaCampo(id, actionUrl, formId) {
                 if (data.status === 422) {
                     var errMsgs = JSON.parse(data.responseText);
                     $("#" + id).next().find("li").parent().remove();
-                    $("#" + id).after(getErrorHtml(errMsgs[id]));
+                    $("#" + id).after(scriviErrore(errMsgs[id]));
                 }
             },
             contentType: false,
@@ -68,7 +69,7 @@ function validaForm(actionUrl, formId) {
                 var errMsgs = JSON.parse(data.responseText);
                 $.each(errMsgs, function (id) {
                     $("#" + id).next().find("li").parent().remove();
-                    $("#" + id).after(getErrorHtml(errMsgs[id]));
+                    $("#" + id).after(scriviErrore(errMsgs[id]));
                 });
             }
         },

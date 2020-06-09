@@ -9,15 +9,16 @@
 
     <script>
     $(function () {
+
         var actionUrl = "{{ route('nuovoProdotto.store') }}";
-        var formId = $(this).closest("form").attr('id');    //recupera l'id del form senza conoscerlo
+        var formId = $('form.login_form').attr('id');   
         
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');     //memorizza l'id dell'elemento di cui si è perso il focus
             validaCampo(formElementId, actionUrl, formId);
         });
 
-        $("#addproduct").on('submit', function (event) {
+        $("#"+formId).on('submit', function (event) {
             event.preventDefault();     //interrompe il processo predefinito di submit
             validaForm(actionUrl, formId);    //gestisce il processo di submit 
         });
@@ -39,7 +40,7 @@
         <p>Inserisci un nuovo elemento nel catalogo</p>
 
         <fieldset class="registra-box-campi">
-            {{ Form::open(array('route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form')) }}
+            {{ Form::open(['route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form' ] ) }}
 
             <div class="col-md-12 form-group">
                 {{ Form::text('nome', '', ['class' => 'form-control','id' => 'nome','placeholder'=>'Nome prodotto'])  }}
