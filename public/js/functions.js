@@ -1,4 +1,4 @@
-function getErrorHtml(elemErrors,iid) {
+function scriviErrore(elemErrors,iid) {
     if ((typeof (elemErrors) === 'undefined') || (elemErrors.length < 1))
         return;
     /*for (var i = 0; i < elemErrors.length; i++){
@@ -18,7 +18,8 @@ function getErrorHtml(elemErrors,iid) {
     return out;
 }
 
-function doElemValidation(id, actionUrl, formId) {
+
+function validaCampo(id, actionUrl, formId) {
 
     var formElems;
 
@@ -27,36 +28,36 @@ function doElemValidation(id, actionUrl, formId) {
         formElems.append('_token', tokenVal);
     }
 
+
     function sendAjaxReq() {
         $.ajax({
             type: 'POST',
             url: actionUrl,
-            data: formElems,
+            data: formElems,    //l'informazione da inviare al server
             dataType: "json",
-            error: function (data) {
-                if (data.status === 422) {
-                    var errMsgs = JSON.parse(data.responseText);
-                    $("#" + id).parent().find('.errors').html(' ');
-                    $("#" + id).after(getErrorHtml(errMsgs[id],id));
+            error: function (risposta) {    //associa alla proprietà error una funzione di callback da attivare se la risposta è di tipo errore
+                if (risposta.status === 422) {     //codice errore validazione
+                    var errorMessage = JSON.parse(risposta.responseText);
+                    $("#" + id).parent().find('.errors').html(' ');     //cancella i messaggi per l'elemento validato
+                    $("#" + id).after(scriviErrore(errorMessage[id],id));   //estrae da tutti i messaggi di errore quelli associati all'elemento
                 }
             },
-            contentType: false,
-            processData: false
+            contentType: false,     //lascia l' enctype=multipart/form-Data
+            processData: false      //non formatta in modo diverso la struttura del dato
         });
     }
 
     var elem = $("#" + formId + " :input[name=" + id + "]");
-    if (elem.attr('type') === 'file') {
-    // elemento di input type=file valorizzato
-        if (elem.val() !== '') {
-            inputVal = elem.get(0).files[0];
-        } else {
-            inputVal = new File([""], "");
-        }
-    } else {
-        // elemento di input type != file
+
+    if (elem.attr('type') === 'file') {     // elemento input 'type=file' valorizzato
+        if (elem.val() !== '')
+            inputVal = elem.get(0).files[0];        //recupera ciò che è valorizzato
+        else
+            inputVal = new File([""], "");  //assegna la proprietà ma vuota
+    } 
+    else
         inputVal = elem.val();
-    }
+
     formElems = new FormData();
     formElems.append(id, inputVal);
     addFormToken();
@@ -64,7 +65,8 @@ function doElemValidation(id, actionUrl, formId) {
 
 }
 
-function doFormValidation(actionUrl, formId) {
+
+function validaForm(actionUrl, formId) {
 
     var form = new FormData(document.getElementById(formId));
     $.ajax({
@@ -74,15 +76,15 @@ function doFormValidation(actionUrl, formId) {
         dataType: "json",
         error: function (data) {
             if (data.status === 422) {
-                var errMsgs = JSON.parse(data.responseText);
-                $.each(errMsgs, function (id) {
+                var errorMessage = JSON.parse(data.responseText);
+                $.each(errorMessage, function (id) {
                     $("#" + id).parent().find('.errors').html(' ');
-                    $("#" + id).after(getErrorHtml(errMsgs[id]));
+                    $("#" + id).after(scriviErrore(errorMessage[id]));
                 });
             }
         },
         success: function (data) {
-            window.location.replace(data.redirect);
+            window.location.replace(data.redirect);     /** Redirige in base a cosa è memorizzato nell'oggetto json del response object del metodo (invocato POST)*/ 
         },
         contentType: false,
         processData: false

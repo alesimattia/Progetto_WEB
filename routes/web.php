@@ -52,8 +52,8 @@ Route::post('/admin/addStaff', 'AdminController@storeStaff')
 Route::get('/admin/listaUtenti/{ruolo}', 'AdminController@listaUtenti')
         ->name ('listaUtenti/{ruolo}');
 
-Route::post('/admin/eliminaProfilo', 'AdminController@eliminaProfilo')
-        ->name ('eliminaProfilo');
+Route::post('/admin/eliminaProfilo/{ruolo}', 'AdminController@eliminaProfilo')
+        ->name ('eliminaProfilo/{ruolo}');
 
 Route::get('/admin/modificaStaff/{username}', 'AdminController@modificaStaff')
         ->name('modificaStaff/{username}');
@@ -83,7 +83,7 @@ Route::post('/staff/updateProdotto', 'StaffController@updateProdotto')
 
 Route::post('/staff/eliminaProdotti', 'StaffController@eliminaProdotti')
         ->name ('eliminaProdotti');
-
+/*-----------------------------------------*/
 Route::get('/staff/aggiungiCategoria','StaffController@aggiungiCat')
         ->name ('aggiungiCategoria');
 
@@ -102,8 +102,7 @@ Route::post('login', 'Auth\LoginController@login');
 
 Route::post('logout', 'Auth\LoginController@logout')
         ->name('logout');
-
-
+/*-----------------------------------------*/
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')
         ->name('register');
 

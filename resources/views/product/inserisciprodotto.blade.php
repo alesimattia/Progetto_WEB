@@ -3,34 +3,36 @@
 @section('title', 'Aggiungi Prodotto')
 
 @section('scripts')
+    @parent
+    <script src="{{ asset('js/functions.js') }}" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-@parent
-<script src="{{ asset('js/functions.js') }}" ></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-$(function () {
-    var actionUrl = "{{ route('nuovoProdotto.store') }}";
-    var formId = 'addproduct';
-    $(":input").on('blur', function (event) {
-        var formElementId = $(this).attr('id');
-        doElemValidation(formElementId, actionUrl, formId);
+    <script>
+    $(function () {
+        var actionUrl = "{{ route('nuovoProdotto.store') }}";
+        var formId = 'addproduct';
+        $(":input").on('blur', function (event) {
+            var formElementId = $(this).attr('id');     //memorizza l'id dell'elemento di cui si è perso il focus
+            validaCampo(formElementId, actionUrl, formId);
+        });
+        $("#addproduct").on('submit', function (event) {
+            event.preventDefault();     //interrompe il processo predefinito di submit
+            validaForm(actionUrl, formId);    //gestisce il processo di submit 
+        });
     });
-    $("#addproduct").on('submit', function (event) {
-        event.preventDefault();
-        doFormValidation(actionUrl, formId);
-    });
-});
-</script>
-
+    </script>
 @endsection
+
 
 @section('main')
 
 <div class="col-12">
     <div class="login_form_inner register_form_inner add_prodotto">
+
     @isset($conferma)
         <h4 style="color:#c54040 " > {{ $conferma }}</h4>
     @endisset
+
         <h3>Aggiungi Prodotto</h3>
         <p>Inserisci un nuovo elemento nel catalogo</p>
 

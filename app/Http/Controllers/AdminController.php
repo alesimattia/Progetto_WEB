@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductSchema;
 use App\Http\Requests\StaffSchema;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Arr;
 
 use App\User;
 use App\Http\Catalogo;
@@ -48,32 +49,20 @@ class AdminController extends Controller {
 /*------------------------------------------------------------------------------------------*/
     
     public function listaUtenti($ruolo = null) {
-        switch($ruolo){
-            case 'user':
-                return view('listaUtenti')
-                    ->with('utenti', User::get()->where('ruolo','user'));
-            break;
 
-            case 'staff':
-                return view('listaUtenti')
-                    ->with('utenti', User::get()->where('ruolo','staff'));
-            break;
-
-            default :
-                return view('listaUtenti')
-                        ->with('utenti', User::get()->where('ruolo', '<>', 'admin'));
-            break;
-        }
+        return view('listaUtenti')
+            ->with('utenti', User::get()->where('ruolo', $ruolo))
+            ->with('ruolo', $ruolo);
     }
     
  
-    public function eliminaProfilo() {
+    public function eliminaProfilo($ruolo) {
 
         if( isset($_POST['selezionati']) && is_array($_POST['selezionati']) )
             foreach($_POST['selezionati'] as $selezionato)
                 User::get()->find($selezionato)->delete();
         
-        return redirect()->route('listaUtenti');
+        return redirect()->route('listaUtenti/{ruolo}', $ruolo);
     }
 
 
@@ -88,9 +77,9 @@ class AdminController extends Controller {
 
         $user = new User;
         $user->find($request->oldUsername)
-             ->update([ $request->validated(), 'password' => Hash::make($request->password) ]);
+             ->update([ $request, 'password' => Hash::make($request->password) ]);
 
-        return redirect()->action('AdminController@listaUtenti');
+        return redirect()->action('AdminController@listaUtenti', 'staff');
     }
 
 

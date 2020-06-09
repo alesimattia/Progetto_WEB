@@ -87,7 +87,8 @@ class staffController extends Controller {
         $prodotto->find($request->id)
                  ->update($request->validated());
 
-        return redirect()->route('catalogo');
+        /** Memorizza nel response object l'oggetto json con coppia rotta-catalogo */
+        return response()->json(['redirect' => route('catalogo') ]);
     }
 
 

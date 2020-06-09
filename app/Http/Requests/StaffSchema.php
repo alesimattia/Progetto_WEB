@@ -27,7 +27,7 @@ class StaffSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
         return [
             'nome' => ['required', 'string', 'max:20'],
             'cognome' => ['required', 'string', 'max:20'],
-            'username' => ['required', 'string', 'min:8', 'unique:utente'],
+            'username' => ['required', 'string', 'min:8'/*, 'unique:utente'*/],     //non unique perchè non modificato, serve a identificare l'utente
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }

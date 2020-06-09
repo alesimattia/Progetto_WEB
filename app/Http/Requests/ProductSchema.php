@@ -40,8 +40,9 @@ class ProductSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
         ];
     }
 
+    /** Override del metodo per ottenere un response in formato JSON */
     protected function failedValidation(Validator $validator)
-    {
+    {                                                                  //costante con codice di errore 442
         throw new HttpResponseException(response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY));
     }
 

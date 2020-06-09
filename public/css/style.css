@@ -14,7 +14,7 @@
 }
 
 .scontato{
-	color: #e70808;
+	color: #c54040;
 	text-decoration: line-through;
 	font-size: 1.3em;
 }
@@ -95,7 +95,7 @@
 
 .controls{
 	float: right;
-	margin-right: 1.5em;
+	margin-right: 30px;
 }
 
 .search{
@@ -104,7 +104,7 @@
 }
 
 .messaggio{
-	color:#c5322d;
+	color:#c54040;
 	text-align: center;
 }
 /************************** Regole originali  ************************************************************************************/

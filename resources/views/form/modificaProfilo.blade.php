@@ -59,12 +59,12 @@
                     @endif
 
                     @if($utente->ruolo =='user')
-                    {{ Form::text('residenza', $utente->residenza, ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
-              
-                    {{ Form::date('dataNascita', $utente->dataNascita, ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
+                        {{ Form::text('residenza', $utente->residenza, ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
+                
+                        {{ Form::date('dataNascita', $utente->dataNascita, ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
 
-                    {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-                    {{ Form::select('occupazione', $lista_occupaz , $utente->occupazione, ['class' => 'select_box','id' => 'occupazione']) }}
+                        {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
+                        {{ Form::select('occupazione', $lista_occupaz , $utente->occupazione, ['class' => 'select_box','id' => 'occupazione']) }}
                     @endif
 
                     <!--per ritrovare la tupla in fase di update con un nuovo username-->
