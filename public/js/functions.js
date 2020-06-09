@@ -1,15 +1,6 @@
-function getErrorHtml(elemErrors,iid) {
+function getErrorHtml(elemErrors) {
     if ((typeof (elemErrors) === 'undefined') || (elemErrors.length < 1))
         return;
-    /*for (var i = 0; i < elemErrors.length; i++){
-        $(input[id=$iid]>ul.error>li).each(function(){
-            if(this.alt == elemErrors[i]){
-                return;
-            }
-        })
-    }*/
-
-    /*$(input[id=$iid]>ul.error).remove();*/
     var out = '<ul class="error">';
     for (var i = 0; i < elemErrors.length; i++) {
         out += '<li>' + elemErrors[i] + '</li>';
@@ -36,8 +27,8 @@ function doElemValidation(id, actionUrl, formId) {
             error: function (data) {
                 if (data.status === 422) {
                     var errMsgs = JSON.parse(data.responseText);
-                    $("#" + id).parent().find('.errors').html(' ');
-                    $("#" + id).after(getErrorHtml(errMsgs[id],id));
+                    $("#" + id).next().find("li").parent().remove();
+                    $("#" + id).after(getErrorHtml(errMsgs[id]));
                 }
             },
             contentType: false,
