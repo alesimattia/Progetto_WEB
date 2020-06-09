@@ -46,7 +46,7 @@
                 {{ Form::select('subCat', $subCats, '', ['class' => 'select','id' => 'subCat']) }}
 
                 {{ Form::label('foto', 'Immagine', ['class' => 'label-input']) }}
-                
+
                 {{ Form::file('foto', ['class' => 'form-control', 'id' => 'image']) }}
 
                 {{ Form::text('descBreve', '', ['class' => 'form-control','id' => 'descBreve','placeholder'=>'Descrizione breve'])  }}
@@ -60,7 +60,7 @@
 
                 {{ Form::submit('Aggiungi Prodotto', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
             </div>
-            
+
             {{ Form::close() }}
         </fieldset>
     </div>

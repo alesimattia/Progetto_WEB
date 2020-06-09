@@ -1,15 +1,7 @@
-function scriviErrore(elemErrors,iid) {
+function scriviErrore(elemErrors) {
+
     if ((typeof (elemErrors) === 'undefined') || (elemErrors.length < 1))
         return;
-    /*for (var i = 0; i < elemErrors.length; i++){
-        $(input[id=$iid]>ul.error>li).each(function(){
-            if(this.alt == elemErrors[i]){
-                return;
-            }
-        })
-    }*/
-
-    /*$(input[id=$iid]>ul.error).remove();*/
     var out = '<ul class="error">';
     for (var i = 0; i < elemErrors.length; i++) {
         out += '<li>' + elemErrors[i] + '</li>';
@@ -39,7 +31,7 @@ function validaCampo(id, actionUrl, formId) {
                 if (risposta.status === 422) {     //codice errore validazione
                     var errorMessage = JSON.parse(risposta.responseText);
                     $("#" + id).parent().find('.errors').html(' ');     //cancella i messaggi per l'elemento validato
-                    $("#" + id).after(scriviErrore(errorMessage[id],id));   //estrae da tutti i messaggi di errore quelli associati all'elemento
+                    $("#" + id).after( scriviErrore(errorMessage[id]) );   //estrae da tutti i messaggi di errore quelli associati all'elemento
                 }
             },
             contentType: false,     //lascia l' enctype=multipart/form-Data
@@ -47,16 +39,16 @@ function validaCampo(id, actionUrl, formId) {
         });
     }
 
-    var elem = $("#" + formId + " :input[name=" + id + "]");
+    var campo = $("#" + formId + " :input[name=" + id + "]");
 
-    if (elem.attr('type') === 'file') {     // elemento input 'type=file' valorizzato
-        if (elem.val() !== '')
-            inputVal = elem.get(0).files[0];        //recupera ciò che è valorizzato
+    if (campo.attr('type') === 'file') {     // elemento input 'type=file' valorizzato
+        if (campo.val() !== '')
+            inputVal = campo.get(0).files[0];        //recupera ciò che è valorizzato
         else
             inputVal = new File([""], "");  //assegna la proprietà ma vuota
     } 
     else
-        inputVal = elem.val();
+        inputVal = campo.val();
 
     formElems = new FormData();
     formElems.append(id, inputVal);
