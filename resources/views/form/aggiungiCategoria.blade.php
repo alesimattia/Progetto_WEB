@@ -2,8 +2,6 @@
 
 @section('title', 'Aggiungi categoria')
 
-@section('main')
-
 @section('scripts')
     @parent
     <script src="{{ asset('js/functions.js') }}" ></script>
@@ -13,20 +11,34 @@
     $(function () {
 
         var actionUrl = "{{ route('aggiungiCategoria.store') }}";
-        var formId = 'addcat'; 
+        var formId = $('form.login_form').attr('id');   
         
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');     //memorizza l'id dell'elemento di cui si è perso il focus
-            validaCampo(formElementId, actionUrl, formId);
+            validaCampo(formElementId, actionUrl, formId[0]);
         });
 
-        $("#addproduct").on('submit', function (event) {
+        $("#"+formId).on('submit', function (event) {
             event.preventDefault();     //interrompe il processo predefinito di submit
-            validaForm(actionUrl, formId);    //gestisce il processo di submit 
+            validaForm(actionUrl, formId[0]);    //gestisce il processo di submit 
+        });
+
+        /*---------------------------------------------------------------*/
+
+        $(":input").on('blur', function (event) {
+            var formElementId = $(this).attr('id');     //memorizza l'id dell'elemento di cui si è perso il focus
+            validaCampo(formElementId, actionUrl, formId[1]);
+        });
+
+        $("#"+formId).on('submit', function (event) {
+            event.preventDefault();     //interrompe il processo predefinito di submit
+            validaForm(actionUrl, formId[1]);    //gestisce il processo di submit 
         });
     });
     </script>
 @endsection
+
+@section('main')
 
 <h2 class="mb-5"><span class="section-intro__style">Aggiungi&nbsp; Categoria / Sottocategoria </span></h2>  
 
@@ -55,7 +67,7 @@
                     </fieldset> 
             </div>
         </div>
-        
+    <!------------------------------------------------------------------------------------------------------------------>
         <div class="col-lg-6">
             <div class="login_form_inner register_form_inner add_prodotto">
 
@@ -66,13 +78,6 @@
                         
                         <div class="col-md-12 form-group">
                             {{ Form::text('nomeSubCat', '', ['class' => 'form-control','id' => 'nomeSubCat','placeholder'=>'Nome'])  }}
-                                @if($errors->first('nomeSubCat'))
-                                    <ul class="error">
-                                        @foreach($errors->get('nomeSubCat') as $message)
-                                            <li>{{ $message }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
                             
                             {{ Form::label('mainCat', 'Categoria', ['class' => 'lista-opzioni']) }}
                             {{ Form::select('mainCat' , $cats, '', ['class' => 'select','id' => 'mainCat']) }}

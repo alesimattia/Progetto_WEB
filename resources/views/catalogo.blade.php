@@ -2,6 +2,27 @@
 
 @section('title', 'Catalogo')
 
+@section('scripts')
+    @parent
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script src="{{ asset('js/functions.js') }}" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script>
+    $(function () {
+        
+        $("div.card-product__img").on('click', function (event) {
+            getDescEstesa(
+                $(this).next().attr('codiceProdotto') ,
+                "{{ route('descEstesa') }}"         
+            );
+        });
+    });
+    </script>
+@endsection
+
+
 @section('main')
 
 <div class="container" style="text-align:center">
@@ -41,7 +62,9 @@
             <!--Prodotto base-->
             <div class="col-md-6 col-lg-4 col-xl-3 box_prodotto">
                 <div class="card text-center card-product">
-                    <a href="{{ route('desc/{prodotto}', [$prodotto->id] ) }}">
+
+                    
+                    <!--a href="{{-- route('desc/{prodotto}', [$prodotto->id] ) --}}"-->
                         <div class="card-product__img">
                             @if($prodotto->foto == 'dummy.jpg' )
                                 <img class="card-img" src="{{ URL::asset('/img/home/dummy.jpg') }}">
@@ -61,9 +84,10 @@
                                 <p class="card-product__price">€{{ $prodotto->prezzo }}</p>
                             @endcan
                         </div>
-                    </a>
+                    <!--/a-->
                 </div>
             </div>
+            <p codiceProdotto="{{ $prodotto->idProdotto }}"> </p> 
         @endforeach                                    
         @endisset
     </div>                  <!--oggetto a cui viene inviato il contenuto da paginare-->

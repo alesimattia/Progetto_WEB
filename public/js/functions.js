@@ -40,15 +40,15 @@ function validaCampo(id, actionUrl, formId) {
     var elem = $("#" + formId + " :input[name=" + id + "]");
     if (elem.attr('type') === 'file') {
     // elemento di input type=file valorizzato
-        if (elem.val() !== '') {
+        if (elem.val() !== '')
             inputVal = elem.get(0).files[0];
-        } else {
+        else
             inputVal = new File([""], "");
-        }
-    } else {
+    }
+    else 
         // elemento di input type != file
         inputVal = elem.val();
-    }
+    
     formElems = new FormData();
     formElems.append(id, inputVal);
     addFormToken();
@@ -81,6 +81,42 @@ function validaForm(actionUrl, formId) {
     });
 }
 
+function stampaDesc(testo){
+    var out = '<div class="">';
+   
+    for (var i = 0; i < elemErrors.length; i++) 
+        out += '<li>' + elemErrors[i] + '</li>';
 
+    out += '</ul>';
+    return out;
+}
+
+function getDescEstesa(/*idProdotto,*/rotta){
+    
+    $.ajax({
+        type: 'POST',
+        url: rotta,
+        data:{ _method: 'PUT',
+            idProdotto : idProdotto,
+        },
+        dataType: "json",
+        headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+
+        success: function (data) {
+            var descrizione = JSON.parse(data.responseText);
+            $("div.paginator").after("<p>PROVA</p>");
+        },
+        error: function (data) {
+            if (data.status === 500) {
+                var descrizione = JSON.parse(data.responseText);
+                    $("div.paginator").after("<p>"+data.responseText+"</p>");
+
+            }
+        },
+        contentType: false,
+        processData: false
+    });
+
+}
 
 

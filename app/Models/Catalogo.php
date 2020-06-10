@@ -39,7 +39,9 @@ class Catalogo {
         if(!is_null($search)){
             $string = (string) '%'.$search.'%';
             
-            return Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
+            return Prodotto::select('prodotto.id as idProdotto', 'nome', 'descBreve', 
+                                    'descEstesa', 'prezzo', 'foto', 'percSconto', 'nomeSubCat', 'nomeCat')
+                        ->join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                         ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
                         ->where('nome', 'LIKE', $string)
                         ->orWhere('descBreve', 'LIKE', $string)
@@ -47,7 +49,9 @@ class Catalogo {
                         ->paginate($paged);
         }
 
-        $prods = Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
+        $prods = Prodotto::select('prodotto.id as idProdotto', 'nome', 'descBreve', 
+                                'descEstesa', 'prezzo', 'foto', 'percSconto', 'nomeSubCat', 'nomeCat')
+                    ->join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                     ->join('categoria', 'categoria.id', '=', 'sottocategoria.mainCat')
                     ->whereIn('nomeSubCat', $category)
                     ->orWhereIn('nomeCat', $category);
