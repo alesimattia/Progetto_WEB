@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Models\Catalogo;
 use App\Models\Resources\Prodotto;
 
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Response;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 
 class PublicController extends Controller {
 
@@ -30,6 +33,12 @@ class PublicController extends Controller {
         /** Estraggono dal db gli elementi con cui popolare i filtri del catalogo*/
         $mainCats = $this->_catalogModel->getAllMainCat();
         $subCats = $this->_catalogModel->getAllSubCat();    
+
+        /*if(! is_null($search)){
+            $search = Validator::make($search, [
+                'prodotto' => 'string|max:25',
+            ]);
+        }*/
         $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc', $search->prodotto);
     
         return view('catalogo')
@@ -39,14 +48,14 @@ class PublicController extends Controller {
     }
 
     
-    public function mostraDesc($id){
+    public function mostraDesc(){
 
         /*$this->_prodotto->id = $request->idProdotto;
         $testo = $this->_prodotto->readDescEstesa();*/
         
-        $testo = Prodotto::readDescEstesa($id);
-
-        return response()->json($testo, Response::HTTP_OK, ['X-CSRF-TOKEN']);
+        $testo = Prodotto::readDescEstesa(2);
+        //$testo = JSON.stringify(yourdata) 
+        return response()->json(['text' => $testo], Response::HTTP_OK );
         //throw new HttpResponseException( response( $data, Response::HTTP_OK ) );
     }
 }

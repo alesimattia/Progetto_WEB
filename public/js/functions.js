@@ -91,26 +91,25 @@ function stampaDesc(testo){
     return out;
 }
 
-function getDescEstesa(/*idProdotto,*/rotta){
+function getDescEstesa(idProdotto, rotta){
     
     $.ajax({
         type: 'POST',
         url: rotta,
-        data:{ _method: 'PUT',
-            idProdotto : idProdotto,
-        },
-        dataType: "json",
+        data: { idProdotto },
+        idProdotto : idProdotto,
+        dataType: 'json',
         headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 
         success: function (data) {
-            var descrizione = JSON.parse(data.responseText);
-            $("div.paginator").after("<p>PROVA</p>");
+            var descrizione = JSON.parse(JSON.stringify(data.responseText));
+            $("div.paginator").after("<p>"+"TESTO"+"</p>");
         },
+
         error: function (data) {
             if (data.status === 500) {
-                var descrizione = JSON.parse(data.responseText);
-                    $("div.paginator").after("<p>"+data.responseText+"</p>");
-
+                var descrizione = JSON.parse(JSON.stringify(data.responseText));
+            $("div.paginator").after("<p>"+"TESTO!"+"</p>");
             }
         },
         contentType: false,

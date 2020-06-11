@@ -12,11 +12,10 @@
     <script>
     $(function () {
         
-        $("div.card-product__img").on('click', function (event) {
-            getDescEstesa(
-                $(this).next().attr('codiceProdotto') ,
-                "{{ route('descEstesa') }}"         
-            );
+        $("div.box_prodotto").on('click', function (event) {
+            var id = $(this).next().attr('codiceProdotto');
+            var rotta = "{{ route('descEstesa') }}";
+            getDescEstesa(id, rotta);
         });
     });
     </script>
@@ -63,8 +62,6 @@
             <div class="col-md-6 col-lg-4 col-xl-3 box_prodotto">
                 <div class="card text-center card-product">
 
-                    
-                    <!--a href="{{-- route('desc/{prodotto}', [$prodotto->id] ) --}}"-->
                         <div class="card-product__img">
                             @if($prodotto->foto == 'dummy.jpg' )
                                 <img class="card-img" src="{{ URL::asset('/img/home/dummy.jpg') }}">
@@ -76,8 +73,9 @@
                                 <p>{{ $prodotto->descBreve }}</p>
                             </div>
                         </div>
+                        
                         <div class="card-body">
-                            <h4 class="card-product__title"><a href="single-product.html">{{ $prodotto->nome }}</a></h4>
+                            <h4 class="card-product__title">{{ $prodotto->nome }}</h4>
                             @can('showDiscount')
                                 <p class="card-product__price">€{{ number_format($prodotto->getPrezzo(), 2, ',', '.') }}</p>
                             @else
@@ -87,7 +85,7 @@
                     <!--/a-->
                 </div>
             </div>
-            <p codiceProdotto="{{ $prodotto->idProdotto }}"> </p> 
+            <meta codiceProdotto="{{ $prodotto->idProdotto }}"> </p> 
         @endforeach                                    
         @endisset
     </div>                  <!--oggetto a cui viene inviato il contenuto da paginare-->

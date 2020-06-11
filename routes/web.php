@@ -27,8 +27,8 @@ Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
 Route::get('/catalogo/desc/{prodotto}', 'PublicController@showDesc')
         ->name('desc/{prodotto}');
 
-Route::post('/catalogo/desc/{id}', 'PublicController@mostraDesc') 
-        ->name('descEstesa/{id}');
+Route::post('/catalogo/desc/', 'PublicController@mostraDesc') 
+        ->name('descEstesa');
         
 /***********************  USER  ****************************/
 

@@ -76,8 +76,12 @@ class AdminController extends Controller {
     public function updateStaff(StaffSchema $request){
 
             $user = new User;
-            $user->find($request->oldUsername)
-                 ->update(array_merge( $request->validated(), ['password' => Hash::make($request->password)] ) );
+            if($request->oldUsername == $request->username)
+                $user->find($request->oldUsername)
+                        ->update(['password' => Hash::make($request->password), 'nome' => $request->nome, 'cognome' => $request->cognome] ) ;
+            else
+                $user->find($request->oldUsername)
+                        ->update(array_merge( $request->validated(), ['password' => Hash::make($request->password)] ) );
 
         return redirect()->action('AdminController@listaUtenti', 'staff');
     }

@@ -46,7 +46,7 @@ use AuthenticatesUsers;
      * @return void
      */
     public function __construct() {
-        //$this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
 }
