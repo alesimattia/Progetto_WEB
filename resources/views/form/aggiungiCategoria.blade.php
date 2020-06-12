@@ -5,38 +5,41 @@
 @section('scripts')
     @parent
     <script src="{{ asset('js/functions.js') }}" ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
     $(function () {
 
-        var actionUrl = "{{ route('aggiungiCategoria.store') }}";
-        var formId = $('form.login_form').attr('id');   
+        /** ------------------ form aggiungi CATEGORIA ------------------------*/
+        var actionUrl_1 = $('form').eq(1).attr('action');
+        var formId_1 = $('form').eq(1).attr('id'); 
         
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');     //memorizza l'id dell'elemento di cui si è perso il focus
-            validaCampo(formElementId, actionUrl, formId[0]);
+            validaCampo(formElementId, actionUrl_1, formId_1);
         });
 
-        $("#"+formId).on('submit', function (event) {
+        $("#"+formId_1).on('submit', function (event) {
             event.preventDefault();     //interrompe il processo predefinito di submit
-            validaForm(actionUrl, formId[0]);    //gestisce il processo di submit 
+            validaForm(actionUrl_1, formId_1);    //gestisce il processo di submit 
         });
 
-        /*---------------------------------------------------------------*/
+        /** ---------------- form aggiungi SOTTO-CATEGORIA ----------------------*/
+        var actionUrl_2 = $('form').eq(2).attr('action');
+        var formId_2 = $('form').eq(2).attr('id');
 
         $(":input").on('blur', function (event) {
-            var formElementId = $(this).attr('id');     //memorizza l'id dell'elemento di cui si è perso il focus
-            validaCampo(formElementId, actionUrl, formId[1]);
+            var formElementId = $(this).attr('id');  
+            validaCampo(formElementId, actionUrl_2, formId_2);
         });
 
-        $("#"+formId).on('submit', function (event) {
-            event.preventDefault();     //interrompe il processo predefinito di submit
-            validaForm(actionUrl, formId[1]);    //gestisce il processo di submit 
+        $("#"+formId_2).on('submit', function (event) {
+            event.preventDefault();     
+            validaForm(actionUrl_2, formId_2);    
         });
     });
     </script>
 @endsection
+
 
 @section('main')
 
@@ -55,11 +58,10 @@
                 <h4>Nuova categoria per i prodotti</h4>
                     <fieldset class="registra-box-campi">
                         {{ Form::open(array('route' => 'aggiungiCategoria.store', 'id' => 'addcat', 'class' => 'row login_form')) }}
-
+                        @csrf
                         <div class="col-md-12 form-group mt-5">
                             {{ Form::text('nomeCat', '', ['class' => 'form-control','id' => 'nomeCat','placeholder'=>'Nome'])  }}
                             
-    
                             {{ Form::submit('Aggiungi Categoria', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
                         </div>
 
@@ -75,7 +77,7 @@
 
                     <fieldset class="registra-box-campi">
                         {{ Form::open(array('route' => 'aggiungiSub.store', 'id' => 'addsubcat', 'class' => 'row login_form')) }}
-                        
+                        @csrf
                         <div class="col-md-12 form-group">
                             {{ Form::text('nomeSubCat', '', ['class' => 'form-control','id' => 'nomeSubCat','placeholder'=>'Nome'])  }}
                             

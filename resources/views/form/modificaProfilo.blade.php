@@ -2,6 +2,34 @@
 
 @section('title', 'Profilo')
 
+<!-- Questa vista è parametrizzata in modo da adattarsi al tipo di utente da modificare -->
+
+@section('scripts')
+    @parent
+    <script src="{{ asset('js/functions.js') }}" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(function () {
+
+        /** Recupero il form senza conoscerne l'id, dato che l'azione varia 
+            in funzione dell'utente da modificare (e quindi del controller che ha chiamato la vista) */
+        var actionUrl = $('form').eq(1).attr('action')
+        var formId = $('form').eq(1).attr('id');   
+
+        $(":input").on('blur', function (event) {
+            var formElementId = $(this).attr('id'); 
+            validaCampo(formElementId, actionUrl, formId);
+        });
+
+        $("#"+formId).on('submit', function (event) {
+            event.preventDefault();  
+            validaForm(actionUrl, formId);    //gestisce il processo di submit 
+        });
+    });
+    </script>
+@endsection
+
+
 @section('main')
 
 <div class="col-12">
@@ -9,9 +37,9 @@
         <h3>Modifica informazioni profilo</h3>
 
         @if($utente->ruolo == 'user')
-            {{ Form::open(['route' => 'editProfilo.store', 'class' => 'row login_form', 'id'=>'register_form']) }}
+            {{ Form::open(['route' => 'editProfilo.store', 'class' => 'row login_form', 'id'=>'modificaProfilo']) }}
         @else
-            {{ Form::open(['route' => 'modificaStaff.store', 'class' => 'row login_form', 'id'=>'register_form']) }}
+            {{ Form::open(['route' => 'modificaStaff.store', 'class' => 'row login_form', 'id'=>'modificaStaff']) }}
         @endif
 
         @csrf
@@ -20,55 +48,28 @@
 
                     @if($utente->ruolo == 'staff')
                         {{ Form::text('username', $utente->username, ['class' => 'form-control', 'id' => 'username','placeholder'=>'Username']) }}
-                        @if($errors->first('username'))
-                        <ul class="error">
-                            @foreach($errors->get('username') as $message)
-                            <li>{{ $message }}</li>
-                            @endforeach
-                        </ul>
-                        @endif
                     @endif
 
                     {{ Form::password('password', ['class' => 'form-control', 'id' => 'password','placeholder'=>'Password']) }}
-                            @if($errors->first('password'))
-                            <ul class="error">
-                                @foreach($errors->get('password') as $message)
-                                <li>{{ $message }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
+                        
                     {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm','placeholder'=>'Conferma password']) }}
 
 
-                    {{ Form::text('nome', $utente->nome, ['class' => 'form-control', 'id' => 'name','placeholder'=>'Nome']) }}
-                    @if($errors->first('name'))
-                    <ul class="error">
-                        @foreach($errors->get('name') as $message)
-                        <li>{{ $message }}</li>
-                        @endforeach
-                    </ul>
-                    @endif
+                    {{ Form::text('nome', $utente->nome, ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome']) }}
 
-                    {{ Form::text('cognome', $utente->cognome, ['class' => 'form-control', 'id' => 'Cognome','placeholder'=>'Cognome']) }}
-                    @if($errors->first('cognome'))
-                    <ul class="error">
-                        @foreach($errors->get('cognome') as $message)
-                        <li>{{ $message }}</li>
-                        @endforeach
-                    </ul>
-                    @endif
-
+                    {{ Form::text('cognome', $utente->cognome, ['class' => 'form-control', 'id' => 'cognome','placeholder'=>'Cognome']) }}
+                    
                     @if($utente->ruolo =='user')
-                        {{ Form::text('residenza', $utente->residenza, ['class' => 'form-control', 'id' => 'Luogo_residenza','placeholder'=>'Luogo di residenza']) }}
+                        {{ Form::text('residenza', $utente->residenza, ['class' => 'form-control', 'id' => 'residenza','placeholder'=>'Luogo di residenza']) }}
                 
-                        {{ Form::date('dataNascita', $utente->dataNascita, ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
+                        {{ Form::date('dataNascita', $utente->dataNascita, ['class' => 'form-control', 'id' => 'dataNascita']) }}
 
                         {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
                         {{ Form::select('occupazione', $lista_occupaz , $utente->occupazione, ['class' => 'select_box','id' => 'occupazione']) }}
+                    @else
+                        <!--per ritrovare la tupla in fase di *update Staff*, se si modifica lo username-->
+                        {{ Form::hidden('oldUsername', $utente->username) }}
                     @endif
-
-                    <!--per ritrovare la tupla in fase di update con un nuovo username-->
-                    {{ Form::hidden('oldUsername', $utente->username) }}
                 </div>
             </fieldset>
 

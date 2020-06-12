@@ -41,9 +41,10 @@ class AdminController extends Controller {
         
         $user->save();   //genera query nel dbms
 
-        $confirm="Utente Staff aggiunto correttamente";
+        $msg="Utente Staff aggiunto correttamente";
         return view('form.inserisciStaff')
-                    ->with('confirm', $confirm);
+                ->with('confirm', $msg);
+        //return redirect()->route('listaUtenti/{ruolo}', 'staff');
     }
     
 /*------------------------------------------------------------------------------------------*/

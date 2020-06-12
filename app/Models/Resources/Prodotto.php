@@ -25,7 +25,8 @@ class Prodotto extends Model {
         return Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                         ->where('prodotto.id','=', $this->id)
                         ->get()
-                        ->pluck('nomeSubCat');
+                        ->pluck('nomeSubCat')
+                        ->first();
     }
 
     public function getMainCat(){
@@ -33,7 +34,8 @@ class Prodotto extends Model {
                     ->join('prodotto', 'sottocategoria.id', '=', 'prodotto.subCat')
                     ->where('prodotto.id','=', $this->id)
                     ->get()
-                    ->pluck('nomeCat');
+                    ->pluck('nomeCat')
+                    ->first();
     }
 
     public static function readDescEstesa($id){

@@ -2,6 +2,30 @@
 
 @section('title', 'Area Staff')
 
+@section('scripts')
+    @parent
+    <script src="{{ asset('js/functions.js') }}" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(function () {
+
+        var actionUrl = $('form').eq(1).attr('action')
+        var formId = $('form').eq(1).attr('id');   
+
+        $(":input").on('blur', function (event) {
+            var formElementId = $(this).attr('id'); 
+            validaCampo(formElementId, actionUrl, formId);
+        });
+
+        $("#"+formId).on('submit', function (event) {
+            event.preventDefault();  
+            validaForm(actionUrl, formId);
+        });
+    });
+    </script>
+@endsection
+
+
 @section('main')
 
 <div class="col-12">

@@ -5,14 +5,13 @@
 @section('scripts')
     @parent
     <script src="{{ asset('js/functions.js') }}" ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
     $(function () {
 
-        var actionUrl = "{{ route('nuovoProdotto.store') }}";
-        var formId = $('form.login_form').attr('id');   
-        
+        var actionUrl = $('form').eq(1).attr('action')
+        var formId = $('form').eq(1).attr('id');   
+
         $(":input").on('blur', function (event) {
             var formElementId = $(this).attr('id');     //memorizza l'id dell'elemento di cui si è perso il focus
             validaCampo(formElementId, actionUrl, formId);
@@ -41,7 +40,7 @@
 
         <fieldset class="registra-box-campi">
             {{ Form::open(['route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form' ] ) }}
-
+            @csrf
             <div class="col-md-12 form-group">
                 {{ Form::text('nome', '', ['class' => 'form-control','id' => 'nome','placeholder'=>'Nome prodotto'])  }}
 
