@@ -18,16 +18,19 @@ Route::get('/catalogo', 'PublicController@showCatalog')
         ->name('catalogo');
 
 /** La ricerca fa uso di un form con metodo POST */
+Route::post('/catalogo/cerca', 'PublicController@cerca')
+        ->name('cerca');
+
+Route::get('/catalogo/cerca/{prodotto}', 'PublicController@showSearch')
+        ->name('cerca/{prodotto}');
+
 Route::post('/catalogo', 'PublicController@showCatalog') 
         ->name('catalogo');
 
 Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
         ->name('catalogo/{categoria}');
 
-Route::get('/catalogo/desc/{prodotto}', 'PublicController@showDesc')
-        ->name('desc/{prodotto}');
-
-Route::post('/catalogo/desc/', 'PublicController@mostraDesc') 
+Route::post('/catalogo/desc/', 'PublicController@getDescEstesa') 
         ->name('descEstesa');
         
 /***********************  USER  ****************************/

@@ -21,15 +21,15 @@
     </script>
 @endsection
 
-
+@csrf
 @section('main')
 
-<div class="container" style="text-align:center">
+<div class="container container_base" style="text-align:center">
 
     <h2><span class="section-intro__style">Catalogo</span></h2>
 
     <div class="search">
-        {{ Form::open(['route' => 'catalogo', 'class' => 'form-inline my-2 my-lg-0', 'style' =>'float:right;' ]) }} @csrf
+        {{ Form::open(['route' => 'cerca', 'class' => 'form-inline my-2 my-lg-0', 'style' =>'float:right;' ]) }} @csrf
         {{ Form::text('prodotto','', ['class' => 'form-control mr-sm-2', 'id' => 'prodotto', 'placeholder'=>'Prodotto']) }}
         {{ Form::submit('Cerca', ['class' => 'btn btn-outline-success my-2 my-sm-0']) }}
     </div>

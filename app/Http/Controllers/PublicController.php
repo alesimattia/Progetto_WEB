@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Catalogo;
 use App\Models\Resources\Prodotto;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Response;
-use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
+
 
 class PublicController extends Controller {
 
@@ -20,7 +17,6 @@ class PublicController extends Controller {
 
     public function __construct() {
         $this->_catalogModel = new Catalogo;
-        $this->_prodotto = new Prodotto;
     }
 
     public function index(){
@@ -28,18 +24,12 @@ class PublicController extends Controller {
     }
 
                             
-    public function showCatalog(Request $search, $categoria = 'monitor') {
+    public function showCatalog( $categoria = 'monitor' ) {
 
         /** Estraggono dal db gli elementi con cui popolare i filtri del catalogo*/
         $mainCats = $this->_catalogModel->getAllMainCat();
         $subCats = $this->_catalogModel->getAllSubCat();    
-
-        /*if(! is_null($search)){
-            $search = Validator::make($search, [
-                'prodotto' => 'string|max:25',
-            ]);
-        }*/
-        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc', $search->prodotto);
+        $prodotti = $this->_catalogModel->getProdsByCat([$categoria], 4, 'desc');
     
         return view('catalogo')
                     ->with('mainCats', $mainCats)
@@ -48,14 +38,35 @@ class PublicController extends Controller {
     }
 
     
-    public function mostraDesc(){
+    public function getDescEstesa(Request $request){
+    
+        $testo = Prodotto::readDescEstesa($request->id);
+        return response()->json(['testo' => $testo ]);
+    }
 
-        /*$this->_prodotto->id = $request->idProdotto;
-        $testo = $this->_prodotto->readDescEstesa();*/
-        
-        $testo = Prodotto::readDescEstesa(2);
-        //$testo = JSON.stringify(yourdata) 
-        return response()->json(['text' => $testo], Response::HTTP_OK );
-        //throw new HttpResponseException( response( $data, Response::HTTP_OK ) );
+
+    public function cerca(Request $request){
+        return redirect()->route('cerca/{prodotto}', $request->prodotto );
+    }
+
+
+    public function showSearch($cercato) {
+
+        $mainCats = $this->_catalogModel->getAllMainCat();
+        $subCats = $this->_catalogModel->getAllSubCat();    
+
+        /*if(! is_null($cercato)){
+            $cercato = Validator::make([
+                'start_time'=>'required',
+            ]);
+            if($validator->passes())
+        }*/
+
+        $prodotti = $this->_catalogModel->getProdsByCat(null, 4, 'desc', $cercato);
+    
+        return view('catalogo')
+                    ->with('mainCats', $mainCats)
+                    ->with('subCats', $subCats)
+                    ->with('prodotti', $prodotti);
     }
 }

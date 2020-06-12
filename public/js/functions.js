@@ -92,29 +92,28 @@ function stampaDesc(testo){
 }
 
 function getDescEstesa(idProdotto, rotta){
-    
+
+    var dato = new FormData();
+    dato.append('id', idProdotto);
+
     $.ajax({
         type: 'POST',
         url: rotta,
-        data: { idProdotto },
-        idProdotto : idProdotto,
+        data:  dato,        
         dataType: 'json',
         headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 
         success: function (data) {
-            var descrizione = JSON.parse(JSON.stringify(data.responseText));
-            $("div.paginator").after("<p>"+"TESTO"+"</p>");
+            var descrizione = data['testo'];    /** File Json con campo 'testo' --> no parsing */
+            $("div#desc").remove();
+            $("div.container_base").append("<div id='desc'>"+descrizione+"</div>");
         },
 
-        error: function (data) {
-            if (data.status === 500) {
-                var descrizione = JSON.parse(JSON.stringify(data.responseText));
-            $("div.paginator").after("<p>"+"TESTO!"+"</p>");
-            }
-        },
+        cache: false,
         contentType: false,
         processData: false
     });
+
 
 }
 

@@ -34,10 +34,10 @@ class Catalogo {
     }
 
 
-    public function getProdsByCat($category, $paged = 1, $order = null, $search = null) {
+    public function getProdsByCat($category, $paged = 1, $order = null, $cerca = null) {
 
-        if(!is_null($search)){
-            $string = (string) '%'.$search.'%';
+        if(!is_null($cerca)){
+            $string = (string) '%'.$cerca.'%';
             
             return Prodotto::select('prodotto.id as idProdotto', 'nome', 'descBreve', 
                                     'descEstesa', 'prezzo', 'foto', 'percSconto', 'nomeSubCat', 'nomeCat')
