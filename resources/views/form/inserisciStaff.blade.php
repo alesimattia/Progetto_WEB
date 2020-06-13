@@ -12,7 +12,7 @@
         var actionUrl = $('form').eq(1).attr('action')  /** eq(0) è sempre il primo form con il bottone di logout */
         var formId = $('form').eq(1).attr('id');   
 
-        $(":input").on('blur', function (event) {
+        $(":input").on('keyup', function (event) {
             var formElementId = $(this).attr('id');  
             validaCampo(formElementId, actionUrl, formId);
         });
@@ -35,16 +35,14 @@
             @endisset
 
             <h3>Crea account Staff</h3>
-            <fieldset class="registra-box-campi">
-                    <div class="col-md-12 form-group">
+            
             {{ Form::open(['route' => 'addStaff.store', 'class' => 'row login_form', 'id'=>'inserisciStaff']) }}
                 
-
+            <fieldset class="registra-box-campi">
+                <div class="col-md-12 form-group">
                         {{ Form::text('nome', '', ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome']) }}
                        
                         {{ Form::text('cognome', '', ['class' => 'form-control', 'id' => 'cognome','placeholder'=>'Cognome']) }}
-                       
-                        
                     
                         {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username'] )}}                       <!--in caso di errori ripropone-->
                            
@@ -53,10 +51,10 @@
                         {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm','placeholder'=>'Conferma password']) }}
                         
                         {{ Form::submit('CREA', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
-                    
-            {{ Form::close() }}
-            </div>
+                </div>
             </fieldset>
+            {{ Form::close() }}
+            
     </div>
 </div>
 @endsection

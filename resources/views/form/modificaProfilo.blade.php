@@ -13,10 +13,10 @@
 
         /** Recupero il form senza conoscerne l'id, dato che l'azione varia 
             in funzione dell'utente da modificare (e quindi del controller che ha chiamato la vista) */
-        var actionUrl = $('form').eq(1).attr('action')
+        var actionUrl = $('form').eq(1).attr('action');
         var formId = $('form').eq(1).attr('id');   
 
-        $(":input").on('blur', function (event) {
+        $(":input").on('keyup', function (event) {
             var formElementId = $(this).attr('id'); 
             validaCampo(formElementId, actionUrl, formId);
         });
@@ -48,12 +48,14 @@
 
                     @if($utente->ruolo == 'staff')
                         {{ Form::text('username', $utente->username, ['class' => 'form-control', 'id' => 'username','placeholder'=>'Username']) }}
+                        <!--per richiesta ajax di validazione (solo)username --> 
+                        {{ Form::hidden('rottaValidaUsername', route('getAllUsers') ) }}
+                        <!--per ritrovare la tupla in fase di *update Staff*, se si modifica lo username-->
+                        {{ Form::hidden('oldUsername', $utente->username) }}
                     @endif
 
                     {{ Form::password('password', ['class' => 'form-control', 'id' => 'password','placeholder'=>'Password']) }}
-                        
                     {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm','placeholder'=>'Conferma password']) }}
-
 
                     {{ Form::text('nome', $utente->nome, ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome']) }}
 
@@ -66,9 +68,6 @@
 
                         {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
                         {{ Form::select('occupazione', $lista_occupaz , $utente->occupazione, ['class' => 'select_box','id' => 'occupazione']) }}
-                    @else
-                        <!--per ritrovare la tupla in fase di *update Staff*, se si modifica lo username-->
-                        {{ Form::hidden('oldUsername', $utente->username) }}
                     @endif
                 </div>
             </fieldset>

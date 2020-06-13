@@ -11,6 +11,9 @@ use App\User;
 use App\Http\Catalogo;
 use App\Models\Resources\Prodotto;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
 class AdminController extends Controller {
 
 
@@ -105,7 +108,10 @@ class AdminController extends Controller {
         return redirect()->route('catalogo');
     }
 
-    
+    public static function getAllUsername(){
+        $utenti = User::get()->pluck('username');
+        return response()->json($utenti); 
+    }
 }
 
 

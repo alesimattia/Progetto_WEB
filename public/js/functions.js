@@ -14,46 +14,76 @@ function scriviErrore(elemErrors) {
 /** Il campo password e la sua conferma vanno trattati in modo particolare */
 function validaPassword(id){
 
-    function passwordMatches() {
-        var password = $("#password").val();
-        var conferma = $("#password-confirm").val();
-
-        if (password != conferma) 
-            return false;
-        else return true;
-    }
+    var password = $("#password").val();
+    var conferma = $("#password-confirm").val();
 
 
     if( id == 'password' ){
-        var inserito = $("#password").val();
-        if ( inserito.length < 8 ){
+        if ( password.length < 8 ){
             $("#" + id).next().find("li").parent().remove();
             $("#" + id).after(scriviErrore(['La password deve essere > 8 caratteri']));
         }
         else $("#" + id).next().find("li").parent().remove();
-        
-        return true;
     }
     else if( id == 'password-confirm' ){
-            if(! passwordMatches() ){
+            if( conferma!=password ){
                 $("#" + id).next().find("li").parent().remove();
-                $("#" + id).after(scriviErrore(['La password non corrisponde']));
+                $("#" + id).after(scriviErrore(['Le password non corrispondono']));
             }
             else  $("#" + id).next().find("li").parent().remove();
-        return true;
     }
+}
+
+
+function validaUsername(idCampo){
+    /** Recupera una lista di username, per verificare se ciò che è stato inserito è già esistente */
+
+    var rotta = $("[name='rottaValidaUsername']").val();
+    var oldUsername = $("[name='oldUsername']").val();
+    var nuovoUsername = $("#"+idCampo).val();
+
+    $.ajax({
+        type: 'POST',
+        url: rotta,
+        dataType: 'json',
+        headers:{ 'X-CSRF-TOKEN': $('[name="_token"]').val() },
+
+        success: function (utenti) {
+
+            if(nuovoUsername == oldUsername)   /** Ha lasciato il vecchio username (non modificato) */
+                    $("#" + idCampo).next().find("li").parent().remove();
+            else 
+            if( utenti.includes(nuovoUsername) )
+                    $("#" + idCampo).after(scriviErrore(['Username già presente']) );
+            else
+                $("#" + idCampo).next().find("li").parent().remove();       /**Ha inserito uno username unico ma prima no */
+        },
+
+        cache: false,
+        contentType: false,
+        processData: false
+    });
 }
 
 
 function validaCampo(id, actionUrl, formId) {
 
-    /** Se è il campo di inserimento password (o conferma) interrompe il meccanismo
-        di validazione Ajax solo per i suddetti campi */
-    if( validaPassword(id) ) return;
+    /** Se è il campo di inserimento dello username , password (o conferma) interrompe 
+     * il meccanismo di validazione Ajax solo per i suddetti campi */
+    switch (id){
+        case "username":
+            validaUsername(id);
+            break;
 
-    /** altrimenti non era un campo password -> campo gestito con tecnica Ajax*/
-    else{
+        case "password":
+            validaPassword(id);
+            break;
+        case "password-confirm":
+            validaPassword(id);
+            break;
 
+        default :       /** altrimenti non era un campo username nè password -> campo gestito con tecnica Ajax*/
+ 
         var elem = $("#" + formId + " :input[name=" + id + "]");
         if (elem.attr('type') === 'file') {     // elemento di input type=file valorizzato
             if (elem.val() !== '')

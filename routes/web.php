@@ -108,6 +108,10 @@ Route::post('login', 'Auth\LoginController@login');
 
 Route::post('logout', 'Auth\LoginController@logout')
         ->name('logout');
+
+Route::post('/valida/username', 'AdminController@getAllUsername')
+        ->name('getAllUsers');
+
 /*-----------------------------------------*/
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')
         ->name('register');

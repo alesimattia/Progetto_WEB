@@ -51,6 +51,5 @@ class User extends Authenticatable {
     public static function occupazione(){
         return array("studente"=>"studente","operaio"=>"operaio","impiegato"=>"impiegato","disoccupato"=>"disoccupato");
     }
-    
 
 }
