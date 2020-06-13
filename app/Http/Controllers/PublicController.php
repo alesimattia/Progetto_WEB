@@ -38,10 +38,10 @@ class PublicController extends Controller {
     }
 
     
-    public function getDescEstesa(Request $request){
+    public function getInfoProdotto(Request $request){
     
-        $testo = Prodotto::readDescEstesa($request->id);
-        return response()->json(['testo' => $testo ]);
+        $prodotto = Prodotto::getProdotto($request->id);
+        return response()->json($prodotto);     /** L'oggetto è già in forma 'chiave'-'valore' */
     }
 
 

@@ -16,13 +16,13 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
                         @endguest
                         @can('isUser')
-                        <li class="nav-item active"><a class="nav-link" href="{{ route('user') }}">Home</a></li>
+                        <li class="nav-item "><a class="nav-link" href="{{ route('user') }}">Home</a></li>
                         @endcan
                         @can('isStaff')
-                        <li class="nav-item active"><a class="nav-link" href="{{ route('staff') }}">Home</a></li>
+                        <li class="nav-item "><a class="nav-link" href="{{ route('staff') }}">Home</a></li>
                         @endcan
                         @can('isAdmin')
-                        <li class="nav-item active"><a class="nav-link" href="{{ route('admin')}}">Home</a></li>
+                        <li class="nav-item "><a class="nav-link" href="{{ route('admin')}}">Home</a></li>
                         @endcan
 
                         <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>

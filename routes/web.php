@@ -30,7 +30,7 @@ Route::post('/catalogo', 'PublicController@showCatalog')
 Route::get('/catalogo/{categoria}', 'PublicController@showCatalog')
         ->name('catalogo/{categoria}');
 
-Route::post('/catalogo/desc/', 'PublicController@getDescEstesa') 
+Route::post('/catalogo/desc/', 'PublicController@getInfoProdotto') 
         ->name('descEstesa');
         
 /***********************  USER  ****************************/

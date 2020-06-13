@@ -48,10 +48,10 @@ function validaPassword(id){
 function validaCampo(id, actionUrl, formId) {
 
     /** Se è il campo di inserimento password (o conferma) interrompe il meccanismo
-     * di validazione Ajax solo per i suddetti campi
-    */
+        di validazione Ajax solo per i suddetti campi */
     if( validaPassword(id) ) return;
-    /** altrimenti non era un campo password */
+
+    /** altrimenti non era un campo password -> campo gestito con tecnica Ajax*/
     else{
 
         var elem = $("#" + formId + " :input[name=" + id + "]");
@@ -114,15 +114,18 @@ function validaForm(actionUrl, formId) {
 
 /*--------------------- DESCRIZIONE ESTESA AJAX ------------------------------*/
 
-function stampaDescrizione(testo){
-    var out = '<div class="">';
-   
-    for (var i = 0; i < elemErrors.length; i++) 
-        out += '<li>' + elemErrors[i] + '</li>';
-
-    out += '</ul>';
+function stampaDesc(titolo, prezzo, testo){
+    var righe = testo.split('\n');
+    var out = '<div class="container descrizione" id="box_desc"> <div class="subscribe text-center">';
+            out += ' <div class="titolo_desc">'+titolo+"&nbsp; - &nbsp; € "+prezzo+'</div>';
+                out += '<ul>';
+    for(var i = 0;i < righe.length;i++)
+                    out +='<li>'+ righe[i] + '</li>';
+                out += '</ul>';
+        out += '</div></div>';
     return out;
 }
+
 
 function getDescEstesa(idProdotto, rotta){
 
@@ -137,9 +140,11 @@ function getDescEstesa(idProdotto, rotta){
         headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 
         success: function (data) {
-            var descrizione = data['testo'];    /** File Json con campo 'testo' --> no parsing */
-            $("div#desc").remove();
-            $("div.container_base").append("<div id='desc'>"+descrizione+"</div>");
+            $("div#box_desc").remove();     /** File Json con campi 'nome' : 'val' --> no parsing */
+            $("div.container_base").append(stampaDesc(data['nome'], 
+                                                      data['prezzo'],
+                                                      data['descEstesa'] )
+            );
         },
 
         cache: false,

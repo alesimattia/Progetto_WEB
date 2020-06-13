@@ -44,7 +44,7 @@
                 @isset ($subCats)
                     @foreach ($subCats as $sottocategoria)
                         @if ($categoria->id == $sottocategoria->mainCat)
-                            <li class="active nav-item sub_category">
+                            <li class=" nav-item sub_category">
                                 <a class="nav-link" href="{{ route('catalogo/{categoria}', [$sottocategoria->nomeSubCat] ) }}">{{ $sottocategoria->nomeSubCat }}</a>
                             </li>
                         @endif

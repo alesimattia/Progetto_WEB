@@ -21,6 +21,7 @@ class Prodotto extends Model {
         return $prezzo;
     }
 
+
     public function getSubCat(){
         return Prodotto::join('sottocategoria', 'sottocategoria.id', '=', 'prodotto.subCat')
                         ->where('prodotto.id','=', $this->id)
@@ -28,6 +29,7 @@ class Prodotto extends Model {
                         ->pluck('nomeSubCat')
                         ->first();
     }
+
 
     public function getMainCat(){
         return Categoria::join('sottocategoria', 'sottocategoria.mainCat', '=', 'categoria.id')
@@ -38,8 +40,15 @@ class Prodotto extends Model {
                     ->first();
     }
 
+
     public static function readDescEstesa($id){
         return Prodotto::where('id','=', $id)
                         ->get()->pluck('descEstesa')->first();
+    }
+
+
+    public static function getProdotto($id){
+        return Prodotto::where('id','=', $id)
+                            ->get()->first();
     }
 }
