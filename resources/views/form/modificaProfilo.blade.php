@@ -34,11 +34,12 @@
 
 <div class="col-12">
     <div class="login_form_inner register_form_inner" id="edit_form">
-        <h3>Modifica informazioni profilo</h3>
 
         @if($utente->ruolo == 'user')
+            <h3>Modifica il tuo profilo</h3>
             {{ Form::open(['route' => 'editProfilo.store', 'class' => 'row login_form', 'id'=>'modificaProfilo']) }}
         @else
+        <h3>Modifica l'utente staff</h3>
             {{ Form::open(['route' => 'modificaStaff.store', 'class' => 'row login_form', 'id'=>'modificaStaff']) }}
         @endif
 
@@ -49,9 +50,9 @@
                     @if($utente->ruolo == 'staff')
                         {{ Form::text('username', $utente->username, ['class' => 'form-control', 'id' => 'username','placeholder'=>'Username']) }}
                         <!--per richiesta ajax di validazione (solo)username --> 
-                        {{ Form::hidden('rottaValidaUsername', route('getAllUsers') ) }}
+                        <meta id="rottaValidaUsername" value="{{ route('getAllUsers') }}" />
                         <!--per ritrovare la tupla in fase di *update Staff*, se si modifica lo username-->
-                        {{ Form::hidden('oldUsername', $utente->username) }}
+                        <meta id="oldUsername" value=" {{ $utente->username }} " />
                     @endif
 
                     {{ Form::password('password', ['class' => 'form-control', 'id' => 'password','placeholder'=>'Password']) }}

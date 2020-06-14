@@ -24,7 +24,7 @@
                             <div class="col-md-12 form-group">
                                 {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username'] )}}                       <!--in caso di errori ripropone-->
                                     @if($errors->first('username'))
-                                    <ul class="error">
+                                    <ul class="errore">
                                         @foreach($errors->get('username') as $message)
                                         <li>{{ $message }}</li>
                                         @endforeach
@@ -32,7 +32,7 @@
                                     @endif
                                 {{ Form::password('password', ['class' => 'form-control', 'id' => 'password','placeholder'=>'Password']) }}
                                     @if($errors->first('password'))
-                                    <ul class="error">
+                                    <ul class="errore">
                                         @foreach($errors->get('password') as $message)
                                         <li>{{ $message }}</li>
                                         @endforeach

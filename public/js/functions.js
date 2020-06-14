@@ -11,7 +11,8 @@ function scriviErrore(elemErrors) {
 }
 
 
-/** Il campo password e la sua conferma vanno trattati in modo particolare */
+/** Il campo password e la sua conferma vanno trattati in modo particolare 
+ *  per verificare la contemporanea presenza dello stesso valore nei campi */
 function validaPassword(id){
 
     var password = $("#password").val();
@@ -38,10 +39,10 @@ function validaPassword(id){
 function validaUsername(idCampo){
     /** Recupera una lista di username, per verificare se ciò che è stato inserito è già esistente */
 
-    var rotta = $("[name='rottaValidaUsername']").val();
-    var oldUsername = $("[name='oldUsername']").val();
+    var rotta = $("#rottaValidaUsername").attr('value');
+    var oldUsername = $("#oldUsername").attr('value');
     var nuovoUsername = $("#"+idCampo).val();
-
+    
     $.ajax({
         type: 'POST',
         url: rotta,
@@ -51,10 +52,17 @@ function validaUsername(idCampo){
         success: function (utenti) {
 
             if(nuovoUsername == oldUsername)   /** Ha lasciato il vecchio username (non modificato) */
-                    $("#" + idCampo).next().find("li").parent().remove();
+                $("#" + idCampo).next().find("li").parent().remove();
             else 
-            if( utenti.includes(nuovoUsername) )
-                    $("#" + idCampo).after(scriviErrore(['Username già presente']) );
+            if( utenti.includes(nuovoUsername) ){
+                $("#" + idCampo).next().find("li").parent().remove();
+                $("#" + idCampo).after(scriviErrore(['Username già presente']) );
+            }
+            else 
+            if (nuovoUsername.length < 8){
+                $("#" + idCampo).next().find("li").parent().remove();
+                $("#" + idCampo).after(scriviErrore(['Username deve essere > 8 caratteri']) );
+            }
             else
                 $("#" + idCampo).next().find("li").parent().remove();       /**Ha inserito uno username unico ma prima no */
         },
@@ -69,7 +77,7 @@ function validaUsername(idCampo){
 function validaCampo(id, actionUrl, formId) {
 
     /** Se è il campo di inserimento dello username , password (o conferma) interrompe 
-     * il meccanismo di validazione Ajax solo per i suddetti campi */
+     *  il meccanismo di validazione Ajax solo per i suddetti campi */
     switch (id){
         case "username":
             validaUsername(id);
@@ -120,6 +128,7 @@ function validaCampo(id, actionUrl, formId) {
 function validaForm(actionUrl, formId) {
 
     var form = new FormData(document.getElementById(formId));
+
     $.ajax({
         type: 'POST',
         url: actionUrl,
@@ -127,7 +136,7 @@ function validaForm(actionUrl, formId) {
         dataType: "json",
         error: function (data) {
             if (data.status === 422) {
-                var errMsgs = JSON.parse(data.responseText);
+                var errMsgs = data.responseText;
                 $.each(errMsgs, function (id) {
                     $("#" + id).next().find("li").parent().remove();
                     $("#" + id).after(scriviErrore(errMsgs[id]));

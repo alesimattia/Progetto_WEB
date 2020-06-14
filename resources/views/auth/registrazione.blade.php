@@ -48,37 +48,30 @@
                                 </ul>
                                 @endif
                                 {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
-                                @if($errors->first('dataNascita'))
-                                <ul class="errore">
-                                    @foreach($errors->get('dataNascita') as $message)
-                                    <li>{{ $message }}</li>
-                                    @endforeach
-                                </ul>
-                                @endif
+                                
                                 {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
-                                @if($errors->first('occupazione'))
-                                <ul class="errore">
-                                    @foreach($errors->get('occupazione') as $message)
-                                    <li>{{ $message }}</li>
-                                    @endforeach
-                                </ul>
-                                @endif
                                 {{ Form::select('occupazione', $lista_occupaz , '', ['class' => 'select_box','id' => 'occupation']) }}
-                                @if($errors->first('nome'))
-                                <ul class="occupazione">
-                                    @foreach($errors->get('occupazione') as $message)
-                                    <li>{{ $message }}</li>
-                                    @endforeach
-                                </ul>
-                                @endif
+
                             </fieldset>
 
                                 <legend>Dati di accesso</legend>
                                 {{ Form::text('username', '', ['class' => 'form-control','id' => 'username','placeholder'=>'Username'] )}}                       
-
+                                    @if($errors->first('username'))
+                                    <ul class="errore">
+                                        @foreach($errors->get('username') as $message)
+                                        <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
                                 {{ Form::password('password', ['class' => 'form-control','id' => 'password','placeholder'=>'Password'] )}}                       
                                 {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm','placeholder'=>'Conferma password']) }}
-
+                                    @if($errors->first('password'))
+                                    <ul class="errore">
+                                        @foreach($errors->get('password') as $message)
+                                        <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
                                 {{ Form::submit('REGISTRATI', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
                         </div>
                     {{ Form::close() }}

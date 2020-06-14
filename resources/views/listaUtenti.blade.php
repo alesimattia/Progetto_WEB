@@ -30,51 +30,51 @@
                 <th scope="col">Seleziona</th>
             </tr>
         </thead>
+
         @isset ($utenti)
         <tbody>
             {{ Form::open(array('route' => array('eliminaProfilo/{ruolo}' , $ruolo), 'id' => 'eliminaProfilo', 'class' => 'row login_form')) }}
             @csrf
-            
+
             @foreach ($utenti as $utente)
-                <tr>
-                    <td>
-                        <div class="alert-info">
-                            {{ $utente->username }}
-                        </div>
-                    </td>
-                    <td>
-                        {{ $utente->nome }}
-                    </td>
-                    <td>
-                        {{ $utente->cognome }}
-                    </td>
-                    @if($utente->ruolo =='user')
-                    <td>
-                        {{ $utente->dataNascita }}
-                    </td>
-                    <td>
-                        {{ $utente->residenza }}
-                    </td>
-                    <td>
-                        {{ $utente->occupazione }}
-                    </td>
-                    @else
-                    <td>
-                        <a href="{{ route('modificaStaff/{username}', [$utente->username]) }}">
-                            <img src="{{ asset('/img/icon/pencil.png') }}" class="icona_paginator">
-                        </a>    
-                    </td>
-                    @endif
-                    <td>
-                        {{ Form::checkbox('selezionati[]', $utente->username) }}
-                    </td>  
-                </tr>
+            <tr>
+                <td>
+                    <div class="alert-info">
+                        {{ $utente->username }}
+                    </div>
+                </td>
+                <td>
+                    {{ $utente->nome }}
+                </td>
+                <td>
+                    {{ $utente->cognome }}
+                </td>
+                @if($utente->ruolo =='user')
+                <td>
+                    {{ $utente->dataNascita }}
+                </td>
+                <td>
+                    {{ $utente->residenza }}
+                </td>
+                <td>
+                    {{ $utente->occupazione }}
+                </td>
+                @else
+                <td>
+                    <a href="{{ route('modificaStaff/{username}', [$utente->username]) }}">
+                        <img src="{{ asset('/img/icon/pencil.png') }}" class="icona_paginator">
+                    </a>    
+                </td>
+                @endif
+                <td>
+                    {{ Form::checkbox('selezionati[]', $utente->username) }}
+                </td>  
+            </tr>
             @endforeach
         </tbody>
         @endisset
     </table>
 
-   
     <div class="controls">
         @if($ruolo == 'staff')
         <a class="button button--active mt-3 mt-xl-4" href="{{ route('addStaff') }}">Aggiungi Staff</a>   

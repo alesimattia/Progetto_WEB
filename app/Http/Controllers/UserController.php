@@ -34,7 +34,7 @@ class userController extends Controller {
         $user = new User;
         $user->find(Auth::user()->username)
              ->update(array_merge( $request->validated(), ['password' => Hash::make($request->password)] ) );
-        
-        return redirect()->action('UserController@index');
+
+        return response()->json(['redirect' => route('user')]);
     }
 }

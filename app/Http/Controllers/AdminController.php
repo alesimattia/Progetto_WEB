@@ -43,11 +43,9 @@ class AdminController extends Controller {
         $user->password = Hash::make($request->password);
         
         $user->save();   //genera query nel dbms
-
-        $msg="Utente Staff aggiunto correttamente";
-        return view('form.inserisciStaff')
-                ->with('confirm', $msg);
-        //return redirect()->route('listaUtenti/{ruolo}', 'staff');
+        $staff = 'staff';
+        
+        return response()->json(['redirect' => route('listaUtenti/staff' , $staff) ]);
     }
     
 /*------------------------------------------------------------------------------------------*/
@@ -88,24 +86,6 @@ class AdminController extends Controller {
                         ->update(array_merge( $request->validated(), ['password' => Hash::make($request->password)] ) );
 
         return redirect()->action('AdminController@listaUtenti', 'staff');
-    }
-
-
-    public function updateProdotto(ProductSchema $request) {
-
-        if ($request->hasFile('foto')) {
-            $image = $request->file('foto');
-            $imageName = $image->getClientOriginalName();
-            $destinationPath = public_path() . '/img/' . Catalogo::getParentCat($request->subCat) 
-                                                . '/' . Catalogo::subCatToName($request->subCat);
-            $image->move($destinationPath, $imageName);
-        }
-
-        $prodotto = new Prodotto;
-        $prodotto->find($request->id)
-                 ->update($request->validated());
-
-        return redirect()->route('catalogo');
     }
 
     public static function getAllUsername(){

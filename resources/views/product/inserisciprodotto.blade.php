@@ -31,10 +31,6 @@
 <div class="col-12">
     <div class="login_form_inner register_form_inner add_prodotto">
 
-    @isset($conferma)
-        <h4 style="color:#c54040 " > {{ $conferma }}</h4>
-    @endisset
-
         <h3>Aggiungi Prodotto</h3>
         <p>Inserisci un nuovo elemento nel catalogo</p>
 

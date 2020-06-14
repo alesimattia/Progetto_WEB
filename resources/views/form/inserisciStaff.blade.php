@@ -30,14 +30,14 @@
 
 <div class="col-12">
     <div class="login_form_inner register_form_inner" id="edit_form">
-            @isset($confirm)
-                <h4 class="messaggio" > {{ $confirm }}</h4>
-            @endisset
 
             <h3>Crea account Staff</h3>
             
             {{ Form::open(['route' => 'addStaff.store', 'class' => 'row login_form', 'id'=>'inserisciStaff']) }}
-                
+
+            <!--per richiesta ajax di validazione (solo)username --> 
+            <meta id="rottaValidaUsername" value="{{ route('getAllUsers') }}" />
+
             <fieldset class="registra-box-campi">
                 <div class="col-md-12 form-group">
                         {{ Form::text('nome', '', ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome']) }}

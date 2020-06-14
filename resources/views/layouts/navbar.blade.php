@@ -1,7 +1,7 @@
 <header class="header_area">
     <div class="main_menu">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light fixed">   <!-- eventualemte non trasparente style="background-color: #fff;-->
+        <nav class="navbar navbar-expand navbar-light fixed">   <!-- eventualemte non trasparente style="background-color: #fff;-->
             <div class="container">
                 <a class="navbar-brand logo_h" href="{{ route('index') }}"><img src="{{ URL::asset('/img/home/main_logo.png') }}"></a>  <!-- LOGO OTTIMO, NON CAMBIARE-->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>
 
                         @guest
-                        <li class="nav-item"><a class="nav-link" href="#">Documentazione</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ URL::asset('doc.pdf') }}">Documentazione</a></li>
                         @endguest
                         @can('isUser')
                         <li class="nav-item"><a class="nav-link" href="{{ route('editProfilo') }}">Modifica profilo</a></li>

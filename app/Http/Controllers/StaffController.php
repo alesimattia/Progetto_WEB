@@ -50,7 +50,7 @@ class staffController extends Controller {
         $prodotto->foto = $imageName;
         $prodotto->save();
 
-        return redirect()->route('catalogo');
+        return response()->json(['redirect' => route('catalogo')]);
     }
 
 /*--------------------------------------------------------------------------------------*/
@@ -88,7 +88,7 @@ class staffController extends Controller {
                  ->update($request->validated());
 
         /** Memorizza nel response object l'oggetto json con coppia rotta-catalogo */
-        return response()->json(['redirect' => route('catalogo') ]);
+        return response()->json(['redirect' => route('listaProdotti') ]);
     }
 
 

@@ -85,7 +85,7 @@
                     <!--/a-->
                 </div>
             </div>
-            <meta codiceProdotto="{{ $prodotto->idProdotto }}"> </p> 
+            <meta codiceProdotto="{{ $prodotto->idProdotto }}" />
         @endforeach                                    
         @endisset
     </div>                  <!--oggetto a cui viene inviato il contenuto da paginare-->
