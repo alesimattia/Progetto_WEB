@@ -28,7 +28,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Catalogo</a></li>
 
                         @guest
-                        <li class="nav-item"><a class="nav-link" href="{{ URL::asset('doc.pdf') }}">Documentazione</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ URL::asset('documentazione.pdf') }}">Documentazione</a></li>
                         @endguest
                         @can('isUser')
                         <li class="nav-item"><a class="nav-link" href="{{ route('editProfilo') }}">Modifica profilo</a></li>

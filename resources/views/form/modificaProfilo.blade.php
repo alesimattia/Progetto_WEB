@@ -52,7 +52,7 @@
                         <!--per richiesta ajax di validazione (solo)username --> 
                         <meta id="rottaValidaUsername" value="{{ route('getAllUsers') }}" />
                         <!--per ritrovare la tupla in fase di *update Staff*, se si modifica lo username-->
-                        <meta id="oldUsername" value=" {{ $utente->username }} " />
+                        {{ Form::hidden('oldUsername', $utente->username, ['id' => 'oldUsername']) }}
                     @endif
 
                     {{ Form::password('password', ['class' => 'form-control', 'id' => 'password','placeholder'=>'Password']) }}

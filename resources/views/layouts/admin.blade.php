@@ -59,9 +59,9 @@
                             <div class="single-footer-widget tp_widgets">
                                 <h4 class="footer_title">I nostri social</h4>
                                 <ul class="list">
-                                    <li><a href="#"><img src="{{asset('img/icon/fb.png')}}" class="navico"></a></li>
-                                    <li><a href="#"><img src="{{asset('img/icon/tw.png')}}" class="navico"></a></li>
-                                    <li><a href="#"><img src="{{asset('img/icon/yt.png')}}" class="navico"></a></li>
+                                    <li><img src="{{asset('img/icon/fb.png')}}" class="navico"></li>
+                                    <li><img src="{{asset('img/icon/tw.png')}}" class="navico"></li>
+                                    <li><img src="{{asset('img/icon/yt.png')}}" class="navico"></li>
                                 </ul>
                             </div>
                         </div>

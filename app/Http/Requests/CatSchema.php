@@ -33,9 +33,4 @@ class CatSchema extends FormRequest {       //UNA CLASSE PER OGNI FORM
         ];
     }
 
-    protected function failedValidation(Validator $validator)
-    {                                                                 
-        throw new HttpResponseException(response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY));
-    }
-    
 }

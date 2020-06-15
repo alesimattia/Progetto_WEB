@@ -43,9 +43,8 @@ class AdminController extends Controller {
         $user->password = Hash::make($request->password);
         
         $user->save();   //genera query nel dbms
-        $staff = 'staff';
         
-        return response()->json(['redirect' => route('listaUtenti/staff' , $staff) ]);
+        return response()->json(['redirect' => route('listaUtenti/{ruolo}' , ['staff'] ) ]);
     }
     
 /*------------------------------------------------------------------------------------------*/
@@ -85,7 +84,7 @@ class AdminController extends Controller {
                 $user->find($request->oldUsername)
                         ->update(array_merge( $request->validated(), ['password' => Hash::make($request->password)] ) );
 
-        return redirect()->action('AdminController@listaUtenti', 'staff');
+        return response()->json(['redirect' => route('listaUtenti/{ruolo}' , ['staff'] ) ]);
     }
 
     public static function getAllUsername(){

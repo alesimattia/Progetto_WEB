@@ -156,7 +156,7 @@ function validaForm(actionUrl, formId) {
 function stampaDesc(titolo, prezzo, testo){
     var righe = testo.split('\n');
     var out = '<div class="container descrizione" id="box_desc"> <div class="subscribe text-center">';
-            out += ' <div class="titolo_desc">'+titolo+"&nbsp; - &nbsp; € "+prezzo+'</div>';
+            out += ' <div class="titolo_desc">'+titolo+"&nbsp; - &nbsp; Listino: € "+prezzo+'</div>';
                 out += '<ul>';
     for(var i = 0;i < righe.length;i++)
                     out +='<li>'+ righe[i] + '</li>';
