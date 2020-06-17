@@ -16,7 +16,7 @@ function scriviErrore(elemErrors) {
 function validaPassword(id){
 
     var password = $("#password").val();
-    var conferma = $("#password-confirm").val();
+    var conferma = $("#password_confirmation").val();
 
 
     if( id == 'password' ){
@@ -26,7 +26,7 @@ function validaPassword(id){
         }
         else $("#" + id).next().find("li").parent().remove();
     }
-    else if( id == 'password-confirm' ){
+    else if( id == 'password_confirmation' ){
             if( conferma!=password ){
                 $("#" + id).next().find("li").parent().remove();
                 $("#" + id).after(scriviErrore(['Le password non corrispondono']));
@@ -86,7 +86,7 @@ function validaCampo(id, actionUrl, formId) {
         case "password":
             validaPassword(id);
             break;
-        case "password-confirm":
+        case "password_confirmation":
             validaPassword(id);
             break;
 
@@ -118,6 +118,7 @@ function validaCampo(id, actionUrl, formId) {
                         $("#" + id).after(scriviErrore(errMsgs[id]));
                     }
                 },
+                cache: false,
                 contentType: false,     //lascia l' enctype=multipart/form-Data
                 processData: false      //non ri-formatta in modo diverso la struttura del dato
             });
@@ -146,6 +147,7 @@ function validaForm(actionUrl, formId) {
         success: function (data) {
             window.location.replace(data.redirect);
         },
+        cache: false,
         contentType: false,
         processData: false
     });

@@ -56,7 +56,7 @@
                     @endif
 
                     {{ Form::password('password', ['class' => 'form-control', 'id' => 'password','placeholder'=>'Password']) }}
-                    {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm','placeholder'=>'Conferma password']) }}
+                    {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation','placeholder'=>'Conferma password']) }}
 
                     {{ Form::text('nome', $utente->nome, ['class' => 'form-control', 'id' => 'nome','placeholder'=>'Nome']) }}
 

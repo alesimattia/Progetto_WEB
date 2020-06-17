@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductSchema;
 use App\Http\Requests\StaffSchema;
+use App\Http\Requests\UpdateStaffSchema;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 
@@ -74,7 +75,7 @@ class AdminController extends Controller {
     }
 
 
-    public function updateStaff(StaffSchema $request){
+    public function updateStaff(UpdateStaffSchema $request){
 
             $user = new User;
             if($request->oldUsername == $request->username)
