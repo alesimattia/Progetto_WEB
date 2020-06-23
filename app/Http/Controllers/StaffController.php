@@ -85,7 +85,7 @@ class staffController extends Controller {
 
         $prodotto = new Prodotto;
         $prodotto->find($request->id)
-                 ->update($request->validated());
+                 ->update([$request->validated(), 'foto' => $imageName] );
 
         /** Memorizza nel response object l'oggetto json con coppia rotta-catalogo */
         return response()->json(['redirect' => route('listaProdotti') ]);

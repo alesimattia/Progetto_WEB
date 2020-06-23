@@ -13,25 +13,25 @@ function scriviErrore(elemErrors) {
 
 /** Il campo password e la sua conferma vanno trattati in modo particolare 
  *  per verificare la contemporanea presenza dello stesso valore nei campi */
-function validaPassword(id){
+function validaPassword(idCampo){
 
     var password = $("#password").val();
     var conferma = $("#password_confirmation").val();
 
 
-    if( id == 'password' ){
+    if( idCampo == 'password' ){
         if ( password.length < 8 ){
-            $("#" + id).next().find("li").parent().remove();
-            $("#" + id).after(scriviErrore(['La password deve essere > 8 caratteri']));
+            $("#" + idCampo).next().find("li").parent().remove();
+            $("#" + idCampo).after(scriviErrore(['La password deve essere > 8 caratteri']));
         }
-        else $("#" + id).next().find("li").parent().remove();
+        else $("#" + idCampo).next().find("li").parent().remove();
     }
-    else if( id == 'password_confirmation' ){
+    else if( idCampo == 'password_confirmation' ){
             if( conferma!=password ){
-                $("#" + id).next().find("li").parent().remove();
-                $("#" + id).after(scriviErrore(['Le password non corrispondono']));
+                $("#" + idCampo).next().find("li").parent().remove();
+                $("#" + idCampo).after(scriviErrore(['Le password non corrispondono']));
             }
-            else  $("#" + id).next().find("li").parent().remove();
+            else  $("#" + idCampo).next().find("li").parent().remove();
     }
 }
 
@@ -74,6 +74,22 @@ function validaUsername(idCampo){
 }
 
 
+function validaData(){
+
+    var data = $("input[type=date]").val();
+    /** Per firefox basta  '! Date.parse(data)'  */
+    if ( Date.parse(data) > Date.parse("01/01/2100") || Date.parse(data) < Date.parse("01/01/1900")){
+        $("input[type=date]").next().find("li").parent().remove();
+        $("input[type=date]").after('<ul class="errore"> <li>Formato data non valido</li> </ul>');
+        $('.submit').prop('disabled', true);
+    }
+    else{
+        $("input[type=date]").next().find("li").parent().remove();
+        $('.submit').prop('disabled', false);
+    }
+}
+
+
 function validaCampo(id, actionUrl, formId) {
 
     /** Se è il campo di inserimento dello username , password (o conferma) interrompe 
@@ -86,8 +102,13 @@ function validaCampo(id, actionUrl, formId) {
         case "password":
             validaPassword(id);
             break;
+
         case "password_confirmation":
             validaPassword(id);
+            break;
+
+        case "dataNascita":
+            validaData();
             break;
 
         default :       /** altrimenti non era un campo username nè password -> campo gestito con tecnica Ajax*/
@@ -137,7 +158,7 @@ function validaForm(actionUrl, formId) {
         dataType: "json",
         error: function (data) {
             if (data.status === 422) {
-                var errMsgs = data.responseText;
+                var errMsgs = JSON.parse(data.responseText);    /** Mancava il parse -> in modificaProdotto non inseriva gli errori  */
                 $.each(errMsgs, function (id) {
                     $("#" + id).next().find("li").parent().remove();
                     $("#" + id).after(scriviErrore(errMsgs[id]));
@@ -216,6 +237,7 @@ function slideshowAuto() {
     dots[slideIndex-1].className += " active";
     setTimeout(slideshowAuto, 4000);
 }
+
 
 function showSlides(n) {
 

@@ -2,6 +2,19 @@
 
 @section('title', 'Registrazione')
 
+@section('scripts')
+    @parent
+    <script src="{{ asset('js/functions.js') }}" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(":input").on('keyup', function (event) {
+                validaData();
+            });
+        });
+    </script>
+@endsection
+
 @section('main')
 
 <section class="login_box_area section-margin" >
@@ -47,8 +60,15 @@
                                     @endforeach
                                 </ul>
                                 @endif
-                                {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'Data_di_nascita']) }}
-                                
+                                {{ Form::date('dataNascita', '', ['class' => 'form-control', 'id' => 'dataNascita']) }}
+                                @if($errors->first('dataNascita'))
+                                <ul class="errore">
+                                    @foreach($errors->get('dataNascita') as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
+
                                 {{ Form::label('occupazione', 'Scegli occupazione', ['class' => 'lista-opzioni']) }}
                                 {{ Form::select('occupazione', $lista_occupaz , '', ['class' => 'select_box','id' => 'occupation']) }}
 

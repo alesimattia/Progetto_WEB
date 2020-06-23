@@ -9,16 +9,18 @@
     <script>
     $(function () {
 
-        var actionUrl = $('form').eq(1).attr('action')
+        /** Recupero il form senza conoscerne l'id, dato che l'azione varia 
+            in funzione dell'utente da modificare (e quindi del controller che ha chiamato la vista) */
+        var actionUrl = $('form').eq(1).attr('action');
         var formId = $('form').eq(1).attr('id');   
 
-        $(":input").on('blur', function (event) {
-            var formElementId = $(this).attr('id');     //memorizza l'id dell'elemento di cui si è perso il focus
+        $(":input").on('keyup', function (event) {
+            var formElementId = $(this).attr('id'); 
             validaCampo(formElementId, actionUrl, formId);
         });
 
         $("#"+formId).on('submit', function (event) {
-            event.preventDefault();     //interrompe il processo predefinito di submit
+            event.preventDefault();  
             validaForm(actionUrl, formId);    //gestisce il processo di submit 
         });
     });
@@ -35,8 +37,8 @@
         <p>Inserisci un nuovo elemento nel catalogo</p>
 
         <fieldset class="registra-box-campi">
-            {{ Form::open(['route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form' ] ) }}
-            @csrf
+            {{ Form::open( array('route' => 'nuovoProdotto.store', 'id' => 'addproduct', 'files' => true, 'class' => 'row login_form' ) ) }}
+
             <div class="col-md-12 form-group">
                 {{ Form::text('nome', '', ['class' => 'form-control','id' => 'nome','placeholder'=>'Nome prodotto'])  }}
 
@@ -45,7 +47,7 @@
 
                 {{ Form::label('foto', 'Immagine', ['class' => 'label-input']) }}
 
-                {{ Form::file('foto', ['class' => 'form-control', 'id' => 'image']) }}
+                {{ Form::file('foto', ['class' => 'form-control', 'id' => 'foto']) }}
 
                 {{ Form::text('descBreve', '', ['class' => 'form-control','id' => 'descBreve','placeholder'=>'Descrizione breve'])  }}
 
@@ -54,7 +56,7 @@
                 {{ Form::text('percSconto', '', ['class' => 'form-control','id' => 'percSconto','placeholder'=>'Sconto (%)'])  }}
 
                 {{ Form::label('descEstesa', 'Descrizione Estesa', ['class' => 'label-input']) }}
-                {{ Form::textarea('descEstesa', '', ['class' => 'input', 'id' => 'descLong', 'rows' => 2]) }}
+                {{ Form::textarea('descEstesa', '', ['class' => 'input', 'id' => 'descEstesa', 'rows' => 2]) }}
 
                 {{ Form::submit('Aggiungi Prodotto', ['class' => 'submit button-register w-100 ' ,'style'=>'color:white']) }}
             </div>
