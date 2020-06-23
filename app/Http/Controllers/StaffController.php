@@ -39,10 +39,10 @@ class staffController extends Controller {
         if ($request->hasFile('foto')) {
             $image = $request->file('foto');
             $imageName = $image->getClientOriginalName();
-            $destinationPath = public_path() . '/img/' . Catalogo::getParentCat($request->subCat) 
+            $destinationPath = public_path() . '/img/' . Catalogo::getParentCat($request->subCat)
                                                 . '/' . Catalogo::subCatToName($request->subCat);
             $image->move($destinationPath, $imageName);
-        } 
+        }
         else  $imageName = 'dummy.jpg';
 
         $prodotto = new Prodotto;
@@ -62,11 +62,11 @@ class staffController extends Controller {
 
 
     public function modificaProdotto($id){
-        
+
         $subCats = Catalogo::getAllSubCat()->pluck('nomeSubCat','id');
         $prodotto = Prodotto::where('id','=', $id)
                                 ->get()->first();
-        
+
         return view('product.modificaProdotto')
                     ->with('prodotto', $prodotto)
                     ->with('subCats', $subCats);
@@ -78,14 +78,14 @@ class staffController extends Controller {
         if ($request->hasFile('foto')) {
             $image = $request->file('foto');
             $imageName = $image->getClientOriginalName();
-            $destinationPath = public_path() . '/img/' . Catalogo::getParentCat($request->subCat) 
+            $destinationPath = public_path() . '/img/' . Catalogo::getParentCat($request->subCat)
                                                 . '/' . Catalogo::subCatToName($request->subCat);
             $image->move($destinationPath, $imageName);
         }
 
         $prodotto = new Prodotto;
         $prodotto->find($request->id)
-                 ->update($request->validated());
+                 ->update([$request->validated(),'foto'=>$imageName]);
 
         /** Memorizza nel response object l'oggetto json con coppia rotta-catalogo */
         return response()->json(['redirect' => route('listaProdotti') ]);
@@ -97,12 +97,12 @@ class staffController extends Controller {
         if( isset($_POST['selezionati']) && is_array($_POST['selezionati']) )
             foreach($_POST['selezionati'] as $selezionato)
                 Prodotto::get()->find($selezionato)->delete();
-        
+
         return redirect()->route('listaProdotti');
     }
 
 /*--------------------------------------------------------------------------------------*/
-    
+
     public function aggiungiCat() {
 
         $cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
@@ -113,7 +113,7 @@ class staffController extends Controller {
 
     public function storeCat(CatSchema $request) {
         $categoria = new Categoria;
-        $categoria->fill($request->validated());     
+        $categoria->fill($request->validated());
         $categoria->save();
         $cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
         $msg = "Categoria aggiunta correttamente";
@@ -126,7 +126,7 @@ class staffController extends Controller {
 
     public function storeSub(SubCatSchema $request) {
         $sub = new Sottocategoria;
-        $sub->fill($request->validated());     
+        $sub->fill($request->validated());
         $sub->save();
         $cats = Catalogo::getAllMainCat()->pluck('nomeCat','id');
         $msg = "Sottocategoria aggiunta correttamente";
@@ -135,6 +135,6 @@ class staffController extends Controller {
                 ->with('cats', $cats)
                 ->with('confirm', $msg);
     }
-    
-    
+
+
 }
